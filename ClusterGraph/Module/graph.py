@@ -5,10 +5,11 @@ import datetime
 from collections import defaultdict
 #----------------------Imports-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+#Début de la procédure. On initialise le temps.
 start_time = time.time()
-#print('Working ...')
 
-#Le constructeur Node construit des objets de type Node qui ont comme attribut un identifiant de cluster, une liste de genes liés à ce cluster et une liste--------------------------------------------------
+#---------------------------------NODE-------------------------------------------------------------------------------------------------------------------------------------
+#Le constructeur Node construit des objets de type Node qui ont comme attribut un identifiant de cluster, une liste de genes liés à ce cluster et une liste
 class Node:
     def __init__(self,cluster_id, gene_list=None, links=None):
         self.cluster_id = cluster_id
@@ -21,14 +22,14 @@ class Node:
         else:
             self.links = links
 
-#Un graph possède comme attribut plusieurs noeux.---------------------------------------------------------------------------------------------------------------------------------------------------------------
+#-------------------GRAPH---------------------------------------------------------------------------------------------------------------------------------------------------
+#Un graph possède comme attribut plusieurs noeux.
 class Graph:
     def __init__(self):
         self.nodes = {}
         self.echantillons = defaultdict(list)
 
 #--------------------- Classer en ordre les gènes dans les différents échantillons pour pouvoir retrouvé facilement les gènes avant et apres un gène en particulier------------------------------------------
-
     def order_by_asc(self):
         for sample_id, gene in self.echantillons.items():
             i = 0
@@ -308,22 +309,28 @@ class Graph:
             else:
                 raise TypeError('''La liste que vous avez tentez d'entrer n'est pas un objet de type list.''')
         else:
-            raise TypeError('''Le que vous avez tentez d'entrer n'est pas un objet de type graph.''')
+            raise TypeError('''Le graph que vous avez tentez d'entrer n'est pas un objet de type graph.''')
 
 
         return sequence_paths
 
-
+#-----------------------MAIN------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
     graph = Graph()
+
     graph.load_graph(('/home/saiant01/PycharmProjects/ClusterGraph/Data/cat_prodigal-cd-hit.fasta.clstr'))
+
     list_of_paths=graph.find_path('Cluster 17', 2)
+
     graph.cytoscape()
+
     graph.graph_javascript()
+
     print('')
     print(graph.sequences_in_find_path(list_of_paths))
     print(' ')
+    
     print('Time:',graph.function_time(time), '/  H:M:S')
 
 
