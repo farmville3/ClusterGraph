@@ -49,7 +49,8 @@ class Graph:
 #-----------------------------Méthode qui nous perment d'ajouter rapidement un noeux a un graph.-------------------------------------------------------------------------------------------------------------
     def append(self, node):
         if isinstance(node,Node):
-            if len(node.cluster_id)!=0:
+            #Verifier si node.cluster_id n'est pas vide
+            if node.cluster_id:
                 self.nodes[node.cluster_id]=node
         else:
             raise TypeError('''L'objet que vous essayé d'ajouter dans le graph n'est pas un objet de type noeux!''')
@@ -75,7 +76,6 @@ class Graph:
                     else:
                         break
         f1.close()
-
 
         # Création de la liste contenant tous les identifiants des échantillons
         sample_id_list = []
@@ -140,7 +140,6 @@ class Graph:
     def cytoscape(self,file='/home/saiant01/PycharmProjects/Git/ClusterGraph/Cytoscape/cytoscape.txt'):
         f2 = open(file, 'w')
         # Cytoscape
-
         #Créer un fichier tabulé pour cytoscape
         for nodes in self.nodes.values():
             for links in nodes.links:
@@ -153,6 +152,7 @@ class Graph:
         f2.close()
 #------------------------GRAPH JAVACRIPT------------------------------------------------------------------------------------------------------------------------------
     def graph_javascript(self):
+        #index.html
         #Créer une liste cluster_start_end pour laquelle chaque élément aura la forme: Cluster_de_départ_du_edge,Cluster_de_fin_du_edge.
         cluster_start_end = []
         dir = os.path.dirname(__file__)
