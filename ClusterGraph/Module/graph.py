@@ -315,9 +315,10 @@ class Graph:
 
 
 if __name__ == '__main__':
+
     graph = Graph()
     graph.load_graph(('/home/saiant01/PycharmProjects/ClusterGraph/Data/cat_prodigal-cd-hit.fasta.clstr'))
-    list_of_paths=graph.find_path('Cluster 20', 2)
+    list_of_paths=graph.find_path('Cluster 17', 2)
     graph.cytoscape()
     graph.graph_javascript()
     print('')
