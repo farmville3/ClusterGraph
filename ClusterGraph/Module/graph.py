@@ -4,7 +4,7 @@ import datetime
 #----------------------Imports-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 start_time = time.time()
-print('Working ...')
+#print('Working ...')
 
 #Le constructeur Node construit des objets de type Node qui ont comme attribut un identifiant de cluster, une liste de genes liés à ce cluster et une liste--------------------------------------------------
 class Node:
@@ -48,6 +48,7 @@ class Graph:
 #-----------------------------Méthode qui nous perment d'ajouter rapidement un noeux a un graph.-------------------------------------------------------------------------------------------------------------
     def append(self, node):
         if isinstance(node,Node):
+            if len(node.cluster_id)!=0:
                 self.nodes[node.cluster_id]=node
         else:
             raise TypeError('''L'objet que vous essayé d'ajouter dans le graph n'est pas un objet de type noeux!''')
@@ -302,7 +303,7 @@ class Graph:
                                     moins = moins.rstrip(moins.split('_')[-1]) + str(int(moins.split('_')[-1]) - 1)
                                 else:
                                     break
-                    print('')
+                    #Retourner le tout dans un dictionnaire
                     print(paths)
                     if len(return_list)==0:
                         print('None!')
@@ -324,7 +325,7 @@ if __name__ == '__main__':
     list_of_paths=graph.find_path('Cluster 20', 2)
     graph.sequences_in_find_path(list_of_paths)
 
-    print('Done')
+    #print('Done')
 
 
 
