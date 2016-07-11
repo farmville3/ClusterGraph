@@ -23,27 +23,26 @@ class Node:
 class Graph:
     def __init__(self):
         self.nodes = {}
+        self.echantillons ={}
 
 #--------------------- Classer en ordre les gènes dans les différents échantillons pour pouvoir retrouvé facilement les gènes avant et apres un gène en particulier------------------------------------------
-    @staticmethod
-    def order_by_asc(echantillons):
-        for sample_id, gene in echantillons.items():
+
+    def order_by_asc(self):
+        for sample_id, gene in self.echantillons.items():
             i = 0
-            while i < len(echantillons[sample_id]):
-                ((echantillons[sample_id])[i]) = int((((echantillons[sample_id])[i]).split('_')[-1]))
+            while i < len(self.echantillons[sample_id]):
+                ((self.echantillons[sample_id])[i]) = int((((self.echantillons[sample_id])[i]).split('_')[-1]))
                 i=i+1
-            echantillons[sample_id].sort()
+            self.echantillons[sample_id].sort()
             i=0
-            while i < len(echantillons[sample_id]):
-                ((echantillons[sample_id])[i]) = str(sample_id) + '_' + str((echantillons[sample_id])[i])
+            while i < len(self.echantillons[sample_id]):
+                ((self.echantillons[sample_id])[i]) = str(sample_id) + '_' + str((self.echantillons[sample_id])[i])
                 i = i + 1
 
     @staticmethod
     def function_time(_start_time):
         end_time = time.time() - start_time
-        print('')
-        print('Temps écoulé depuis le départ:', datetime.timedelta(seconds=end_time), 'secondes.')
-        print('')
+        return(datetime.timedelta(seconds=end_time))
 
 #-----------------------------Méthode qui nous perment d'ajouter rapidement un noeux a un graph.-------------------------------------------------------------------------------------------------------------
     def append(self, node):
@@ -58,11 +57,8 @@ class Graph:
     def load_graph(self, file,cytoscape='y'):
         #Créer un graph à partir du fichier output cd-hit
         f1 = open(file, 'r')
-        f2 = open('/home/saiant01/PycharmProjects/ClusterGraph/Cytoscape/cytoscape.txt', 'w')
-        f3=open('/home/saiant01/PycharmProjects/ClusterGraph/javascript/html/graph.js', 'w')
         line = f1.readline()
         gene_dict = {}
-        échantillons = {}
 
         # Remplir le dictionnaire gene_dict qui a la forme Gene#:Cluster
         while line != '':
@@ -88,18 +84,18 @@ class Graph:
 
         # Ajouter les gènes à la liste pour laquel le bon identifiant de échantillon est attaché
         for sample_ids in sample_id_list:
-            if sample_ids not in échantillons.keys():
-                échantillons[sample_ids] = []
+            if sample_ids not in self.echantillons.keys():
+                self.echantillons[sample_ids] = []
             else:
                 pass
             for gene_ids in gene_dict.keys():
                 if (gene_ids).startswith(sample_ids):
-                    (échantillons.get(sample_ids)).append(gene_ids)
+                    (self.echantillons.get(sample_ids)).append(gene_ids)
                 else:
                     pass
 
         # Classer en ordre les gènes dans les différents échantillons
-        self.order_by_asc(échantillons)
+        self.order_by_asc()
 
         #Pour tous les objets nodes, on leur attribut un Cluster# et une liste de gène qui sont attachés à ce cluster#.
         f1 = open(file, 'r')
@@ -119,20 +115,20 @@ class Graph:
                 #Remplir la liste des links pour chaque node
                     for genes_in_list in cluster.gene_list:
                         sample_id = (genes_in_list.rstrip(genes_in_list.split('_')[-1])).rstrip('_')
-                        if genes_in_list in échantillons[sample_id]:
-                            if ((échantillons[sample_id]).index(genes_in_list))==len((échantillons[sample_id]))-1:
-                                previous_gene = (échantillons[sample_id])[((échantillons[sample_id]).index(genes_in_list))-1]
+                        if genes_in_list in self.echantillons[sample_id]:
+                            if ((self.echantillons[sample_id]).index(genes_in_list))==len((self.echantillons[sample_id]))-1:
+                                previous_gene = (self.echantillons[sample_id])[((self.echantillons[sample_id]).index(genes_in_list))-1]
                                 previous_gene_cluster = gene_dict[previous_gene]
                                 if previous_gene_cluster not in cluster.links:
                                     (cluster.links).append(previous_gene_cluster)
-                            elif ((échantillons[sample_id]).index(genes_in_list))==0:
-                                next_gene = (échantillons[sample_id])[((échantillons[sample_id]).index(genes_in_list))+1]
+                            elif ((self.echantillons[sample_id]).index(genes_in_list))==0:
+                                next_gene = (self.echantillons[sample_id])[((self.echantillons[sample_id]).index(genes_in_list))+1]
                                 next_gene_cluster = gene_dict[next_gene]
                                 if next_gene_cluster not in cluster.links:
                                     (cluster.links).append(next_gene_cluster)
                             else:
-                                previous_gene = (échantillons[sample_id])[((échantillons[sample_id]).index(genes_in_list)) - 1]
-                                next_gene = (échantillons[sample_id])[((échantillons[sample_id]).index(genes_in_list)) + 1]
+                                previous_gene = (self.echantillons[sample_id])[((self.echantillons[sample_id]).index(genes_in_list)) - 1]
+                                next_gene = (self.echantillons[sample_id])[((self.echantillons[sample_id]).index(genes_in_list)) + 1]
                                 previous_gene_cluster = gene_dict[previous_gene]
                                 next_gene_cluster = gene_dict[next_gene]
                                 if previous_gene_cluster not in cluster.links:
@@ -142,73 +138,71 @@ class Graph:
                     self.append(cluster)
         f1.close()
 
-
+    def cytoscape(self):
+        f2 = open('/home/saiant01/PycharmProjects/ClusterGraph/Cytoscape/cytoscape.txt', 'w')
         # Cytoscape
-        cluster_start_end=[]
-        if cytoscape=='y':
-            #Créer un fichier tabulé pour cytoscape
-            for nodes in self.nodes.values():
-                for links in nodes.links:
-                    links_object = self.nodes[links]
-                    for genes in nodes.gene_list:
-                        plus=genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1])+1)
-                        moins=genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1])-1)
-                        if plus in links_object.gene_list or moins in links_object.gene_list:
-                            f2.writelines((str(nodes.cluster_id) + '\t' + (genes.rstrip(genes.split('_')[-1])).rstrip('_')+ '\t' + str(links_object.cluster_id)+'\n'))
-                            cluster_start_end.append(str(nodes.cluster_id) + '\t' + (genes.rstrip(genes.split('_')[-1])).rstrip('_') + '\t' + str(links_object.cluster_id) + '\n')
-                        else:
-                            pass
-        else:
-            for nodes in self.nodes.values():
-                for links in nodes.links:
-                    links_object = self.nodes[links]
-                    for genes in nodes.gene_list:
-                        plus=genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1])+1)
-                        moins=genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1])-1)
-                        if plus in links_object.gene_list or moins in links_object.gene_list:
-                            cluster_start_end.append(str(nodes.cluster_id) + '\t' + (genes.rstrip(genes.split('_')[-1])).rstrip('_')+ '\t' + str(links_object.cluster_id)+'\n')
-                        else:
-                            pass
+
+        #Créer un fichier tabulé pour cytoscape
+        for nodes in self.nodes.values():
+            for links in nodes.links:
+                links_object = self.nodes[links]
+                for genes in nodes.gene_list:
+                    plus=genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1])+1)
+                    moins=genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1])-1)
+                    if plus in links_object.gene_list or moins in links_object.gene_list:
+                        f2.writelines((str(nodes.cluster_id) + '\t' + (genes.rstrip(genes.split('_')[-1])).rstrip('_')+ '\t' + str(links_object.cluster_id)+'\n'))
         f2.close()
 
-        #Javascript Max
-        #Edges Weight
-        weights = []
-        for triplets in cluster_start_end:
-            #La liste weights est la liste de tous les edges du graph incluant les duplicates.
-            weights.append([triplets.split('\t')[0], triplets.split('\t')[2].rstrip('\n')])
-
-
-
-        #write nodes in f3
-        f3.writelines('var nodes_array = [' + '\n')
-        for nodes in self.nodes.values():
-            max=0
-            for links in nodes.links:
-                if weights.count([nodes.cluster_id,links]) > max:
-                    max = weights.count([nodes.cluster_id,links])
-            f3.writelines('{id: ' + ((nodes.cluster_id).split(' ')[1])+', weight: '+ str(max)+', label: '+ "'" + '{}'.format(nodes.cluster_id) + "'" + '},' + '\n')
-        f3.writelines(']' + '\n')
-
-
-
-
-
-        #On ajoute tous les edges du graph dans list_edges. Cette liste ne contient pas les duplicates edges.
-        list_edges = []
+    def graph_javascript(self):
+        #Créer une liste cluster_start_end pour laquelle chaque élément aura la forme: Cluster_de_départ_du_edge,Cluster_de_fin_du_edge.
+        cluster_start_end = []
+        f3 = open('/home/saiant01/PycharmProjects/ClusterGraph/javascript/html/graph.js', 'w')
         for nodes in self.nodes.values():
             for links in nodes.links:
-                if [nodes.cluster_id, links] not in list_edges and [links, nodes.cluster_id] not in list_edges:
-                    list_edges.append([nodes.cluster_id, links])
+                links_object = self.nodes[links]
+                for genes in nodes.gene_list:
+                    plus = genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1]) + 1)
+                    moins = genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1]) - 1)
+                    if plus in links_object.gene_list or moins in links_object.gene_list:
+                        cluster_start_end.append(str(nodes.cluster_id) + '\t' + (genes.rstrip(genes.split('_')[-1])).rstrip('_') + '\t' + str(links_object.cluster_id) + '\n')
 
-        #write edges in f3
-        f3.writelines('var edges_array = [' + '\n')
-        i=1
-        for tuples in list_edges:
-            f3.writelines('{id: ' + str(i) + ', from: ' + str((tuples[0]).split(' ')[1]) + ', to: ' + str((tuples[1]).split(' ')[1])+', weight: '+ str(weights.count(tuples)) + ', label: ' + "''"+'},' + '\n')
-            i+=1
-        f3.writelines(']' + '\n')
-        f3.close()
+            #Edges Weight
+            weights = []
+            for triplets in cluster_start_end:
+                #La liste weights est la liste de tous les edges du graph incluant les duplicates.
+                weights.append([triplets.split('\t')[0], triplets.split('\t')[2].rstrip('\n')])
+
+
+
+            #write nodes in f3
+            f3.writelines('var nodes_array = [' + '\n')
+            for nodes in self.nodes.values():
+                max=0
+                for links in nodes.links:
+                    if weights.count([nodes.cluster_id,links]) > max:
+                        max = weights.count([nodes.cluster_id,links])
+                f3.writelines('{id: ' + ((nodes.cluster_id).split(' ')[1])+', weight: '+ str(max)+', label: '+ "'" + '{}'.format(nodes.cluster_id) + "'" + '},' + '\n')
+            f3.writelines(']' + '\n')
+
+
+
+
+
+            #On ajoute tous les edges du graph dans list_edges. Cette liste ne contient pas les duplicates edges.
+            list_edges = []
+            for nodes in self.nodes.values():
+                for links in nodes.links:
+                    if [nodes.cluster_id, links] not in list_edges and [links, nodes.cluster_id] not in list_edges:
+                        list_edges.append([nodes.cluster_id, links])
+
+            #write edges in f3
+            f3.writelines('var edges_array = [' + '\n')
+            i=1
+            for tuples in list_edges:
+                f3.writelines('{id: ' + str(i) + ', from: ' + str((tuples[0]).split(' ')[1]) + ', to: ' + str((tuples[1]).split(' ')[1])+', weight: '+ str(weights.count(tuples)) + ', label: ' + "''"+'},' + '\n')
+                i+=1
+            f3.writelines(']' + '\n')
+            f3.close()
 
 
 
@@ -248,8 +242,10 @@ class Graph:
 #---------------------------------------------------------------------------------------------------------------------------------------
     #Retourne les séquences passants sur les paths retournés par find_path()
     def sequences_in_find_path(self,list_of_paths):
+        sequence_paths = {}
         if isinstance(self,Graph):
             if isinstance(list_of_paths, list):
+
                 for paths in list_of_paths:
                     return_list = []
                     test_list=[]
@@ -284,8 +280,6 @@ class Graph:
                             # on descend
                             while i < len(paths):
                                 cluster_working_on = self.nodes[paths[i]]
-                                name = cluster_working_on.cluster_id
-                                test=(moins.rstrip(moins.split('_')[-1]).rstrip('_'))
                                 # dernier cluster
                                 if i == (len(paths) - 1) and (moins in cluster_working_on.gene_list) and ((moins.rstrip(moins.split('_')[-1]).rstrip('_')) in test_list):
                                     return_list.append((moins.rstrip(moins.split('_')[-1]).rstrip('_')))
@@ -303,33 +297,31 @@ class Graph:
                                     moins = moins.rstrip(moins.split('_')[-1]) + str(int(moins.split('_')[-1]) - 1)
                                 else:
                                     break
+
                     #Retourner le tout dans un dictionnaire
-                    print(paths)
-                    if len(return_list)==0:
-                        print('None!')
-                        print('')
-                    else:
-                        print(return_list)
-                        print('')
-
-
+                    for samples in return_list:
+                        if not return_list:
+                            pass
+                        else:
+                            if samples not in sequence_paths.keys():
+                                sequence_paths[samples] = [paths]
+                            else:
+                                sequence_paths[samples].append(paths)
 
             else:
                 raise TypeError('''La liste que vous avez tentez d'entrer n'est pas un objet de type list.''')
         else:
             raise TypeError('''Le que vous avez tentez d'entrer n'est pas un objet de type graph.''')
+        #print(sequence_paths)
+        return sequence_paths
+
 
 if __name__ == '__main__':
     graph = Graph()
     graph.load_graph(('/home/saiant01/PycharmProjects/ClusterGraph/Data/cat_prodigal-cd-hit.fasta.clstr'))
     list_of_paths=graph.find_path('Cluster 20', 2)
-    graph.sequences_in_find_path(list_of_paths)
-
-    #print('Done')
-
-
-
-    graph.function_time(time)
+    print(graph.sequences_in_find_path(list_of_paths))
+    print(graph.function_time(time))
 
 
 
