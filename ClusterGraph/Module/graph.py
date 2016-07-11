@@ -40,7 +40,7 @@ class Graph:
             while i < len(self.echantillons[sample_id]):
                 ((self.echantillons[sample_id])[i]) = str(sample_id) + '_' + str((self.echantillons[sample_id])[i])
                 i = i + 1
-
+#-----------------------TIME------------------------------------------------------------------------------------------------------------------------------------------------
     @staticmethod
     def function_time(_start_time):
         end_time = time.time() - start_time
