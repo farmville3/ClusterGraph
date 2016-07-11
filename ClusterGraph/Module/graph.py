@@ -320,6 +320,7 @@ if __name__ == '__main__':
     list_of_paths=graph.find_path('Cluster 20', 2)
     graph.cytoscape()
     graph.graph_javascript()
+    print('')
     print(graph.sequences_in_find_path(list_of_paths))
     print(' ')
     print('Time:',graph.function_time(time), '/  H:M:S')
