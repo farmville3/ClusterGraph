@@ -321,7 +321,7 @@ if __name__ == '__main__':
 
     graph.load_graph(('/home/saiant01/PycharmProjects/ClusterGraph/Data/cat_prodigal-cd-hit.fasta.clstr'))
 
-    list_of_paths=graph.find_path('Cluster 32', 2)
+    list_of_paths=graph.find_path('Cluster 10', 4)
 
     graph.cytoscape()
 
