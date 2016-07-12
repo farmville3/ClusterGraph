@@ -63,15 +63,17 @@ class Graph:
         f1 = open(file, 'r')
         line = f1.readline()
         gene_dict = {}
-
-        # Remplir le dictionnaire gene_dict qui a la forme Gene#:Cluster
+        line_list=[]
+        # Remplir le dictionnaire gene_dict qui a la forme Gene#:Cluster#
         while line != '':
             if line.startswith('>Cluster'):
                 cluster_name = line.lstrip('>').rstrip('\n')
+                line_list.append(line)
                 line = f1.readline()
                 while line.startswith('>Cluster') == False:
                     if line !='':
                         gene = (line.split('>')[1].split('...')[0])
+                        line_list.append(line)
                         line = f1.readline()
                         gene_dict[gene] = cluster_name
                     else:
@@ -98,20 +100,18 @@ class Graph:
         self.order_by_asc()
 
         #Pour tous les objets nodes, on leur attribut un Cluster# et une liste de gène qui sont attachés à ce cluster#.
-        f1 = open(file, 'r')
-        line = f1.readline()
-        while line != '':
-            if line.startswith('>Cluster'):
-                cluster_name = line.lstrip('>').rstrip('\n')
-                line = f1.readline()
+        i=0
+        while i<len(line_list):
+            if line_list[i].startswith('>Cluster'):
+                cluster_name = (line_list[i]).lstrip('>').rstrip('\n')
+                i+=1
                 cluster = Node(cluster_name)
-                while line.startswith('>Cluster') == False and line != '':
-                    gene = (line.split('>')[1].split('...')[0])
-
-                    if gene not in cluster.gene_list:
+                while i<len(line_list) and ((line_list[i].startswith('>Cluster')) == False):
+                        gene = ((line_list[i]).split('>')[1].split('...')[0])
+                        if gene not in cluster.gene_list:
                             cluster.gene_list.append(gene)
-                    line = f1.readline()
-                if (line.startswith('>Cluster') and (len(cluster.gene_list)!=0) or line==''):
+                        i += 1
+                if ((len(cluster.gene_list)!=0) or i<len(line_list) and line_list[i].startswith('>Cluster') ):
                 #Remplir la liste des links pour chaque node
                     for genes_in_list in cluster.gene_list:
                         sample_id = (genes_in_list.rstrip(genes_in_list.split('_')[-1])).rstrip('_')
@@ -138,7 +138,7 @@ class Graph:
                     self.append(cluster)
         f1.close()
 #---------------------------GRAPH CYTOSCAPE---------------------------------------------------------------------------------------------------------------------------
-    def cytoscape(self,file='/home/saiant01/PycharmProjects/Git/ClusterGraph/Cytoscape/cytoscape.txt'):
+    def cytoscape(self,file='/home/saiant01/PycharmProjects/Git/Cytoscape/cytoscape.txt'):
         f2 = open(file, 'w')
         # Cytoscape
         #Créer un fichier tabulé pour cytoscape
@@ -157,7 +157,7 @@ class Graph:
         #Créer une liste cluster_start_end pour laquelle chaque élément aura la forme: Cluster_de_départ_du_edge,Cluster_de_fin_du_edge.
         cluster_start_end = []
         dir = os.path.dirname(__file__)
-        file = os.path.join(dir, '../javascript/html/graph.js')
+        file = os.path.join(dir, '../../javascript/html/graph.js')
         f3 = open(file, 'w')
         for nodes in self.nodes.values():
             for links in nodes.links:
@@ -321,7 +321,7 @@ if __name__ == '__main__':
 
     graph.load_graph(('/home/saiant01/PycharmProjects/ClusterGraph/Data/cat_prodigal-cd-hit.fasta.clstr'))
 
-    list_of_paths=graph.find_path('Cluster 17', 2)
+    list_of_paths=graph.find_path('Cluster 32', 2)
 
     graph.cytoscape()
 
@@ -330,7 +330,7 @@ if __name__ == '__main__':
     print('')
     print(graph.sequences_in_find_path(list_of_paths))
     print(' ')
-    
+
     print('Time:',graph.function_time(time), '/  H:M:S')
 
 
