@@ -136,6 +136,7 @@ class Graph:
                                 if next_gene_cluster not in cluster.links:
                                     (cluster.links).append(next_gene_cluster)
                     self.append(cluster)
+        del i
         f1.close()
 #---------------------------GRAPH CYTOSCAPE---------------------------------------------------------------------------------------------------------------------------
     def cytoscape(self,file='/home/saiant01/PycharmProjects/Git/Cytoscape/cytoscape.txt'):
@@ -157,7 +158,7 @@ class Graph:
         #Créer une liste cluster_start_end pour laquelle chaque élément aura la forme: Cluster_de_départ_du_edge,Cluster_de_fin_du_edge.
         cluster_start_end = []
         dir = os.path.dirname(__file__)
-        file = os.path.join(dir, '../../javascript/html/graph.js')
+        file = os.path.join(dir, '../../javascript/hcls-dataset-description-master/type-graphs-html/graph.js')
         f3 = open(file, 'w')
         for nodes in self.nodes.values():
             for links in nodes.links:
@@ -231,8 +232,9 @@ class Graph:
                 list_of_current_paths=list_of_future_paths
                 list_of_future_paths=[]
                 i+=1
-
+            del i
             return list_of_current_paths
+
 
 
         except:
@@ -253,7 +255,6 @@ class Graph:
                         moins = genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1]) - 1)
                         i=1
                         if plus in (self.nodes[paths[1]]).gene_list:
-                            #on monte
                             while i<len(paths):
                                 cluster_working_on = self.nodes[paths[i]]
                                 name = cluster_working_on.cluster_id
@@ -275,7 +276,6 @@ class Graph:
                                 else:
                                     break
                         elif moins in (self.nodes[paths[1]]).gene_list:
-                            # on descend
                             while i < len(paths):
                                 cluster_working_on = self.nodes[paths[i]]
                                 # dernier cluster
@@ -322,7 +322,7 @@ if __name__ == '__main__':
     graph.load_graph(('/home/saiant01/PycharmProjects/ClusterGraph/Data/cat_prodigal-cd-hit.fasta.clstr'))
 
     list_of_paths=graph.find_path('Cluster 32', 2)
-    
+
     graph.cytoscape()
 
     graph.graph_javascript()
