@@ -80,32 +80,22 @@ class Graph:
                     else:
                         break
         f1.close()
-        print('Étape 1')
+        print('10%')
 
-        # Création de la liste contenant tous les identifiants des échantillons
-        sample_id_list = []
-        for gene_ids in gene_dict.keys():
-            sample_id = (gene_ids.rstrip(gene_ids.split('_')[-1])).rstrip('_')
-            if sample_id not in sample_id_list:
-                sample_id_list.append(sample_id)
-        print('Étape 2')
 
         # Ajouter les gènes à la liste pour laquel le bon identifiant de échantillon est attaché
-        test = 0
-        for sample_ids in sample_id_list:
-            for gene_ids in gene_dict.keys():
-                if (gene_ids).startswith(sample_ids):
-                    self.echantillons[sample_ids].append(gene_ids)
-            print(test)
-            test+=1
+        for gene_ids in gene_dict.keys():
+            sample_id = (gene_ids.rstrip(gene_ids.split('_')[-1])).rstrip('_')
+            self.echantillons[sample_id].append(gene_ids)
+        print('20%')
 
 
         # Classer en ordre les gènes dans les différents échantillons
-        print('Étape 3')
-        self.order_by_asc()
 
+        self.order_by_asc()
+        print('30%')
         #Pour tous les objets nodes, on leur attribut un Cluster# et une liste de gène qui sont attachés à ce cluster#.
-        print('Étape 4')
+
         i=0
         while i<len(line_list):
             if line_list[i].startswith('>Cluster'):
@@ -144,9 +134,11 @@ class Graph:
                     self.append(cluster)
         del i
         f1.close()
-        print('Cytoscape')
+
+        print('40%')
 #---------------------------GRAPH CYTOSCAPE---------------------------------------------------------------------------------------------------------------------------
     def cytoscape(self,file='/home/saiant01/PycharmProjects/Git/Cytoscape/cytoscape.txt'):
+        print('Cytoscape ...')
         f2 = open(file, 'w')
         # Cytoscape
         #Créer un fichier tabulé pour cytoscape
@@ -159,16 +151,23 @@ class Graph:
                     if plus in links_object.gene_list or moins in links_object.gene_list:
                         f2.writelines((str(nodes.cluster_id) + '\t' + (genes.rstrip(genes.split('_')[-1])).rstrip('_')+ '\t' + str(links_object.cluster_id)+'\n'))
         f2.close()
-        print('Javascript')
+        print('Cytoscape done.')
+
 #------------------------GRAPH JAVACRIPT------------------------------------------------------------------------------------------------------------------------------
     def graph_javascript(self):
+        print('50%')
+        print('Javascript ...')
         #index.html
         #Créer une liste cluster_start_end pour laquelle chaque élément aura la forme: Cluster_de_départ_du_edge,Cluster_de_fin_du_edge.
         cluster_start_end = []
         dir = os.path.dirname(__file__)
         file = os.path.join(dir, '../../javascript/hcls-dataset-description-master/type-graphs-html/graph.js')
         f3 = open(file, 'w')
+        counter=0
+        print(len(self.nodes.values()))
         for nodes in self.nodes.values():
+            print(counter)
+            counter += 1
             for links in nodes.links:
                 links_object = self.nodes[links]
                 for genes in nodes.gene_list:
@@ -176,7 +175,7 @@ class Graph:
                     moins = genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1]) - 1)
                     if plus in links_object.gene_list or moins in links_object.gene_list:
                         cluster_start_end.append(str(nodes.cluster_id) + '\t' + (genes.rstrip(genes.split('_')[-1])).rstrip('_') + '\t' + str(links_object.cluster_id) + '\n')
-
+            print('1')
             #Edges Weight
             weights = []
             for triplets in cluster_start_end:
@@ -184,7 +183,7 @@ class Graph:
                 weights.append([triplets.split('\t')[0], triplets.split('\t')[2].rstrip('\n')])
 
 
-
+            print('2')
             #write nodes in f3
             f3.writelines('var nodes_array = [' + '\n')
             for nodes in self.nodes.values():
@@ -194,13 +193,14 @@ class Graph:
                         max = weights.count([nodes.cluster_id,links])
                 f3.writelines('{id: ' + ((nodes.cluster_id).split(' ')[1])+', weight: '+ str(max)+', label: '+ "'" + '{}'.format(nodes.cluster_id) + "'" + '},' + '\n')
             f3.writelines(']' + '\n')
-
+            print('2.5')
             #On ajoute tous les edges du graph dans list_edges. Cette liste ne contient pas les duplicates edges.
             list_edges = []
             for nodes in self.nodes.values():
                 for links in nodes.links:
                     if [nodes.cluster_id, links] not in list_edges and [links, nodes.cluster_id] not in list_edges:
                         list_edges.append([nodes.cluster_id, links])
+            print('3')
 
             #write edges in f3
             f3.writelines('var edges_array = [' + '\n')
@@ -210,6 +210,7 @@ class Graph:
                 i+=1
             f3.writelines(']' + '\n')
         f3.close()
+        print('Javascript done.')
 
 
 
