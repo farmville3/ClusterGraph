@@ -126,9 +126,11 @@ class Graph:
                                 previous_gene_cluster = gene_dict[previous_gene]
                                 next_gene_cluster = gene_dict[next_gene]
                                 if previous_gene_cluster not in cluster.links:
-                                    (cluster.links).append(previous_gene_cluster)
+                                    if previous_gene_cluster != cluster.cluster_id:
+                                        (cluster.links).append(previous_gene_cluster)
                                 if next_gene_cluster not in cluster.links:
-                                    (cluster.links).append(next_gene_cluster)
+                                    if next_gene_cluster != cluster.cluster_id:
+                                        (cluster.links).append(next_gene_cluster)
                     self.append(cluster)
         del i
         f1.close()
