@@ -80,20 +80,18 @@ class Graph:
                     else:
                         break
         f1.close()
-        print('10%')
 
 
         # Ajouter les gènes à la liste pour laquel le bon identifiant de échantillon est attaché
         for gene_ids in gene_dict.keys():
             sample_id = (gene_ids.rstrip(gene_ids.split('_')[-1])).rstrip('_')
             self.echantillons[sample_id].append(gene_ids)
-        print('20%')
 
 
         # Classer en ordre les gènes dans les différents échantillons
 
         self.order_by_asc()
-        print('30%')
+
         #Pour tous les objets nodes, on leur attribut un Cluster# et une liste de gène qui sont attachés à ce cluster#.
 
         i=0
@@ -134,8 +132,6 @@ class Graph:
                     self.append(cluster)
         del i
         f1.close()
-
-        print('40%')
 #---------------------------GRAPH CYTOSCAPE---------------------------------------------------------------------------------------------------------------------------
     def cytoscape(self,file='/home/saiant01/PycharmProjects/Git/Cytoscape/cytoscape.txt'):
         print('Cytoscape ...')
@@ -155,60 +151,60 @@ class Graph:
 
 #------------------------GRAPH JAVACRIPT------------------------------------------------------------------------------------------------------------------------------
     def graph_javascript(self):
-        print('50%')
         print('Javascript ...')
         #index.html
         #Créer une liste cluster_start_end pour laquelle chaque élément aura la forme: Cluster_de_départ_du_edge,Cluster_de_fin_du_edge.
-        cluster_start_end = []
         dir = os.path.dirname(__file__)
         file = os.path.join(dir, '../../javascript/hcls-dataset-description-master/type-graphs-html/graph.js')
         f3 = open(file, 'w')
-        counter=0
-        print(len(self.nodes.values()))
+        weights = defaultdict(int)
         for nodes in self.nodes.values():
-            print(counter)
-            counter += 1
             for links in nodes.links:
                 links_object = self.nodes[links]
                 for genes in nodes.gene_list:
                     plus = genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1]) + 1)
                     moins = genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1]) - 1)
                     if plus in links_object.gene_list or moins in links_object.gene_list:
-                        cluster_start_end.append(str(nodes.cluster_id) + '\t' + (genes.rstrip(genes.split('_')[-1])).rstrip('_') + '\t' + str(links_object.cluster_id) + '\n')
-            print('1')
-            #Edges Weight
-            weights = []
-            for triplets in cluster_start_end:
-                #La liste weights est la liste de tous les edges du graph incluant les duplicates.
-                weights.append([triplets.split('\t')[0], triplets.split('\t')[2].rstrip('\n')])
+        # La liste weights est la liste de tous les edges du graph incluant les duplicates.
+                        weights[(str(nodes.cluster_id),str(links_object.cluster_id))] += 1
 
 
-            print('2')
-            #write nodes in f3
-            f3.writelines('var nodes_array = [' + '\n')
-            for nodes in self.nodes.values():
-                max=0
-                for links in nodes.links:
-                    if weights.count([nodes.cluster_id,links]) > max:
-                        max = weights.count([nodes.cluster_id,links])
-                f3.writelines('{id: ' + ((nodes.cluster_id).split(' ')[1])+', weight: '+ str(max)+', label: '+ "'" + '{}'.format(nodes.cluster_id) + "'" + '},' + '\n')
-            f3.writelines(']' + '\n')
-            print('2.5')
-            #On ajoute tous les edges du graph dans list_edges. Cette liste ne contient pas les duplicates edges.
-            list_edges = []
-            for nodes in self.nodes.values():
-                for links in nodes.links:
-                    if [nodes.cluster_id, links] not in list_edges and [links, nodes.cluster_id] not in list_edges:
-                        list_edges.append([nodes.cluster_id, links])
-            print('3')
+        #write nodes in f3
+        f3.writelines('var nodes_array = [' + '\n')
+        dict_edges = {}
+        counter = 0
+        buffer = ''
+        for noeux in self.nodes.values():
+            maximum=0
+            for links in noeux.links:
+                maximum = max(weights[(noeux.cluster_id,links)],maximum)
+                # On ajoute tous les edges du graph dans dict_edges. Ce dictionnaire ne contient pas les duplicates edges.
+                if (noeux.cluster_id, links) not in dict_edges and (links, noeux.cluster_id) not in dict_edges:
+                    dict_edges[(noeux.cluster_id, links)]=''
 
-            #write edges in f3
-            f3.writelines('var edges_array = [' + '\n')
-            i=1
-            for tuples in list_edges:
-                f3.writelines('{id: ' + str(i) + ', from: ' + str((tuples[0]).split(' ')[1]) + ', to: ' + str((tuples[1]).split(' ')[1])+', weight: '+ str(weights.count(tuples)) + ', label: ' + "''"+'},' + '\n')
-                i+=1
-            f3.writelines(']' + '\n')
+            buffer+=('{id: ' + ((noeux.cluster_id).split(' ')[1])+', weight: '+ str(maximum)+', label: '+ "'" + '{}'.format(noeux.cluster_id) + "'" + '},' + '\n')
+            counter+=1
+            if counter%50000==0:
+                f3.writelines(buffer)
+                buffer = ''
+        f3.writelines(buffer)
+        f3.writelines(']' + '\n')
+
+
+
+        #write edges in f3
+        f3.writelines('var edges_array = [' + '\n')
+        i=0
+        buffer=''
+        for tuples in dict_edges:
+            buffer+=('{id: ' + str(i) + ', from: ' + str((tuples[0]).split(' ')[1]) + ', to: ' + str((tuples[1]).split(' ')[1])+', weight: '+ str(weights[tuples]) + ', label: ' + "''"+'},' + '\n')
+            i += 1
+            if i%50000==0:
+                f3.writelines(buffer)
+                buffer=''
+        f3.writelines(buffer)
+        f3.writelines(']' + '\n')
+
         f3.close()
         print('Javascript done.')
 
@@ -321,22 +317,26 @@ class Graph:
 
         return sequence_paths
 
+    def sous_graph(self):
+        pass
+
 #-----------------------MAIN------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
     graph = Graph()
 
-    #graph.load_graph(('/home/saiant01/PycharmProjects/ClusterGraph/Data/cat_prodigal-cd-hit.fasta.clstr'))
+    graph.load_graph(('/home/saiant01/PycharmProjects/ClusterGraph/Data/cat_prodigal-cd-hit.fasta.clstr'))
 
-    graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_P4.fasta.clstr'))
+    graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_DATATEST.fasta.clstr'))
 
-    #list_of_paths=graph.find_path('Cluster 10', 4)
+    list_of_paths=graph.find_path('Cluster 10', 2)
 
-    #graph.cytoscape()
+    graph.cytoscape()
 
     graph.graph_javascript()
 
     print('')
+    print(list_of_paths)
     #print(graph.sequences_in_find_path(list_of_paths))
     print(' ')
 
