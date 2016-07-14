@@ -1,4 +1,5 @@
 import copy
+import sys
 import os
 import time
 import datetime
@@ -79,6 +80,7 @@ class Graph:
                     else:
                         break
         f1.close()
+        print('Étape 1')
 
         # Création de la liste contenant tous les identifiants des échantillons
         sample_id_list = []
@@ -86,20 +88,24 @@ class Graph:
             sample_id = (gene_ids.rstrip(gene_ids.split('_')[-1])).rstrip('_')
             if sample_id not in sample_id_list:
                 sample_id_list.append(sample_id)
+        print('Étape 2')
 
         # Ajouter les gènes à la liste pour laquel le bon identifiant de échantillon est attaché
+        test = 0
         for sample_ids in sample_id_list:
-            self.echantillons[sample_ids] = []
             for gene_ids in gene_dict.keys():
                 if (gene_ids).startswith(sample_ids):
-                    (self.echantillons.get(sample_ids)).append(gene_ids)
-                else:
-                    pass
+                    self.echantillons[sample_ids].append(gene_ids)
+            print(test)
+            test+=1
+
 
         # Classer en ordre les gènes dans les différents échantillons
+        print('Étape 3')
         self.order_by_asc()
 
         #Pour tous les objets nodes, on leur attribut un Cluster# et une liste de gène qui sont attachés à ce cluster#.
+        print('Étape 4')
         i=0
         while i<len(line_list):
             if line_list[i].startswith('>Cluster'):
@@ -138,6 +144,7 @@ class Graph:
                     self.append(cluster)
         del i
         f1.close()
+        print('Cytoscape')
 #---------------------------GRAPH CYTOSCAPE---------------------------------------------------------------------------------------------------------------------------
     def cytoscape(self,file='/home/saiant01/PycharmProjects/Git/Cytoscape/cytoscape.txt'):
         f2 = open(file, 'w')
@@ -152,6 +159,7 @@ class Graph:
                     if plus in links_object.gene_list or moins in links_object.gene_list:
                         f2.writelines((str(nodes.cluster_id) + '\t' + (genes.rstrip(genes.split('_')[-1])).rstrip('_')+ '\t' + str(links_object.cluster_id)+'\n'))
         f2.close()
+        print('Javascript')
 #------------------------GRAPH JAVACRIPT------------------------------------------------------------------------------------------------------------------------------
     def graph_javascript(self):
         #index.html
@@ -226,8 +234,6 @@ class Graph:
                             list_copy = copy.copy(lists)
                             list_copy.append(links)
                             list_of_future_paths.append(list_copy)
-                        else:
-                            pass
 
                 list_of_current_paths=list_of_future_paths
                 list_of_future_paths=[]
@@ -319,16 +325,18 @@ if __name__ == '__main__':
 
     graph = Graph()
 
-    graph.load_graph(('/home/saiant01/PycharmProjects/ClusterGraph/Data/cat_prodigal-cd-hit.fasta.clstr'))
+    #graph.load_graph(('/home/saiant01/PycharmProjects/ClusterGraph/Data/cat_prodigal-cd-hit.fasta.clstr'))
 
-    list_of_paths=graph.find_path('Cluster 10', 4)
+    graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_P4.fasta.clstr'))
 
-    graph.cytoscape()
+    #list_of_paths=graph.find_path('Cluster 10', 4)
+
+    #graph.cytoscape()
 
     graph.graph_javascript()
 
     print('')
-    print(graph.sequences_in_find_path(list_of_paths))
+    #print(graph.sequences_in_find_path(list_of_paths))
     print(' ')
 
     print('Time:',graph.function_time(time), '/  H:M:S')
