@@ -29,6 +29,7 @@ class Graph:
     def __init__(self):
         self.nodes = {}
         self.echantillons = defaultdict(list)
+        self.gene_dict = {}
 
 #--------------------- Classer en ordre les gènes dans les différents échantillons pour pouvoir retrouvé facilement les gènes avant et apres un gène en particulier------------------------------------------
     def order_by_asc(self):
@@ -58,12 +59,19 @@ class Graph:
             raise TypeError('''L'objet que vous essayé d'ajouter dans le graph n'est pas un objet de type noeux!''')
 
 
+
+#---------------FIND CLUSTER -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    def find_cluster(self, gene_id):
+        try:
+            return self.gene_dict[gene_id]
+        except:
+            raise KeyError('''Le gene entre n'existe pas.''')
+
 #---------------------LOAD GRAPH----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     def load_graph(self, file):
         #Créer un graph à partir du fichier output cd-hit
         f1 = open(file, 'r')
         line = f1.readline()
-        gene_dict = {}
         line_list=[]
         # Remplir le dictionnaire gene_dict qui a la forme Gene#:Cluster#
         while line != '':
@@ -76,14 +84,14 @@ class Graph:
                         gene = (line.split('>')[1].split('...')[0])
                         line_list.append(line)
                         line = f1.readline()
-                        gene_dict[gene] = cluster_name
+                        self.gene_dict[gene] = cluster_name
                     else:
                         break
         f1.close()
 
 
         # Ajouter les gènes à la liste pour laquel le bon identifiant de échantillon est attaché
-        for gene_ids in gene_dict.keys():
+        for gene_ids in self.gene_dict.keys():
             sample_id = (gene_ids.rstrip(gene_ids.split('_')[-1])).rstrip('_')
             self.echantillons[sample_id].append(gene_ids)
 
@@ -110,21 +118,26 @@ class Graph:
                     for genes_in_list in cluster.gene_list:
                         sample_id = (genes_in_list.rstrip(genes_in_list.split('_')[-1])).rstrip('_')
                         if genes_in_list in self.echantillons[sample_id]:
-                            if ((self.echantillons[sample_id]).index(genes_in_list))==len((self.echantillons[sample_id]))-1:
+                            #Liste de longueur 1
+                            if len(self.echantillons[sample_id])==1:
+                                continue
+                            #Le gene est le dernier gene dans la liste des genes dans le dict echantillon
+                            elif ((self.echantillons[sample_id]).index(genes_in_list))==len((self.echantillons[sample_id]))-1:
                                 previous_gene = (self.echantillons[sample_id])[((self.echantillons[sample_id]).index(genes_in_list))-1]
-                                previous_gene_cluster = gene_dict[previous_gene]
+                                previous_gene_cluster = self.gene_dict[previous_gene]
                                 if previous_gene_cluster not in cluster.links:
                                     (cluster.links).append(previous_gene_cluster)
+                            #Le gene est le premier gene dans la liste des genes dans le dict echantillon
                             elif ((self.echantillons[sample_id]).index(genes_in_list))==0:
                                 next_gene = (self.echantillons[sample_id])[((self.echantillons[sample_id]).index(genes_in_list))+1]
-                                next_gene_cluster = gene_dict[next_gene]
+                                next_gene_cluster = self.gene_dict[next_gene]
                                 if next_gene_cluster not in cluster.links:
                                     (cluster.links).append(next_gene_cluster)
                             else:
                                 previous_gene = (self.echantillons[sample_id])[((self.echantillons[sample_id]).index(genes_in_list)) - 1]
                                 next_gene = (self.echantillons[sample_id])[((self.echantillons[sample_id]).index(genes_in_list)) + 1]
-                                previous_gene_cluster = gene_dict[previous_gene]
-                                next_gene_cluster = gene_dict[next_gene]
+                                previous_gene_cluster = self.gene_dict[previous_gene]
+                                next_gene_cluster = self.gene_dict[next_gene]
                                 if previous_gene_cluster not in cluster.links:
                                     (cluster.links).append(previous_gene_cluster)
                                 if next_gene_cluster not in cluster.links:
@@ -145,7 +158,7 @@ class Graph:
                     plus=genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1])+1)
                     moins=genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1])-1)
                     if plus in links_object.gene_list or moins in links_object.gene_list:
-                        f2.writelines((str(nodes.cluster_id) + '\t' + (genes.rstrip(genes.split('_')[-1])).rstrip('_')+ '\t' + str(links_object.cluster_id)+'\n'))
+                        f2.writelines((str(nodes.cluster43560_id) + '\t' + (genes.rstrip(genes.split('_')[-1])).rstrip('_')+ '\t' + str(links_object.cluster_id)+'\n'))
         f2.close()
         print('Cytoscape done.')
 
@@ -249,10 +262,13 @@ class Graph:
                             graph.append(cluster_depart)
                         i += 1
 
-        for nodes in self.nodes.values():
-            for noeux in graph.nodes.values():
-                if nodes.cluster_id == noeux.cluster_id:
-                    noeux.gene_list = nodes.gene_list
+
+        for noeux in graph.nodes.values():
+            try:
+                noeux.gene_list = (self.nodes[noeux.cluster_id]).gene_list
+
+            except:
+                raise ValueError('''Le noeux n'existe pas''')
 
 
         return graph
@@ -366,20 +382,30 @@ class Graph:
 
 #-----------------------MAIN------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
-
+    #Load graph
     graph = Graph()
 
     graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_P4.fasta.clstr'))
-
     #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_DATATEST.fasta.clstr'))
 
-    list_of_paths=graph.find_path('Cluster 3011', 4)
-    graph_dict=graph.sequences_in_find_path(list_of_paths)
+    #Trouver les clusters pour lequel le gene appartient
+    print(graph.find_cluster('Sample_P4J7-FOX-ANA-Assembly.fa_contig-3000007_12'))
 
 
-    #graph.cytoscape()
-    graphe = graph.sous_graph(list_of_paths)
-    graphe.graph_javascript()
+    #Liste des chemins partant du cluster en faisant au maximum n pas.
+    list_of_paths=graph.find_path('Cluster 43560', 10)
+    #print(list_of_paths)
+
+    #Coloring
+    #print(graph.sequences_in_find_path(list_of_paths))
+
+
+    #Sous-graph
+    #sous_graph = graph.sous_graph(list_of_paths)
+
+    #Visualisation
+    #sous_graph.graph_javascript()
+    #graphe.cytoscape()
 
     print('Time:',graph.function_time(time), '/  H:M:S')
 
