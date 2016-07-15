@@ -126,11 +126,9 @@ class Graph:
                                 previous_gene_cluster = gene_dict[previous_gene]
                                 next_gene_cluster = gene_dict[next_gene]
                                 if previous_gene_cluster not in cluster.links:
-                                    if previous_gene_cluster != cluster.cluster_id:
-                                        (cluster.links).append(previous_gene_cluster)
+                                    (cluster.links).append(previous_gene_cluster)
                                 if next_gene_cluster not in cluster.links:
-                                    if next_gene_cluster != cluster.cluster_id:
-                                        (cluster.links).append(next_gene_cluster)
+                                    (cluster.links).append(next_gene_cluster)
                     self.append(cluster)
         del i
         f1.close()
@@ -208,9 +206,56 @@ class Graph:
         f3.writelines(']' + '\n')
 
         f3.close()
+        del weights
         print('Javascript done.')
 
+#-------------------SOUS_GRAPH---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+    def sous_graph(self,paths_list):
+        print('sous-graph ...')
+        graph = Graph()
+        for paths in paths_list:
+            i=0
+            while i<len(paths):
+                if i == len(paths)-1:
+                    cluster_depart = Node(paths[-1])
+                    cluster_precedent = paths[i - 1]
+                    if cluster_depart.cluster_id in graph.nodes:
+                        ((graph.nodes[cluster_depart.cluster_id]).links).append(cluster_precedent)
+                    else:
+                        (cluster_depart.links).append(cluster_precedent)
+                        graph.append(cluster_depart)
+                    break
+                else:
+                    if i==0:
+                        cluster_depart = Node(paths[i])
+                        cluster_arrive = paths[i + 1]
+                        if cluster_depart.cluster_id in graph.nodes:
+                            ((graph.nodes[cluster_depart.cluster_id]).links).append(cluster_arrive)
+                        else:
+                            (cluster_depart.links).append(cluster_arrive)
+                            graph.append(cluster_depart)
+                        i+=1
+                    else:
+                        cluster_precedent = paths[i - 1]
+                        cluster_depart = Node(paths[i])
+                        cluster_arrive = paths[i + 1]
+                        if cluster_depart.cluster_id in graph.nodes:
+                            ((graph.nodes[cluster_depart.cluster_id]).links).append(cluster_arrive)
+                            ((graph.nodes[cluster_depart.cluster_id]).links).append(cluster_precedent)
+                        else:
+                            (cluster_depart.links).append(cluster_arrive)
+                            (cluster_depart.links).append(cluster_precedent)
+                            graph.append(cluster_depart)
+                        i += 1
+
+        for nodes in self.nodes.values():
+            for noeux in graph.nodes.values():
+                if nodes.cluster_id == noeux.cluster_id:
+                    noeux.gene_list = nodes.gene_list
+
+
+        return graph
 
 #-----------------------FIND PATH--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     #Trouver tous les chemins de longueur 'path_lenght' en partant du noeux ayant comme identifiant de cluster, le cluster_id donné en parametre.
@@ -319,28 +364,22 @@ class Graph:
 
         return sequence_paths
 
-    def sous_graph(self):
-        pass
-
 #-----------------------MAIN------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
     graph = Graph()
 
-    graph.load_graph(('/home/saiant01/PycharmProjects/ClusterGraph/Data/cat_prodigal-cd-hit.fasta.clstr'))
+    graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_P4.fasta.clstr'))
 
-    graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_DATATEST.fasta.clstr'))
+    #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_DATATEST.fasta.clstr'))
 
-    list_of_paths=graph.find_path('Cluster 10', 2)
+    list_of_paths=graph.find_path('Cluster 3011', 4)
+    graph_dict=graph.sequences_in_find_path(list_of_paths)
 
-    graph.cytoscape()
 
-    graph.graph_javascript()
-
-    print('')
-    print(list_of_paths)
-    #print(graph.sequences_in_find_path(list_of_paths))
-    print(' ')
+    #graph.cytoscape()
+    graphe = graph.sous_graph(list_of_paths)
+    graphe.graph_javascript()
 
     print('Time:',graph.function_time(time), '/  H:M:S')
 
