@@ -223,7 +223,6 @@ class Graph:
         print('Javascript done.')
 
 #-------------------SOUS_GRAPH---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
     def sous_graph(self,paths_list):
         print('sous-graph ...')
         graph = Graph()
@@ -270,7 +269,7 @@ class Graph:
             except:
                 raise ValueError('''Le noeux n'existe pas''')
 
-
+        print('sous-graph done ...')
         return graph
 
 #-----------------------FIND PATH--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -285,7 +284,7 @@ class Graph:
             i=1
             while i < path_lenght:
                 for lists in list_of_current_paths:
-                    cluster_id_node = self.nodes[lists[-1]]
+                    cluste_to_comparer_id_node = self.nodes[lists[-1]]
                     for links in cluster_id_node.links:
                         if len(cluster_id_node.links)==1 and (cluster_id_node.links)[0] in lists:
                             list_copy = copy.copy(lists)
@@ -380,20 +379,53 @@ class Graph:
 
         return sequence_paths
 
+#-------------------------COMPARE GRAPHS------------------------------------------------------------------------------------------------------------------------------------
+    def compare_graphs(self,graph_to_compare):
+        inselfonly=[]
+        ingraphonly=[]
+        if isinstance(self,Graph):
+            if isinstance(graph_to_compare,Graph):
+                for nodes in self.nodes:
+                    if nodes not in graph_to_compare.nodes:
+                        inselfonly.append(nodes)
+
+                for nodes in graph_to_compare.nodes:
+                    if nodes not in self.nodes:
+                        ingraphonly.append(nodes)
+                print('In self:')
+                print(inselfonly)
+                print('')
+                print('In tocompare')
+                print(ingraphonly)
+            else:
+                raise TypeError('''L'objet à comparé n'est pasun objet de type graph.''')
+        else:
+            raise TypeError('''L'objet sur lequel vous travaillé n'est pas un objet de type graph.''')
+
+
+
 #-----------------------MAIN------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
-    #Load graph
-    graph = Graph()
+    #Loaupd graph
+    #graph = Graph()
+    graphp4j0=Graph()
+    graphp4j7 = Graph()
 
-    graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_P4.fasta.clstr'))
+    #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_P4.fasta.clstr'))
+
+    graphp4j0.load_graph(('/home/saiant01/Desktop/compare/cat_prodigal_cd_hit_p4j0.fasta.clstr'))
+    graphp4j7.load_graph(('/home/saiant01/Desktop/compare/cat_prodigal_cd_hit_p4j7.fasta.clstr'))
+
+    graphp4j0.compare_graphs(graphp4j7)
+
     #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_DATATEST.fasta.clstr'))
 
     #Trouver les clusters pour lequel le gene appartient
-    print(graph.find_cluster('Sample_P4J7-FOX-ANA-Assembly.fa_contig-3000007_12'))
+    #print(graph.find_cluster('Sample_P4J7-FOX-ANA-Assembly.fa_contig-3000007_12'))
 
 
     #Liste des chemins partant du cluster en faisant au maximum n pas.
-    list_of_paths=graph.find_path('Cluster 43560', 10)
+    #list_of_paths=graph.find_path('Cluster 10', 7)
     #print(list_of_paths)
 
     #Coloring
@@ -405,9 +437,9 @@ if __name__ == '__main__':
 
     #Visualisation
     #sous_graph.graph_javascript()
-    #graphe.cytoscape()
+    #sous_graph.cytoscape()
 
-    print('Time:',graph.function_time(time), '/  H:M:S')
+    #print('Time:',graph.function_time(time), '/  H:M:S')
 
 
 
