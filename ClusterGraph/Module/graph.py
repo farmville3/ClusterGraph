@@ -331,11 +331,11 @@ class Graph:
                     for genes in node_object.gene_list:
                         plus = genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1]) + 1)
                         moins = genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1]) - 1)
-                        i=1
                         if plus in (self.nodes[paths[1]]).gene_list:
+
+                            i = 1
                             while i<len(paths):
                                 cluster_working_on = self.nodes[paths[i]]
-                                name = cluster_working_on.cluster_id
                                 #dernier cluster
                                 if i==(len(paths)-1) and (plus in cluster_working_on.gene_list) and ((plus.rstrip(plus.split('_')[-1]).rstrip('_')) in test_list):
                                     return_list.append((plus.rstrip(plus.split('_')[-1]).rstrip('_')))
@@ -345,7 +345,6 @@ class Graph:
                                     test_list.append((plus.rstrip(plus.split('_')[-1]).rstrip('_')))
                                     i += 1
                                     plus = plus.rstrip(plus.split('_')[-1]) + str(int(plus.split('_')[-1]) + 1)
-
                                 #autres clusters
                                 elif (plus in cluster_working_on.gene_list) and (i!=(len(paths)-1)) and ((plus.rstrip(plus.split('_')[-1]).rstrip('_')) in test_list):
                                     i += 1
@@ -353,9 +352,9 @@ class Graph:
                                 else:
                                     break
                         elif moins in (self.nodes[paths[1]]).gene_list:
+                            i = 1
                             while i < len(paths):
                                 cluster_working_on = self.nodes[paths[i]]
-                                cluster_n= cluster_working_on.cluster_id
                                 # dernier cluster
                                 if i == (len(paths) - 1) and (moins in cluster_working_on.gene_list) and ((moins.rstrip(moins.split('_')[-1]).rstrip('_')) in test_list):
                                     return_list.append((moins.rstrip(moins.split('_')[-1]).rstrip('_')))
@@ -367,9 +366,7 @@ class Graph:
                                     i += 1
                                     moins = moins.rstrip(moins.split('_')[-1]) + str(int(moins.split('_')[-1]) - 1)
                                 # autres clusters
-                                elif (moins in cluster_working_on.gene_list) and (
-                                    i != (len(paths) - 1)) and (
-                                    (moins.rstrip(plus.split('_')[-1]).rstrip('_')) in test_list):
+                                elif (moins in cluster_working_on.gene_list) and (i != (len(paths) - 1)) and ((moins.rstrip(moins.split('_')[-1]).rstrip('_')) in test_list):
                                     i += 1
                                     moins = moins.rstrip(moins.split('_')[-1]) + str(int(moins.split('_')[-1]) - 1)
                                 else:
@@ -393,28 +390,21 @@ class Graph:
 
         return sequence_paths
 
-#-------------------------COMPARE GRAPHS------------------------------------------------------------------------------------------------------------------------------------
-    def compare_paths(self,graph_to_compare):
-        inselfonly=[]
-        ingraphonly=[]
-        if isinstance(self,Graph):
-            if isinstance(graph_to_compare,Graph):
-                for nodes in self.nodes:
-                    if nodes not in graph_to_compare.nodes:
-                        inselfonly.append(nodes)
+# -------------------------COMPARE GRAPHS------------------------------------------------------------------------------------------------------------------------------------
+    def show_path_per_samples(self, sequences_paths):
+        if isinstance(sequences_paths,dict):
+            for sequences in sequences_paths.keys():
+                for cluster_list in sequences_paths.values():
+                    print('Sequences:', sequences)
+                    print('')
+                    print('Paths:')
+                    for paths in cluster_list:
+                        print(paths)
 
-                for nodes in graph_to_compare.nodes:
-                    if nodes not in self.nodes:
-                        ingraphonly.append(nodes)
-                print('In self:')
-                print(inselfonly)
-                print('')
-                print('In tocompare')
-                print(ingraphonly)
-            else:
-                raise TypeError('''L'objet à comparé n'est pasun objet de type graph.''')
-        else:
-            raise TypeError('''L'objet sur lequel vous travaillé n'est pas un objet de type graph.''')
+#------------------------COMPARE GRAPHS------------------------------------------------------------------------------------------------------------------------------------
+    def compare_paths(self,graph_to_compare):
+        pass
+
 #-----------------------MAIN------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
@@ -436,21 +426,24 @@ if __name__ == '__main__':
 
 
     #Liste des chemins partant du cluster en faisant au maximum n pas.
-    list_of_paths=graph.find_path('Cluster 10', 10)
-    #print(list_of_paths)
+    list_of_paths=graph.find_path('Cluster 20', 3)
+    print(list_of_paths)
 
     #Coloring
-    #print(graph.sequences_in_find_path(list_of_paths))
+    sequence_path = graph.sequences_in_find_path(list_of_paths)
+    print(sequence_path)
+    #graph.show_path_per_samples(sequence_path)
 
 
     #Sous-graph
-    #sous_graph = graph.sous_graph(list_of_paths)
+    sous_graph = graph.sous_graph(list_of_paths)
 
     #Visualisation
-    graph.graph_javascript()
+    #graph.graph_javascript()
+    sous_graph.graph_javascript()
     #sous_graph.cytoscape()
 
-    print('Time:',graph.function_time(time), '/  H:M:S')
+    #print('Time:',graph.function_time(time), '/  H:M:S')
 
 
 
