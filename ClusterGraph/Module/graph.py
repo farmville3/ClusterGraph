@@ -30,6 +30,7 @@ class Graph:
         self.nodes = {}
         self.echantillons = defaultdict(list)
         self.gene_dict = {}
+        self.edges = {}
 
 #--------------------- Classer en ordre les gènes dans les différents échantillons pour pouvoir retrouvé facilement les gènes avant et apres un gène en particulier------------------------------------------
     def order_by_asc(self):
@@ -281,11 +282,11 @@ class Graph:
             cluster_id_node = (self.nodes)[cluster_id]
             for links in cluster_id_node.links:
                 list_of_current_paths.append([cluster_id_node.cluster_id,links])
+                c=list_of_current_paths
             i=1
             while i < path_lenght:
                 for lists in list_of_current_paths:
-                    cluste_to_comparer_id_node = self.nodes[lists[-1]]
-                    for links in cluster_id_node.links:
+                    for links in self.nodes[lists[-1]].links:
                         if len(cluster_id_node.links)==1 and (cluster_id_node.links)[0] in lists:
                             list_copy = copy.copy(lists)
                             list_of_future_paths.append(list_copy)
@@ -293,6 +294,19 @@ class Graph:
                             list_copy = copy.copy(lists)
                             list_copy.append(links)
                             list_of_future_paths.append(list_copy)
+                        #Si nos clusters et nos edges forment un cercle
+                        elif links in lists:
+                            verification='no'
+                            for links in cluster_id_node.links:
+                                if links in lists:
+                                    verification='yes'
+                                else:
+                                    verification='no'
+                                    break
+                            if verification=='yes':
+                                del verification
+                                return list_of_current_paths
+
 
                 list_of_current_paths=list_of_future_paths
                 list_of_future_paths=[]
@@ -310,7 +324,6 @@ class Graph:
         sequence_paths = {}
         if isinstance(self,Graph):
             if isinstance(list_of_paths, list):
-
                 for paths in list_of_paths:
                     return_list = []
                     test_list=[]
@@ -337,18 +350,19 @@ class Graph:
                                 elif (plus in cluster_working_on.gene_list) and (i!=(len(paths)-1)) and ((plus.rstrip(plus.split('_')[-1]).rstrip('_')) in test_list):
                                     i += 1
                                     plus = plus.rstrip(plus.split('_')[-1]) + str(int(plus.split('_')[-1]) + 1)
-
                                 else:
                                     break
                         elif moins in (self.nodes[paths[1]]).gene_list:
                             while i < len(paths):
                                 cluster_working_on = self.nodes[paths[i]]
+                                cluster_n= cluster_working_on.cluster_id
                                 # dernier cluster
                                 if i == (len(paths) - 1) and (moins in cluster_working_on.gene_list) and ((moins.rstrip(moins.split('_')[-1]).rstrip('_')) in test_list):
                                     return_list.append((moins.rstrip(moins.split('_')[-1]).rstrip('_')))
                                     break
                                 # premier cluster
                                 elif i == 1 and (moins in cluster_working_on.gene_list):
+                                    hello=((moins.rstrip(moins.split('_')[-1]).rstrip('_')))
                                     test_list.append((moins.rstrip(moins.split('_')[-1]).rstrip('_')))
                                     i += 1
                                     moins = moins.rstrip(moins.split('_')[-1]) + str(int(moins.split('_')[-1]) - 1)
@@ -380,7 +394,7 @@ class Graph:
         return sequence_paths
 
 #-------------------------COMPARE GRAPHS------------------------------------------------------------------------------------------------------------------------------------
-    def compare_graphs(self,graph_to_compare):
+    def compare_paths(self,graph_to_compare):
         inselfonly=[]
         ingraphonly=[]
         if isinstance(self,Graph):
@@ -401,22 +415,19 @@ class Graph:
                 raise TypeError('''L'objet à comparé n'est pasun objet de type graph.''')
         else:
             raise TypeError('''L'objet sur lequel vous travaillé n'est pas un objet de type graph.''')
-
-
-
 #-----------------------MAIN------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
+
+    print(' start ...')
     #Loaupd graph
-    #graph = Graph()
-    graphp4j0=Graph()
-    graphp4j7 = Graph()
+    graph = Graph()
+
 
     #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_P4.fasta.clstr'))
+    graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd-hit_p0p7.fasta.clstr'))
 
-    graphp4j0.load_graph(('/home/saiant01/Desktop/compare/cat_prodigal_cd_hit_p4j0.fasta.clstr'))
-    graphp4j7.load_graph(('/home/saiant01/Desktop/compare/cat_prodigal_cd_hit_p4j7.fasta.clstr'))
 
-    graphp4j0.compare_graphs(graphp4j7)
+
 
     #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_DATATEST.fasta.clstr'))
 
@@ -425,7 +436,7 @@ if __name__ == '__main__':
 
 
     #Liste des chemins partant du cluster en faisant au maximum n pas.
-    #list_of_paths=graph.find_path('Cluster 10', 7)
+    list_of_paths=graph.find_path('Cluster 10', 10)
     #print(list_of_paths)
 
     #Coloring
@@ -436,10 +447,10 @@ if __name__ == '__main__':
     #sous_graph = graph.sous_graph(list_of_paths)
 
     #Visualisation
-    #sous_graph.graph_javascript()
+    graph.graph_javascript()
     #sous_graph.cytoscape()
 
-    #print('Time:',graph.function_time(time), '/  H:M:S')
+    print('Time:',graph.function_time(time), '/  H:M:S')
 
 
 
