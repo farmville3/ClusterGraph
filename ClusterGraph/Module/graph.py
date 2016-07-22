@@ -32,6 +32,7 @@ class Graph:
         self.gene_dict = {}
         self.edges = {}
 
+
 #--------------------- Classer en ordre les gènes dans les différents échantillons pour pouvoir retrouvé facilement les gènes avant et apres un gène en particulier------------------------------------------
     def order_by_asc(self):
         for sample_id, gene in self.echantillons.items():
@@ -390,16 +391,17 @@ class Graph:
 
         return sequence_paths
 
-# -------------------------COMPARE GRAPHS------------------------------------------------------------------------------------------------------------------------------------
-    def show_path_per_samples(self, sequences_paths):
+# -------------------------Print paths by samples------------------------------------------------------------------------------------------------------------------------------------
+    def show_path_by_samples(self, sequences_paths):
         if isinstance(sequences_paths,dict):
             for sequences in sequences_paths.keys():
                 for cluster_list in sequences_paths.values():
-                    print('Sequences:', sequences)
-                    print('')
-                    print('Paths:')
+                    print('\033[1m'+'Sequences:'+'\033[0m', sequences)
+
+                    print('\033[1m'+'Paths:'+'\033[0m')
                     for paths in cluster_list:
                         print(paths)
+                    print('')
 
 #------------------------COMPARE GRAPHS------------------------------------------------------------------------------------------------------------------------------------
     def compare_paths(self,graph_to_compare):
@@ -408,7 +410,7 @@ class Graph:
 #-----------------------MAIN------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
-    print(' start ...')
+    print('\033[4m'+'start'+ '\033[0m')
     #Loaupd graph
     graph = Graph()
 
@@ -426,13 +428,11 @@ if __name__ == '__main__':
 
 
     #Liste des chemins partant du cluster en faisant au maximum n pas.
-    list_of_paths=graph.find_path('Cluster 20', 3)
-    print(list_of_paths)
+    list_of_paths=graph.find_path('Cluster 20', 9)
 
     #Coloring
     sequence_path = graph.sequences_in_find_path(list_of_paths)
-    print(sequence_path)
-    #graph.show_path_per_samples(sequence_path)
+    graph.show_path_by_samples(sequence_path)
 
 
     #Sous-graph
@@ -446,7 +446,17 @@ if __name__ == '__main__':
     #print('Time:',graph.function_time(time), '/  H:M:S')
 
 
-
+class color:
+    PURPLE = '\033[95m'
+    CYAN = '\033[96m'
+    DARKCYAN = '\033[36m'
+    BLUE = '\033[94m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    RED = '\033[91m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    END = '\033[0m'
 
 
 
