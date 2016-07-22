@@ -402,6 +402,8 @@ class Graph:
                     for paths in cluster_list:
                         print(paths)
                     print('')
+        else:
+            raise TypeError('''L'objet entré en paramètre n'est pas un objet de type dictionnaire''')
 
 #------------------------COMPARE GRAPHS------------------------------------------------------------------------------------------------------------------------------------
     def compare_paths(self,graph_to_compare):
@@ -416,6 +418,7 @@ class Graph:
 if __name__ == '__main__':
 
     print('\033[4m'+'start'+ '\033[0m'+' ...')
+    print('')
     #Loaupd graph
     graph = Graph()
 
