@@ -411,6 +411,7 @@ class Graph:
         #stocker tous les gènes Beta dans un dictionnaire qui a la forme: gene=''
         #parmis tous ces genes dans dict_gene, effectuer un load graph avec le cluster de ce gene et un lenght x, pour analyser dans quel environnement se situe ce gène.
 
+
 #-----------------------MAIN------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
@@ -448,19 +449,6 @@ if __name__ == '__main__':
     #sous_graph.cytoscape()
 
     #print('Time:',graph.function_time(time), '/  H:M:S')
-
-
-class color:
-    PURPLE = '\033[95m'
-    CYAN = '\033[96m'
-    DARKCYAN = '\033[36m'
-    BLUE = '\033[94m'
-    GREEN = '\033[92m'
-    YELLOW = '\033[93m'
-    RED = '\033[91m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-    END = '\033[0m'
 
 
 
