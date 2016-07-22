@@ -405,42 +405,46 @@ class Graph:
 
 #------------------------COMPARE GRAPHS------------------------------------------------------------------------------------------------------------------------------------
     def compare_paths(self,graph_to_compare):
-        pass
+        f1=open('file', 'r')
+        line=f1.readline()
+        dict_gene={}
+        #stocker tous les gènes Beta dans un dictionnaire qui a la forme: gene=''
+        #parmis tous ces genes dans dict_gene, effectuer un load graph avec le cluster de ce gene et un lenght x, pour analyser dans quel environnement se situe ce gène.
 
 #-----------------------MAIN------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
-    print('\033[4m'+'start'+ '\033[0m')
+    print('\033[4m'+'start'+ '\033[0m'+' ...')
     #Loaupd graph
     graph = Graph()
 
 
     #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_P4.fasta.clstr'))
-    graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd-hit_p0p7.fasta.clstr'))
+    #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd-hit_p0p7.fasta.clstr'))
 
 
 
 
-    #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_DATATEST.fasta.clstr'))
+    graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_DATATEST.fasta.clstr'))
 
     #Trouver les clusters pour lequel le gene appartient
     #print(graph.find_cluster('Sample_P4J7-FOX-ANA-Assembly.fa_contig-3000007_12'))
 
 
     #Liste des chemins partant du cluster en faisant au maximum n pas.
-    list_of_paths=graph.find_path('Cluster 20', 9)
+    #list_of_paths=graph.find_path('Cluster 20', 9)
 
     #Coloring
-    sequence_path = graph.sequences_in_find_path(list_of_paths)
-    graph.show_path_by_samples(sequence_path)
+    #sequence_path = graph.sequences_in_find_path(list_of_paths)
+    #graph.show_path_by_samples(sequence_path)
 
 
     #Sous-graph
-    sous_graph = graph.sous_graph(list_of_paths)
+    #sous_graph = graph.sous_graph(list_of_paths)
 
     #Visualisation
-    #graph.graph_javascript()
-    sous_graph.graph_javascript()
+    graph.graph_javascript()
+    #sous_graph.graph_javascript()
     #sous_graph.cytoscape()
 
     #print('Time:',graph.function_time(time), '/  H:M:S')
