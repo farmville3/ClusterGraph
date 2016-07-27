@@ -32,7 +32,6 @@ class Graph:
         self.gene_dict = {}
         self.edges = {}
 
-
 #--------------------- Classer en ordre les gènes dans les différents échantillons pour pouvoir retrouvé facilement les gènes avant et apres un gène en particulier------------------------------------------
     def order_by_asc(self):
         for sample_id, gene in self.echantillons.items():
@@ -406,10 +405,38 @@ class Graph:
             raise TypeError('''L'objet entré en paramètre n'est pas un objet de type dictionnaire''')
 
 #------------------------COMPARE GRAPHS------------------------------------------------------------------------------------------------------------------------------------
-    def compare_paths(self,graph_to_compare):
-        f1=open('file', 'r')
+    def compare_sequences_excel(self,grep_file, path_lenght):
+        f1=open(grep_file, 'r')
+        f2 = open('/home/saiant01/Desktop/gene_compare.xml', 'w')
         line=f1.readline()
-        dict_gene={}
+        f2.writelines('<?xml version="1.0" encoding="UTF-8"?>'+'\n')
+        f2.writelines('<ComparingSequences ComparingSequences="{}">'.format('')+'\n')
+        while line!='':
+            if int(line.split()[0])>=450:
+                gene_id = (line.split()[1])
+                cluster_number =  self.find_cluster(gene_id)
+                list_of_paths = graph.find_path(cluster_number, path_lenght)
+                sequence_path = graph.sequences_in_find_path(list_of_paths)
+                for sequences,  list_of_paths in sequence_path.items():
+                    if len(list_of_paths)!=0:
+                        f2.writelines('\t' + '<Sequence Sequence="{}">'.format(sequences)+'\n')
+                        for paths in list_of_paths:
+                            chemin=paths[0]
+                            i=1
+                            while i<len(paths):
+                                chemin+=('-->'+paths[i])
+                                i+=1
+                            f2.writelines('\t' + '\t' + '\t' + '<Paths Paths="{}"/>'.format(str(chemin))+'\n')
+                        f2.writelines('\t' + '</Sequence>'+'\n')
+                line=f1.readline()
+            elif int(line.split()[0])<450:
+                line=f1.readline()
+        f2.writelines('</ComparingSequences>'+'\n')
+
+
+
+
+
         #stocker tous les gènes Beta dans un dictionnaire qui a la forme: gene=''
         #parmis tous ces genes dans dict_gene, effectuer un load graph avec le cluster de ce gene et un lenght x, pour analyser dans quel environnement se situe ce gène.
 
@@ -424,12 +451,12 @@ if __name__ == '__main__':
 
 
     #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_P4.fasta.clstr'))
-    #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd-hit_p0p7.fasta.clstr'))
+    graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd-hit_p0p7.fasta.clstr'))
 
 
 
 
-    graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_DATATEST.fasta.clstr'))
+    #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_DATATEST.fasta.clstr'))
 
     #Trouver les clusters pour lequel le gene appartient
     #print(graph.find_cluster('Sample_P4J7-FOX-ANA-Assembly.fa_contig-3000007_12'))
@@ -447,11 +474,17 @@ if __name__ == '__main__':
     #sous_graph = graph.sous_graph(list_of_paths)
 
     #Visualisation
-    graph.graph_javascript()
+    #graph.graph_javascript()
     #sous_graph.graph_javascript()
     #sous_graph.cytoscape()
 
-    #print('Time:',graph.function_time(time), '/  H:M:S')
+
+    #Compare
+    (graph.compare_sequences_excel('/home/saiant01/Desktop/compare_samples.txt',5))
+
+
+
+    print('Time:',graph.function_time(time), '/  H:M:S')
 
 
 
