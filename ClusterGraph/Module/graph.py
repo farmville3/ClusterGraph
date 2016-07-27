@@ -424,7 +424,7 @@ class Graph:
                             chemin=paths[0]
                             i=1
                             while i<len(paths):
-                                chemin+=('-->'+paths[i])
+                                chemin+=('\u2192'+paths[i])
                                 i+=1
                             f2.writelines('\t' + '\t' + '\t' + '<Paths Paths="{}"/>'.format(str(chemin))+'\n')
                         f2.writelines('\t' + '</Sequence>'+'\n')
@@ -480,7 +480,7 @@ if __name__ == '__main__':
 
 
     #Compare
-    (graph.compare_sequences_excel('/home/saiant01/Desktop/compare_samples.txt',5))
+    (graph.compare_sequences_excel('/home/saiant01/Desktop/grep_file.txt',5))
 
 
 
