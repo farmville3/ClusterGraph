@@ -412,24 +412,25 @@ class Graph:
         f2.writelines('<?xml version="1.0" encoding="UTF-8"?>'+'\n')
         f2.writelines('<ComparingSequences ComparingSequences="{}">'.format('')+'\n')
         while line!='':
-            if int(line.split()[0])>=450:
+            if int(line.split()[0])>=500:
                 gene_id = (line.split()[1])
                 cluster_number =  self.find_cluster(gene_id)
                 list_of_paths = graph.find_path(cluster_number, path_lenght)
                 sequence_path = graph.sequences_in_find_path(list_of_paths)
                 for sequences,  list_of_paths in sequence_path.items():
                     if len(list_of_paths)!=0:
-                        f2.writelines('\t' + '<Sequence Sequence="{}">'.format(sequences)+'\n')
+                        f2.writelines('\t' + '<Sequence name="{}">'.format(str(sequences))+'\n')
+
                         for paths in list_of_paths:
-                            chemin=paths[0]
+                            f2.writelines('\t' + '\t' + '<Paths>' + '\n')
                             i=1
                             while i<len(paths):
-                                chemin+=('\u2192'+paths[i])
+                                f2.writelines(((3)*'\t')+'<Node{}>'.format(i) + str(paths[i]) + '</Node{}>'.format(i)+'\n')
                                 i+=1
-                            f2.writelines('\t' + '\t' + '\t' + '<Paths Paths="{}"/>'.format(str(chemin))+'\n')
+                            f2.writelines('\t' + '\t' + '</Paths>'+'\n')
                         f2.writelines('\t' + '</Sequence>'+'\n')
                 line=f1.readline()
-            elif int(line.split()[0])<450:
+            elif int(line.split()[0])<500:
                 line=f1.readline()
         f2.writelines('</ComparingSequences>'+'\n')
 
