@@ -431,16 +431,14 @@ class Graph:
         for sequences, list_of_paths in dict_of_tuples.items():
             if len(list_of_paths) != 0:
                 f2.writelines('\t' + '<Sequence name="{}">'.format(str(sequences)) + '\n')
-                y = 1
                 for paths in list_of_paths:
                     f2.writelines('\t' + '\t' + '<Paths>' + '\n')
-                    i = 1
+                    i = 0
                     while i < len(paths):
                         f2.writelines(
                             ((3) * '\t') + '<Node{}>'.format(i) + str(paths[i]) + '</Node{}>'.format(i) + '\n')
                         i += 1
                     f2.writelines('\t' + '\t' + '</Paths>' + '\n')
-                    y += 1
                 f2.writelines('\t' + '</Sequence>' + '\n')
 
         f2.writelines('</ComparingSequences>'+'\n')
@@ -493,7 +491,7 @@ if __name__ == '__main__':
 
 
     #Compare
-    (graph.compare_sequences_excel('/home/saiant01/Desktop/grep_file.txt',3,500))
+    (graph.compare_sequences_excel('/home/saiant01/Desktop/grep_file.txt',9,500))
 
 
 
