@@ -282,30 +282,34 @@ class Graph:
             cluster_id_node = (self.nodes)[cluster_id]
             for links in cluster_id_node.links:
                 list_of_current_paths.append([cluster_id_node.cluster_id,links])
-                c=list_of_current_paths
             i=1
             while i < path_lenght:
                 for lists in list_of_current_paths:
+                    #Si les noeux forment un cercle
                     for links in self.nodes[lists[-1]].links:
-                        if len(cluster_id_node.links)==1 and (cluster_id_node.links)[0] in lists:
-                            list_copy = copy.copy(lists)
-                            list_of_future_paths.append(list_copy)
-                        elif links not in lists:
-                            list_copy = copy.copy(lists)
-                            list_copy.append(links)
-                            list_of_future_paths.append(list_copy)
-                        #Si nos clusters et nos edges forment un cercle
-                        elif links in lists:
+                        if links in lists:
+                            verification='yes'
+                        else:
                             verification='no'
-                            for links in cluster_id_node.links:
-                                if links in lists:
-                                    verification='yes'
-                                else:
-                                    verification='no'
-                                    break
-                            if verification=='yes':
-                                del verification
-                                return list_of_current_paths
+                            break
+                    if verification=='no':
+                        for links in self.nodes[lists[-1]].links:
+                            list_of_links=self.nodes[lists[-1]].links
+                            #Si le lien n'est pas dans la lists
+                            if links not in lists:
+                                list_copy = copy.copy(lists)
+                                list_copy.append(links)
+                                if list_copy not in list_of_future_paths:
+                                    list_of_future_paths.append(list_copy)
+                            #Si nos clusters et nos edges forment un cercle
+                            elif links in lists:
+                                pass
+
+                    elif verification=='yes':
+                        list_copy = copy.copy(lists)
+                        if list_copy not in list_of_future_paths:
+                            list_of_future_paths.append(list_copy)
+
 
 
                 list_of_current_paths=list_of_future_paths
@@ -405,34 +409,42 @@ class Graph:
             raise TypeError('''L'objet entré en paramètre n'est pas un objet de type dictionnaire''')
 
 #------------------------COMPARE GRAPHS------------------------------------------------------------------------------------------------------------------------------------
-    def compare_sequences_excel(self,grep_file, path_lenght):
+    def compare_sequences_excel(self,grep_file, path_lenght, hit_number):
         f1=open(grep_file, 'r')
         f2 = open('/home/saiant01/Desktop/gene_compare.xml', 'w')
         line=f1.readline()
         f2.writelines('<?xml version="1.0" encoding="UTF-8"?>'+'\n')
         f2.writelines('<ComparingSequences ComparingSequences="{}">'.format('')+'\n')
+        dict_of_tuples={}
         while line!='':
-            if int(line.split()[0])>=500:
+            if int(line.split()[0])>=hit_number:
                 gene_id = (line.split()[1])
                 cluster_number =  self.find_cluster(gene_id)
-                list_of_paths = graph.find_path(cluster_number, path_lenght)
-                sequence_path = graph.sequences_in_find_path(list_of_paths)
+                list_of_paths = self.find_path(cluster_number, path_lenght)
+                sequence_path = self.sequences_in_find_path(list_of_paths)
                 for sequences,  list_of_paths in sequence_path.items():
-                    if len(list_of_paths)!=0:
-                        f2.writelines('\t' + '<Sequence name="{}">'.format(str(sequences))+'\n')
+                    if sequences not in dict_of_tuples.keys():
+                        dict_of_tuples[sequences]=list_of_paths
+                line = f1.readline()
+            elif int(line.split()[0])<hit_number:
+                line=f1.readline()
+        for sequences, list_of_paths in dict_of_tuples.items():
+            if len(list_of_paths) != 0:
+                f2.writelines('\t' + '<Sequence name="{}">'.format(str(sequences)) + '\n')
+                y = 1
+                for paths in list_of_paths:
+                    f2.writelines('\t' + '\t' + '<Paths>' + '\n')
+                    i = 1
+                    while i < len(paths):
+                        f2.writelines(
+                            ((3) * '\t') + '<Node{}>'.format(i) + str(paths[i]) + '</Node{}>'.format(i) + '\n')
+                        i += 1
+                    f2.writelines('\t' + '\t' + '</Paths>' + '\n')
+                    y += 1
+                f2.writelines('\t' + '</Sequence>' + '\n')
 
-                        for paths in list_of_paths:
-                            f2.writelines('\t' + '\t' + '<Paths>' + '\n')
-                            i=1
-                            while i<len(paths):
-                                f2.writelines(((3)*'\t')+'<Node{}>'.format(i) + str(paths[i]) + '</Node{}>'.format(i)+'\n')
-                                i+=1
-                            f2.writelines('\t' + '\t' + '</Paths>'+'\n')
-                        f2.writelines('\t' + '</Sequence>'+'\n')
-                line=f1.readline()
-            elif int(line.split()[0])<500:
-                line=f1.readline()
         f2.writelines('</ComparingSequences>'+'\n')
+        f2.close()
 
 
 
@@ -464,7 +476,7 @@ if __name__ == '__main__':
 
 
     #Liste des chemins partant du cluster en faisant au maximum n pas.
-    #list_of_paths=graph.find_path('Cluster 20', 9)
+    #list_of_paths=graph.find_path('Cluster 20', 4)
 
     #Coloring
     #sequence_path = graph.sequences_in_find_path(list_of_paths)
@@ -481,7 +493,7 @@ if __name__ == '__main__':
 
 
     #Compare
-    (graph.compare_sequences_excel('/home/saiant01/Desktop/grep_file.txt',5))
+    (graph.compare_sequences_excel('/home/saiant01/Desktop/grep_file.txt',3,500))
 
 
 
