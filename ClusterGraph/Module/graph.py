@@ -159,7 +159,7 @@ class Graph:
                     plus=genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1])+1)
                     moins=genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1])-1)
                     if plus in links_object.gene_list or moins in links_object.gene_list:
-                        f2.writelines((str(nodes.cluster43560_id) + '\t' + (genes.rstrip(genes.split('_')[-1])).rstrip('_')+ '\t' + str(links_object.cluster_id)+'\n'))
+                        f2.writelines((str(nodes.cluster_id) + '\t' + (genes.rstrip(genes.split('_')[-1])).rstrip('_')+ '\t' + str(links_object.cluster_id)+'\n'))
         f2.close()
         print('Cytoscape done.')
 
@@ -436,7 +436,7 @@ class Graph:
                     i = 0
                     while i < len(paths):
                         f2.writelines(
-                            ((3) * '\t') + '<Node{}>'.format(i) + str(paths[i]) + '</Node{}>'.format(i) + '\n')
+                            ((3) * '\t') + '<Node{}>'.format(i+1) + str(paths[i]) + '</Node{}>'.format(i+1) + '\n')
                         i += 1
                     f2.writelines('\t' + '\t' + '</Paths>' + '\n')
                 f2.writelines('\t' + '</Sequence>' + '\n')
@@ -462,19 +462,26 @@ if __name__ == '__main__':
 
 
     #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_P4.fasta.clstr'))
-    graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd-hit_p0p7.fasta.clstr'))
+
+    #P4J0 vs P4J7
+    #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd-hit_p0p7.fasta.clstr'))
+
+    #Local
+    #graph.load_graph(('/home/saiant01/Desktop/cat_Sample_PxJy-Assembly_cd-hit.fasta.clstr'))
+
+    #Server
+    #graph.load_graph(('/home/saiant01/cat_Sample_PxJy-Assembly_cd-hit.fasta.clstr'))
+    #print('Nombre de noeux:'+str(len(graph.nodes)))
 
 
-
-
-    #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_DATATEST.fasta.clstr'))
+    graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_DATATEST.fasta.clstr'))
 
     #Trouver les clusters pour lequel le gene appartient
     #print(graph.find_cluster('Sample_P4J7-FOX-ANA-Assembly.fa_contig-3000007_12'))
 
 
     #Liste des chemins partant du cluster en faisant au maximum n pas.
-    #list_of_paths=graph.find_path('Cluster 20', 4)
+    #list_of_paths=graph.find_path('Cluster 0', 10)
 
     #Coloring
     #sequence_path = graph.sequences_in_find_path(list_of_paths)
@@ -486,12 +493,13 @@ if __name__ == '__main__':
 
     #Visualisation
     #graph.graph_javascript()
+    graph.cytoscape()
     #sous_graph.graph_javascript()
     #sous_graph.cytoscape()
 
 
     #Compare
-    (graph.compare_sequences_excel('/home/saiant01/Desktop/grep_file.txt',9,500))
+    #(graph.compare_sequences_excel('/home/saiant01/Desktop/compare_samples.txt',9,300))
 
 
 
