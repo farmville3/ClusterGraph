@@ -409,7 +409,7 @@ class Graph:
             raise TypeError('''L'objet entré en paramètre n'est pas un objet de type dictionnaire''')
 
 #------------------------COMPARE GRAPHS------------------------------------------------------------------------------------------------------------------------------------
-    def compare_sequences_excel(self,grep_file, path_lenght, hit_number):
+    def compare_sequences_excel(self,grep_file, path_lenght):
         f1=open(grep_file, 'r')
         f2 = open('/home/saiant01/Desktop/gene_compare.xml', 'w')
         line=f1.readline()
@@ -417,28 +417,32 @@ class Graph:
         f2.writelines('<ComparingSequences ComparingSequences="{}">'.format('')+'\n')
         dict_of_tuples={}
         while line!='':
-            if int(line.split()[0])>=hit_number:
-                gene_id = (line.split()[1])
+            #if int(line.split()[0])>=hit_number:
+                #gene_id = (line.split()[1])
+                gene_id = (line.split()[0])
                 cluster_number =  self.find_cluster(gene_id)
                 list_of_paths = self.find_path(cluster_number, path_lenght)
                 sequence_path = self.sequences_in_find_path(list_of_paths)
                 for sequences,  list_of_paths in sequence_path.items():
                     if sequences not in dict_of_tuples.keys():
-                        dict_of_tuples[sequences]=list_of_paths
+                        dict_of_tuples[(gene_id,sequences)]=list_of_paths
                 line = f1.readline()
-            elif int(line.split()[0])<hit_number:
-                line=f1.readline()
-        for sequences, list_of_paths in dict_of_tuples.items():
+            #elif int(line.split()[0])<hit_number:
+                #line=f1.readline()
+        for tuples, list_of_paths in dict_of_tuples.items():
             if len(list_of_paths) != 0:
-                f2.writelines('\t' + '<Sequence name="{}">'.format(str(sequences)) + '\n')
+                f2.writelines('\t' + '<Sequence name="{}">'.format(str(tuples[1])) + '\n')
+                f2.writelines('\t' + '\t'  '<Gene_id GeneNumber="{}">'.format(str(tuples[0].split('_')[-1])) + '\n')
                 for paths in list_of_paths:
-                    f2.writelines('\t' + '\t' + '<Paths>' + '\n')
+                    f2.writelines('\t' + '\t' + '\t' '<Paths>' + '\n')
+
                     i = 0
                     while i < len(paths):
                         f2.writelines(
-                            ((3) * '\t') + '<Node{}>'.format(i+1) + str(paths[i]) + '</Node{}>'.format(i+1) + '\n')
+                            ((4) * '\t') + '<Node{}>'.format(i) + str(paths[i]) + '</Node{}>'.format(i) + '\n')
                         i += 1
-                    f2.writelines('\t' + '\t' + '</Paths>' + '\n')
+                    f2.writelines('\t' + '\t' + '\t' '</Paths>' + '\n')
+                f2.writelines('\t' + '\t' '</Gene_id>' + '\n')
                 f2.writelines('\t' + '</Sequence>' + '\n')
 
         f2.writelines('</ComparingSequences>'+'\n')
@@ -451,6 +455,18 @@ class Graph:
         #stocker tous les gènes Beta dans un dictionnaire qui a la forme: gene=''
         #parmis tous ces genes dans dict_gene, effectuer un load graph avec le cluster de ce gene et un lenght x, pour analyser dans quel environnement se situe ce gène.
 
+
+    def fred(self,file):
+        f1=open(file,'r')
+        f2=open('/home/saiant01/Desktop/compare_samples.txt','w')
+
+        line = f1.readline()
+        while line!='':
+            f2.writelines(line.split('\t')[0]+'_'+line.split('\t')[1]+'\t'+line.split('\t')[6]+'\n')
+            line=f1.readline()
+
+        f1.close()
+        f2.close()
 
 #-----------------------MAIN------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
@@ -467,14 +483,14 @@ if __name__ == '__main__':
     #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd-hit_p0p7.fasta.clstr'))
 
     #Local
-    #graph.load_graph(('/home/saiant01/Desktop/cat_Sample_PxJy-Assembly_cd-hit.fasta.clstr'))
+    graph.load_graph(('/home/saiant01/Desktop/cat_Sample_P4Jx-Assembly_cd-hit.fa.clstr'))
 
     #Server
     #graph.load_graph(('/home/saiant01/cat_Sample_PxJy-Assembly_cd-hit.fasta.clstr'))
     #print('Nombre de noeux:'+str(len(graph.nodes)))
 
-
-    graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_DATATEST.fasta.clstr'))
+    #DataTest
+    #graph.load_graph(('/home/saiant01/PycharmProjects/Git/Data/cat_prodigal-cd-hit.fasta.clstr'))
 
     #Trouver les clusters pour lequel le gene appartient
     #print(graph.find_cluster('Sample_P4J7-FOX-ANA-Assembly.fa_contig-3000007_12'))
@@ -493,13 +509,14 @@ if __name__ == '__main__':
 
     #Visualisation
     #graph.graph_javascript()
-    graph.cytoscape()
+    #graph.cytoscape()
     #sous_graph.graph_javascript()
     #sous_graph.cytoscape()
 
 
     #Compare
-    #(graph.compare_sequences_excel('/home/saiant01/Desktop/compare_samples.txt',9,300))
+    graph.fred('/home/saiant01/Desktop/Beta_Lactam_Fred_P4J0-7-90')
+    (graph.compare_sequences_excel('/home/saiant01/Desktop/compare_samples.txt',9))
 
 
 
