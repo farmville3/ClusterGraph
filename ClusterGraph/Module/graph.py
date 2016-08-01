@@ -448,14 +448,7 @@ class Graph:
         f2.writelines('</ComparingSequences>'+'\n')
         f2.close()
 
-
-
-
-
-        #stocker tous les gènes Beta dans un dictionnaire qui a la forme: gene=''
-        #parmis tous ces genes dans dict_gene, effectuer un load graph avec le cluster de ce gene et un lenght x, pour analyser dans quel environnement se situe ce gène.
-
-
+#------------------------Grep fred-----------------------------------------------------------------------------------------------------------------------------------------
     def fred(self,file):
         f1=open(file,'r')
         f2=open('/home/saiant01/Desktop/compare_samples.txt','w')
@@ -473,7 +466,7 @@ if __name__ == '__main__':
 
     print('\033[4m'+'start'+ '\033[0m'+' ...')
     print('')
-    #Loaupd graph
+    #Load graph
     graph = Graph()
 
 
