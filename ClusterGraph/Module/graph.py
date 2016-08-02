@@ -1,5 +1,5 @@
 import copy
-import sys
+import pickle
 import os
 import time
 import datetime
@@ -30,7 +30,6 @@ class Graph:
         self.nodes = {}
         self.echantillons = defaultdict(list)
         self.gene_dict = {}
-        self.edges = {}
 
 #--------------------- Classer en ordre les gènes dans les différents échantillons pour pouvoir retrouvé facilement les gènes avant et apres un gène en particulier------------------------------------------
     def order_by_asc(self):
@@ -173,6 +172,7 @@ class Graph:
         f3 = open(file, 'w')
         weights = defaultdict(int)
         for nodes in self.nodes.values():
+            #node_object = self.nodes[nodes]
             for links in nodes.links:
                 links_object = self.nodes[links]
                 for genes in nodes.gene_list:
@@ -411,7 +411,7 @@ class Graph:
 #------------------------COMPARE GRAPHS------------------------------------------------------------------------------------------------------------------------------------
     def compare_sequences_excel(self,grep_file, path_lenght):
         f1=open(grep_file, 'r')
-        f2 = open('/home/saiant01/Desktop/gene_compare.xml', 'w')
+        f2 = open('/home/saiant01/Desktop/gene_compa graph = Graph()re.xml', 'w')
         line=f1.readline()
         f2.writelines('<?xml version="1.0" encoding="UTF-8"?>'+'\n')
         f2.writelines('<ComparingSequences ComparingSequences="{}">'.format('')+'\n')
@@ -461,6 +461,26 @@ class Graph:
         f1.close()
         f2.close()
 
+#--------------------------Save graph--------------------------------------------------------------------------------------------------------------------------------------
+    def save_graph(self,file):
+        f1=open(file,'wb')
+        pickle.dump(self.nodes,f1)
+        pickle.dump(self.echantillons,f1)
+        pickle.dump(self.gene_dict, f1)
+
+#---------------------------Load graph-------------------------------------------------------------------------------------------------------------------------------------
+    def reload_graph(self,file):
+        f1 = open(file,'rb')
+        nodes = pickle.load(f1)
+        échantillons = pickle.load(f1)
+        gene_dict = pickle.load(f1)
+        self.nodes = nodes
+        self.echantillons = échantillons
+        self.gene_dict = gene_dict
+        f1.close()
+
+
+
 #-----------------------MAIN------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
 
@@ -476,14 +496,18 @@ if __name__ == '__main__':
     #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd-hit_p0p7.fasta.clstr'))
 
     #Local
-    graph.load_graph(('/home/saiant01/Desktop/cat_Sample_P4Jx-Assembly_cd-hit.fa.clstr'))
+    #graph.load_graph(('/home/saiant01/Desktop/cat_Sample_P4Jx-Assembly_cd-hit.fa.clstr'))
 
     #Server
     #graph.load_graph(('/home/saiant01/cat_Sample_PxJy-Assembly_cd-hit.fasta.clstr'))
     #print('Nombre de noeux:'+str(len(graph.nodes)))
 
     #DataTest
-    #graph.load_graph(('/home/saiant01/PycharmProjects/Git/Data/cat_prodigal-cd-hit.fasta.clstr'))
+    graph.load_graph(('/home/saiant01/PycharmProjects/Git/Data/cat_prodigal-cd-hit.fasta.clstr'))
+
+    graph.save_graph('/home/saiant01/PycharmProjects/Git/Data/hi.txt')
+    graph = Graph()
+    graph.reload_graph('/home/saiant01/PycharmProjects/Git/Data/hi.txt')
 
     #Trouver les clusters pour lequel le gene appartient
     #print(graph.find_cluster('Sample_P4J7-FOX-ANA-Assembly.fa_contig-3000007_12'))
@@ -501,15 +525,15 @@ if __name__ == '__main__':
     #sous_graph = graph.sous_graph(list_of_paths)
 
     #Visualisation
-    #graph.graph_javascript()
+    graph.graph_javascript()
     #graph.cytoscape()
     #sous_graph.graph_javascript()
     #sous_graph.cytoscape()
 
 
     #Compare
-    graph.fred('/home/saiant01/Desktop/Beta_Lactam_Fred_P4J0-7-90')
-    (graph.compare_sequences_excel('/home/saiant01/Desktop/compare_samples.txt',9))
+    #graph.fred('/home/saiant01/Desktop/Beta_Lactam_Fred_P4J0-7-90')
+    #(graph.compare_sequences_excel('/home/saiant01/Desktop/compare_samples.txt',9))
 
 
 
