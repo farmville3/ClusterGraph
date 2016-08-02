@@ -480,6 +480,41 @@ class Graph:
         f1.close()
 
 
+#-------------------------Compare graphs------------------------------------------------------------------------------------------------------------------------------------
+    def stats_graphs(self):
+        print(str(len(self.nodes))+ ' noeux')
+        max=0
+        min=100
+
+        same_sample=[]
+        for nodes in self.nodes.values():
+            nod=nodes.cluster_id
+            if len(nodes.gene_list)>max:
+                max=len(nodes.gene_list)
+
+            if len(nodes.gene_list)<min:
+                min=len(nodes.gene_list)
+            else:
+                pass
+            for genes in nodes.gene_list:
+                debut = genes.rstrip(genes.split('_')[-1])
+                counter = 0
+                for genes in nodes.gene_list:
+                    if genes.startswith(debut):
+                        counter +=1
+                    if counter==2:
+                        if nodes.cluster_id not in same_sample:
+                            same_sample.append(nodes.cluster_id)
+        print('Max: '+ str(max))
+        print('Min: '+ str(min))
+        print('')
+        print(len(same_sample))
+        #print(same_sample)
+
+
+
+
+
 
 #-----------------------MAIN------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
@@ -490,7 +525,10 @@ if __name__ == '__main__':
     graph = Graph()
 
 
-    #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd_hit_P4.fasta.clstr'))
+    graph.load_graph(('/home/saiant01/Desktop/Differents-c/cat_Sample_P4Jx-Assembly_cd-hit-90.fa.clstr'))
+
+
+    graph.stats_graphs()
 
     #P4J0 vs P4J7
     #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd-hit_p0p7.fasta.clstr'))
@@ -503,11 +541,11 @@ if __name__ == '__main__':
     #print('Nombre de noeux:'+str(len(graph.nodes)))
 
     #DataTest
-    graph.load_graph(('/home/saiant01/PycharmProjects/Git/Data/cat_prodigal-cd-hit.fasta.clstr'))
+    #graph.load_graph(('/home/saiant01/PycharmProjects/Git/Data/cat_prodigal-cd-hit.fasta.clstr'))
 
-    graph.save_graph('/home/saiant01/PycharmProjects/Git/Data/hi.txt')
-    graph = Graph()
-    graph.reload_graph('/home/saiant01/PycharmProjects/Git/Data/hi.txt')
+    #graph.save_graph('/home/saiant01/PycharmProjects/Git/Data/hi.txt')
+    #graph = Graph()
+    #graph.reload_graph('/home/saiant01/PycharmProjects/Git/Data/hi.txt')
 
     #Trouver les clusters pour lequel le gene appartient
     #print(graph.find_cluster('Sample_P4J7-FOX-ANA-Assembly.fa_contig-3000007_12'))
@@ -525,7 +563,7 @@ if __name__ == '__main__':
     #sous_graph = graph.sous_graph(list_of_paths)
 
     #Visualisation
-    graph.graph_javascript()
+    #graph.graph_javascript()
     #graph.cytoscape()
     #sous_graph.graph_javascript()
     #sous_graph.cytoscape()
