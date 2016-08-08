@@ -149,6 +149,7 @@ class Graph:
     def cytoscape(self,file='/home/saiant01/PycharmProjects/Git/Cytoscape/cytoscape.txt'):
         print('Cytoscape ...')
         f2 = open(file, 'w')
+        dict={}
         # Cytoscape
         #Créer un fichier tabulé pour cytoscape
         for nodes in self.nodes.values():
@@ -158,7 +159,16 @@ class Graph:
                     plus=genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1])+1)
                     moins=genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1])-1)
                     if plus in links_object.gene_list or moins in links_object.gene_list:
-                        f2.writelines((str(nodes.cluster_id) + '\t' + (genes.rstrip(genes.split('_')[-1])).rstrip('_')+ '\t' + str(links_object.cluster_id)+'\n'))
+                        debut=str(nodes.cluster_id)
+                        fin=str(links_object.cluster_id)
+                        lien=(genes.rstrip(genes.split('_')[-1])).rstrip('_')
+                        #f2.writelines(debut+'\t'+lien+'\t'+fin+'\n')
+
+                        if (fin,lien,debut) not in dict.keys():
+                            dict[(debut,lien,fin)]=''
+
+        for path in dict.keys():
+                        f2.writelines((path[0]) + '\t' + path[1] + '\t' + path[2] +'\n')
         f2.close()
         print('Cytoscape done.')
 
@@ -411,7 +421,7 @@ class Graph:
 #------------------------COMPARE GRAPHS------------------------------------------------------------------------------------------------------------------------------------
     def compare_sequences_excel(self,grep_file, path_lenght):
         f1=open(grep_file, 'r')
-        f2 = open('/home/saiant01/Desktop/gene_compa graph = Graph()re.xml', 'w')
+        f2 = open('/home/saiant01/Desktop/gene_compare.xml', 'w')
         line=f1.readline()
         f2.writelines('<?xml version="1.0" encoding="UTF-8"?>'+'\n')
         f2.writelines('<ComparingSequences ComparingSequences="{}">'.format('')+'\n')
@@ -447,9 +457,10 @@ class Graph:
 
         f2.writelines('</ComparingSequences>'+'\n')
         f2.close()
+        f1.close()
 
 #------------------------Grep fred-----------------------------------------------------------------------------------------------------------------------------------------
-    def fred(self,file):
+    def beta_lactam_file(self,file):
         f1=open(file,'r')
         f2=open('/home/saiant01/Desktop/compare_samples.txt','w')
 
@@ -467,6 +478,7 @@ class Graph:
         pickle.dump(self.nodes,f1)
         pickle.dump(self.echantillons,f1)
         pickle.dump(self.gene_dict, f1)
+        f1.close()
 
 #---------------------------Load graph-------------------------------------------------------------------------------------------------------------------------------------
     def reload_graph(self,file):
@@ -483,6 +495,10 @@ class Graph:
 #-------------------------Compare graphs------------------------------------------------------------------------------------------------------------------------------------
     def stats_graphs(self):
         print(str(len(self.nodes))+ ' noeux')
+        #Nombre de contigs et nombre de gène par séquence
+        #print(len(self.echantillons))
+        #for sequence in self.echantillons:
+            #print(len(self.echantillons[sequence]))
         max=0
         min=100
 
@@ -518,23 +534,27 @@ class Graph:
 
 #-----------------------MAIN------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
-
-    print('\033[4m'+'start'+ '\033[0m'+' ...')
-    print('')
+    print('========================================================================================================')
+    print("\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+'\033[4m' +'start'+ '\033[0m')
+    print('--------------------------------------------------------------------------------------------------------')
     #Load graph
+
     graph = Graph()
 
 
-    graph.load_graph(('/home/saiant01/Desktop/Differents-c/cat_Sample_P4Jx-Assembly_cd-hit-90.fa.clstr'))
+    #graph.load_graph(('/home/saiant01/cat_Sample_P4Jx-Assembly_100.fa.clstr'))
 
+    #P4
+    graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_culture_cd-hit.fasta.clstr'))
 
-    graph.stats_graphs()
 
     #P4J0 vs P4J7
     #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd-hit_p0p7.fasta.clstr'))
 
     #Local
     #graph.load_graph(('/home/saiant01/Desktop/cat_Sample_P4Jx-Assembly_cd-hit.fa.clstr'))
+
+
 
     #Server
     #graph.load_graph(('/home/saiant01/cat_Sample_PxJy-Assembly_cd-hit.fasta.clstr'))
@@ -547,32 +567,37 @@ if __name__ == '__main__':
     #graph = Graph()
     #graph.reload_graph('/home/saiant01/PycharmProjects/Git/Data/hi.txt')
 
+
+
     #Trouver les clusters pour lequel le gene appartient
     #print(graph.find_cluster('Sample_P4J7-FOX-ANA-Assembly.fa_contig-3000007_12'))
 
 
     #Liste des chemins partant du cluster en faisant au maximum n pas.
-    #list_of_paths=graph.find_path('Cluster 0', 10)
+    list_of_paths=graph.find_path('Cluster 33370', 20)
 
     #Coloring
-    #sequence_path = graph.sequences_in_find_path(list_of_paths)
+    sequence_path = graph.sequences_in_find_path(list_of_paths)
     #graph.show_path_by_samples(sequence_path)
 
 
     #Sous-graph
-    #sous_graph = graph.sous_graph(list_of_paths)
+    sous_graph = graph.sous_graph(list_of_paths)
 
     #Visualisation
     #graph.graph_javascript()
     #graph.cytoscape()
     #sous_graph.graph_javascript()
-    #sous_graph.cytoscape()
+    sous_graph.cytoscape()
 
 
     #Compare
-    #graph.fred('/home/saiant01/Desktop/Beta_Lactam_Fred_P4J0-7-90')
+    #graph.beta_lactam_file('/home/saiant01/Desktop/Beta_Lactam_Fred_P4J0-7-90')
     #(graph.compare_sequences_excel('/home/saiant01/Desktop/compare_samples.txt',9))
 
+
+    #Stats
+    #graph.stats_graphs()
 
 
     print('Time:',graph.function_time(time), '/  H:M:S')
