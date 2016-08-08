@@ -46,6 +46,9 @@ class Graph:
 #-----------------------TIME------------------------------------------------------------------------------------------------------------------------------------------------
     @staticmethod
     def function_time(_start_time):
+        print('---------------------------------------------------------------')
+        print("\t"+"\t"+"\t"+"\t"+'Time running')
+        print('---------------------------------------------------------------')
         end_time = time.time() - start_time
         return(datetime.timedelta(seconds=end_time))
 
@@ -280,12 +283,13 @@ class Graph:
             except:
                 raise ValueError('''Le noeux n'existe pas''')
 
-        print('sous-graph done ...')
+        print('sous-graph done.')
         return graph
 
 #-----------------------FIND PATH--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     #Trouver tous les chemins de longueur 'path_lenght' en partant du noeux ayant comme identifiant de cluster, le cluster_id donné en parametre.
     def find_path(self,cluster_id,path_lenght):
+        print('Find path ...')
         list_of_current_paths=[]
         list_of_future_paths=[]
         try:
@@ -326,6 +330,7 @@ class Graph:
                 list_of_future_paths=[]
                 i+=1
             del i
+            print('Find path done.')
             return list_of_current_paths
 
 
@@ -406,6 +411,7 @@ class Graph:
 
 # -------------------------Print paths by samples------------------------------------------------------------------------------------------------------------------------------------
     def show_path_by_samples(self, sequences_paths):
+
         if isinstance(sequences_paths,dict):
             for sequences in sequences_paths.keys():
                 for cluster_list in sequences_paths.values():
@@ -494,6 +500,9 @@ class Graph:
 
 #-------------------------Compare graphs------------------------------------------------------------------------------------------------------------------------------------
     def stats_graphs(self):
+        print('---------------------------------------------------------------')
+        print("\t"+"\t"+"\t"+"\t"+'Some stats on the graph')
+        print('---------------------------------------------------------------')
         print(str(len(self.nodes))+ ' noeux')
         #Nombre de contigs et nombre de gène par séquence
         #print(len(self.echantillons))
@@ -536,7 +545,7 @@ class Graph:
 if __name__ == '__main__':
     print('========================================================================================================')
     print("\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+'\033[4m' +'start'+ '\033[0m')
-    print('--------------------------------------------------------------------------------------------------------')
+    print('========================================================================================================')
     #Load graph
 
     graph = Graph()
@@ -574,7 +583,7 @@ if __name__ == '__main__':
 
 
     #Liste des chemins partant du cluster en faisant au maximum n pas.
-    list_of_paths=graph.find_path('Cluster 33370', 20)
+    list_of_paths=graph.find_path('Cluster 19164', 10)
 
     #Coloring
     sequence_path = graph.sequences_in_find_path(list_of_paths)
@@ -597,7 +606,7 @@ if __name__ == '__main__':
 
 
     #Stats
-    #graph.stats_graphs()
+    graph.stats_graphs()
 
 
     print('Time:',graph.function_time(time), '/  H:M:S')
