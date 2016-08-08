@@ -1,0 +1,92 @@
+# HCLF statistics queries
+# https://www.w3.org/TR/hcls-dataset/#s6_6 
+
+# COUNT - DISTINCT GRAPH
+SELECT COUNT DISTINCT $g
+WHERE {
+  GRAPH $g {
+    $s $p $o .
+  }
+}
+
+# List - DISTINCT GRAPH
+SELECT DISTINCT $g
+WHERE {
+  GRAPH $g {
+    $s $p $o .
+  }
+}
+
+# COUNT - Total Number of Triples [by graph]
+SELECT COUNT(*)
+WHERE {
+  GRAPH $g {
+    $s $p $o .
+  }
+}
+
+# COUNT - DISTINCT Number of Entities
+SELECT (COUNT(DISTINCT ?s) AS ?entities)
+WHERE {
+  ?s a []
+}
+
+# COUNT - DISTINCT Type/Classes [by graph]
+SELECT COUNT (DISTINCT $o)
+WHERE {
+  GRAPH $g {
+    $s a $o .
+  }
+}
+
+# List/COUNT - DISTINCT Type/Classes
+SELECT ?o (COUNT(DISTINCT ?s) AS ?DISTINCTInstances) 
+WHERE {
+  GRAPH $g {
+    ?s a ?o
+  }
+}
+GROUP BY ?o
+
+# COUNT - DISTINCT Entities
+SELECT COUNT (DISTINCT $s)
+WHERE {
+  GRAPH $g {
+    $s a [] .
+  }
+}
+
+# COUNT - DISTINCT Subject
+SELECT COUNT (DISTINCT $s)
+WHERE {
+  GRAPH $g {
+    $s $p $o .
+  }
+}
+
+# COUNT- DISTINCT Properties
+SELECT COUNT (DISTINCT $p)
+WHERE {
+  GRAPH $g {
+    $s $p $o .
+  }
+}
+
+# COUNT - DISTINCT Object (non-literal)
+SELECT COUNT (DISTINCT $o)
+WHERE {
+  GRAPH $g {
+    $s $p $o .
+    FILTER(!isLiteral(?o))
+  }
+}
+
+# COUNT - DISTINCT Object (literal)
+SELECT COUNT (DISTINCT $o)
+WHERE {
+  GRAPH $g {
+    $s $p $o .
+    FILTER(isLiteral(?o))
+  }
+}
+

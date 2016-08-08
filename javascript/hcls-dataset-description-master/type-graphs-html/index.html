@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <link href="css/types_graph.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/lodash.min.js"></script>
+
+    <link href="css/rangeslider.css" rel="stylesheet">
+    <script src="js/rangeslider.min.js"></script>
+
+    <link href="css/pace.css" rel="stylesheet">
+    <script src="js/pace.min.js"></script>
+
+    <!-- VIS lib -->
+    <link href="css/vis.min.css" rel="stylesheet">
+    <script src="js/vis.min.js"></script>     
+    <script src="js/vis-network.min.js"></script>
+
+    <script src="graph.js"></script>
+
+  </head>
+
+  <body>
+
+    <div id="menu">
+
+      <!-- zoom -->
+      <div id="graph" class='select_section'></div>
+
+      <!-- <input type="range"> -->
+      <div id="nodesZoom" class='select_section'>
+	<div class='title'>Nodes Filter :
+	  >= <span class="highlight" id="cutoff_node">100</span> triples
+	</div>
+      </div>
+
+      <input id="node_slider"
+	     type="range"
+      	     min="0"
+      	     max="10"
+      	     step="1"
+      	     value="5"
+      	     data-orientation="horizontal">
+
+      <!-- <input type="range"> -->
+      <div id="edgesZoom" class='select_section'>
+	<div class='title'>Edges Filter :
+	  >= <span class="highlight" id="cutoff_edge">100</span> triples
+	</div>
+      </div>
+
+      <input id="edge_slider"
+	     type="range"
+      	     min="0"
+      	     max="10"
+      	     step="1"
+      	     value="5"
+      	     data-orientation="horizontal">
+     
+      <hr>
+
+      <!-- node selection -->
+      <div id="selection"></div>
+
+    </div>
+
+    <div id="network"></div>
+
+    <script src="js/types_graph.js"></script>
+
+  </body>
+
+</html>

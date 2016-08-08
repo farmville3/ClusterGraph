@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+gem 'rdf'
+gem 'sparql'
+gem 'json'
+gem 'digest'
+gem 'rdf-turtle'

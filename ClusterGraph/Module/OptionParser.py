@@ -44,7 +44,7 @@ class OptionParser():
         self.parser.add_argument('-t', type=bool, help="Affiche le temps écoulé entre le début et la fin de l'appel de la fonction.", default='',
                                  required=False)
 
-
+#
 
         #parse the args...
         self.Arguments = vars(self.parser.parse_args(args))
