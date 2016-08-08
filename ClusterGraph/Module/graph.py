@@ -9,6 +9,7 @@ from collections import defaultdict
 #Début de la procédure. On initialise le temps.
 start_time = time.time()
 
+
 #---------------------------------NODE-------------------------------------------------------------------------------------------------------------------------------------
 #Le constructeur Node construit des objets de type Node qui ont comme attribut un identifiant de cluster, une liste de genes liés à ce cluster et une liste
 class Node:
@@ -31,7 +32,8 @@ class Graph:
         self.echantillons = defaultdict(list)
         self.gene_dict = {}
 
-#--------------------- Classer en ordre les gènes dans les différents échantillons pour pouvoir retrouvé facilement les gènes avant et apres un gène en particulier------------------------------------------
+#--------------------- Order by asc-----------------------------------------------------------------------------------------------------------------------------------------
+#Classer en ordre les gènes dans les différents échantillons pour pouvoir retrouvé facilement les gènes avant et apres un gène en particulier
     def order_by_asc(self):
         for sample_id, gene in self.echantillons.items():
             i = 0
@@ -44,6 +46,7 @@ class Graph:
                 ((self.echantillons[sample_id])[i]) = str(sample_id) + '_' + str((self.echantillons[sample_id])[i])
                 i = i + 1
 #-----------------------TIME------------------------------------------------------------------------------------------------------------------------------------------------
+    #Calcule le temps passé entre le début du programme et sa fin
     @staticmethod
     def function_time(_start_time):
         print('---------------------------------------------------------------')
@@ -52,7 +55,8 @@ class Graph:
         end_time = time.time() - start_time
         return(datetime.timedelta(seconds=end_time))
 
-#-----------------------------Méthode qui nous perment d'ajouter rapidement un noeux a un graph.-------------------------------------------------------------------------------------------------------------
+#-----------------------------Append in graph-------------------------------------------------------------------------------------------------------------
+#Méthode simple qui nous perment d'ajouter rapidement un noeux a un graph.
     def append(self, node):
         if isinstance(node,Node):
             #Verifier si node.cluster_id n'est pas vide
@@ -64,6 +68,7 @@ class Graph:
 
 
 #---------------FIND CLUSTER -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#Méthode simple qui permet de récupérer le cluster respectif d'un gène.
     def find_cluster(self, gene_id):
         try:
             return self.gene_dict[gene_id]
@@ -71,6 +76,7 @@ class Graph:
             raise KeyError('''Le gene entre n'existe pas.''')
 
 #---------------------LOAD GRAPH----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    #Créer un graph selon le fichier .clstr de cd-hit
     def load_graph(self, file):
         #Créer un graph à partir du fichier output cd-hit
         f1 = open(file, 'r')
@@ -149,6 +155,7 @@ class Graph:
         del i
         f1.close()
 #---------------------------GRAPH CYTOSCAPE---------------------------------------------------------------------------------------------------------------------------
+    #Écrit un fichier qui permet la visualisation du graph avec cytoscape
     def cytoscape(self,file='/home/saiant01/PycharmProjects/Git/Cytoscape/cytoscape.txt'):
         print('Cytoscape ...')
         f2 = open(file, 'w')
@@ -177,6 +184,7 @@ class Graph:
 
 #------------------------GRAPH JAVACRIPT------------------------------------------------------------------------------------------------------------------------------
     def graph_javascript(self):
+        # Écrit un fichier qui permet la visualisation du graph avec un script javascript
         print('Javascript ...')
         #index.html
         #Créer une liste cluster_start_end pour laquelle chaque élément aura la forme: Cluster_de_départ_du_edge,Cluster_de_fin_du_edge.
@@ -238,6 +246,7 @@ class Graph:
 
 #-------------------SOUS_GRAPH---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     def sous_graph(self,paths_list):
+    #Permet de créer un sous graph selon un cluster_id et un path_lenght
         print('sous-graph ...')
         graph = Graph()
         for paths in paths_list:
@@ -289,7 +298,7 @@ class Graph:
 #-----------------------FIND PATH--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     #Trouver tous les chemins de longueur 'path_lenght' en partant du noeux ayant comme identifiant de cluster, le cluster_id donné en parametre.
     def find_path(self,cluster_id,path_lenght):
-        print('Find path ...')
+
         list_of_current_paths=[]
         list_of_future_paths=[]
         try:
@@ -330,10 +339,7 @@ class Graph:
                 list_of_future_paths=[]
                 i+=1
             del i
-            print('Find path done.')
             return list_of_current_paths
-
-
 
         except:
             raise TypeError('''Le cluster entré en paramètre n'existe pas.''')
@@ -411,7 +417,7 @@ class Graph:
 
 # -------------------------Print paths by samples------------------------------------------------------------------------------------------------------------------------------------
     def show_path_by_samples(self, sequences_paths):
-
+    #Imprime les paths pour chaque séquence
         if isinstance(sequences_paths,dict):
             for sequences in sequences_paths.keys():
                 for cluster_list in sequences_paths.values():
@@ -426,6 +432,7 @@ class Graph:
 
 #------------------------COMPARE GRAPHS------------------------------------------------------------------------------------------------------------------------------------
     def compare_sequences_excel(self,grep_file, path_lenght):
+        #Créer un fichier .xml qui s'ouvre facilement avec excel qui affiche les chemins de certains gène en paticulier
         f1=open(grep_file, 'r')
         f2 = open('/home/saiant01/Desktop/gene_compare.xml', 'w')
         line=f1.readline()
@@ -467,8 +474,11 @@ class Graph:
 
 #------------------------Grep fred-----------------------------------------------------------------------------------------------------------------------------------------
     def beta_lactam_file(self,file):
+        #Convertis les données reçu grace aux 'greps' de fred
         f1=open(file,'r')
-        f2=open('/home/saiant01/Desktop/compare_samples.txt','w')
+        dir = os.path.dirname(__file__)
+        file = os.path.join(dir, '/home/saiant01/PycharmProjects/Git/XML/compare_samples.txt')
+        f2=open(file,'w')
 
         line = f1.readline()
         while line!='':
@@ -480,6 +490,7 @@ class Graph:
 
 #--------------------------Save graph--------------------------------------------------------------------------------------------------------------------------------------
     def save_graph(self,file):
+        #Enregistre un graph
         f1=open(file,'wb')
         pickle.dump(self.nodes,f1)
         pickle.dump(self.echantillons,f1)
@@ -488,6 +499,7 @@ class Graph:
 
 #---------------------------Load graph-------------------------------------------------------------------------------------------------------------------------------------
     def reload_graph(self,file):
+        #Load un graph enregistré
         f1 = open(file,'rb')
         nodes = pickle.load(f1)
         échantillons = pickle.load(f1)
@@ -500,6 +512,7 @@ class Graph:
 
 #-------------------------Compare graphs------------------------------------------------------------------------------------------------------------------------------------
     def stats_graphs(self):
+        #Imprime certains statistiques de graph
         print('---------------------------------------------------------------')
         print("\t"+"\t"+"\t"+"\t"+'Some stats on the graph')
         print('---------------------------------------------------------------')
@@ -546,15 +559,15 @@ if __name__ == '__main__':
     print('========================================================================================================')
     print("\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+'\033[4m' +'start'+ '\033[0m')
     print('========================================================================================================')
+
     #Load graph
 
     graph = Graph()
 
-
-    #graph.load_graph(('/home/saiant01/cat_Sample_P4Jx-Assembly_100.fa.clstr'))
+    graph.load_graph(('/home/saiant01/cat_Sample_P4Jx-Assembly_100.fa.clstr'))
 
     #P4
-    graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_culture_cd-hit.fasta.clstr'))
+    #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_culture_cd-hit.fasta.clstr'))
 
 
     #P4J0 vs P4J7
@@ -572,6 +585,7 @@ if __name__ == '__main__':
     #DataTest
     #graph.load_graph(('/home/saiant01/PycharmProjects/Git/Data/cat_prodigal-cd-hit.fasta.clstr'))
 
+
     #graph.save_graph('/home/saiant01/PycharmProjects/Git/Data/hi.txt')
     #graph = Graph()
     #graph.reload_graph('/home/saiant01/PycharmProjects/Git/Data/hi.txt')
@@ -580,6 +594,7 @@ if __name__ == '__main__':
 
     #Trouver les clusters pour lequel le gene appartient
     #print(graph.find_cluster('Sample_P4J7-FOX-ANA-Assembly.fa_contig-3000007_12'))
+
 
 
     #Liste des chemins partant du cluster en faisant au maximum n pas.
@@ -597,12 +612,12 @@ if __name__ == '__main__':
     #graph.graph_javascript()
     #graph.cytoscape()
     #sous_graph.graph_javascript()
-    sous_graph.cytoscape()
+    #sous_graph.cytoscape()
 
 
     #Compare
-    #graph.beta_lactam_file('/home/saiant01/Desktop/Beta_Lactam_Fred_P4J0-7-90')
-    #(graph.compare_sequences_excel('/home/saiant01/Desktop/compare_samples.txt',9))
+    graph.beta_lactam_file('/home/saiant01/Desktop/Beta_Lactam_Fred_P4J0-7-90')
+    (graph.compare_sequences_excel('/home/saiant01/PycharmProjects/Git/XML/compare_samples.txt',9))
 
 
     #Stats
