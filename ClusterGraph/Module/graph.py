@@ -4,10 +4,70 @@ import os
 import time
 import datetime
 from collections import defaultdict
+import argparse
+import sys
 #----------------------Imports-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Début de la procédure. On initialise le temps.
 start_time = time.time()
+
+
+#----------------------OptionParser----------------------------------------------------------------------------------------------------------------------------------------
+class OptionParser():
+    def __init__(self, args):
+        self.parser = argparse.ArgumentParser(description="Auto phage extractor<eta.")
+
+
+        ##########         parser       #########################
+        self.parser.add_argument('-i', type=str, help='Input file.Le fichier en input doit correspondre au fichier .clstr de cd-hit.',default='',required=True)
+
+        self.parser.add_argument('-find', type=str, help="L'input doit être le nom d'un gène qui est présent dans le graph. La fonction va alors retourner le cluster respectif du gène.", default='',
+                                         required=False)
+
+        self.parser.add_argument('-lop', type=str, help='La fonction retourne tous les chemins de longueur "x" partant du nom du cluster que vous devez donner en parametètre.'
+                                                        ' Utilisez -x pour donner la longueur des chemins désirés.', default='',required=False)
+
+        self.parser.add_argument('-x', type=int, help="Longueur des chemin désiré lors de l'utilisation de -lop.", default=-1,
+                                 required=False)
+
+        self.parser.add_argument('-sg', type=bool, help="Construit un sous-graph à partir des données reçues par -lop et -x", default=False,
+                                 required=False)
+
+        self.parser.add_argument('-cyto', type=bool, help="Permet de visualiser le graph dans cytoscape à l'aide du fichier cytoscape.txt\n"
+                                 'Celui-ci doit se trouvé dans le répertoire Cytoscape du projet. ', default=False,required=False)
+
+        self.parser.add_argument('-j', type=bool, help="Permet de visualiser le graph dans une page html de façon interactive."
+                                 "Il ne faut qu'ouvrir le fichier index.html dans javascript/hcls-dataset-description-master/type-graphs-html", default=False,required=False)
+
+        self.parser.add_argument('-g', type=str, help="Convertit les fichiers obtenus à l'aide de greps en ligne de commande de façon"
+                                                      "à ce que les données soient convertible dans un fichier .xml", default='',
+                                 required=False)
+
+        self.parser.add_argument('-xml', type=bool, help="Créer un fichier xml qui peut être ouvert dans Microsoft Excel.", default='',
+                                 required=False)
+
+        self.parser.add_argument('-y', type=int, help="Longueur des chemin désiré lors de l'utilisation de -xml.", default=-1,
+                                 required=False)
+
+        self.parser.add_argument('-s', type=bool, help="Affiche différentes statistiques sur le graph.", default=True,
+                                 required=False)
+
+        self.parser.add_argument('-save', type=str, help="Sauvegarde le graph dans le fichier donné en paramètre.", default='',
+                                 required=False)
+        self.parser.add_argument('-r', type=str, help="Load le graph à partir du fichier de sauvegarde deonné en paramètre", default='',
+                                 required=False)
+
+#
+
+        #parse the args...
+        self.Arguments = vars(self.parser.parse_args(args))
+
+    #Needed to get the args
+    def getArguments(self):
+        return self.Arguments
+
+    def getParser(self):
+        return self.parser
 
 
 #---------------------------------NODE-------------------------------------------------------------------------------------------------------------------------------------
@@ -434,7 +494,7 @@ class Graph:
     def compare_sequences_excel(self,grep_file, path_lenght):
         #Créer un fichier .xml qui s'ouvre facilement avec excel qui affiche les chemins de certains gène en paticulier
         f1=open(grep_file, 'r')
-        f2 = open('/home/saiant01/Desktop/gene_compare.xml', 'w')
+        f2 = open('/home/saiant01/PycharmProjects/Git/XML/gene_compare.xml', 'w')
         line=f1.readline()
         f2.writelines('<?xml version="1.0" encoding="UTF-8"?>'+'\n')
         f2.writelines('<ComparingSequences ComparingSequences="{}">'.format('')+'\n')
@@ -557,74 +617,119 @@ class Graph:
 #-----------------------MAIN------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
     print('========================================================================================================')
-    print("\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+'\033[4m' +'start'+ '\033[0m')
+    print(
+        "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + '\033[4m' + 'start' + '\033[0m')
     print('========================================================================================================')
 
-    #Load graph
+    parser = OptionParser(sys.argv[1:])
+    arg = parser.getArguments()
+    load_file = arg['i']
+    find = arg['find']
+    list_of_paths = arg['lop']
+    lenght_lop = arg['x']
+    sous_graph = arg['sg']
+    cytoscape = arg['cyto']
+    javacript = arg['j']
+    convert_greps_fred = arg['g']
+    xml = arg['xml']
+    lenght_xml = arg['y']
+    stats = arg['s']
+    time = arg['t']
+    save = arg['save']
+    reload = arg['r']
 
+    # Load graph
     graph = Graph()
 
-    graph.load_graph(('/home/saiant01/cat_Sample_P4Jx-Assembly_100.fa.clstr'))
+    if load_file != '':
+        # graph.load_graph(('/home/saiant01/cat_Sample_P4Jx-Assembly_100.fa.clstr'))
 
-    #P4
-    #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_culture_cd-hit.fasta.clstr'))
+        # P4
+        graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_culture_cd-hit.fasta.clstr'))
 
+    if save != '':
+        graph.save_graph(save)
 
-    #P4J0 vs P4J7
-    #graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd-hit_p0p7.fasta.clstr'))
+    if reload != '':
+        graph = Graph()
+        graph.reload_graph(save)
 
-    #Local
-    #graph.load_graph(('/home/saiant01/Desktop/cat_Sample_P4Jx-Assembly_cd-hit.fa.clstr'))
+        # P4J0 vs P4J7
+        # graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd-hit_p0p7.fasta.clstr'))
 
-
-
-    #Server
-    #graph.load_graph(('/home/saiant01/cat_Sample_PxJy-Assembly_cd-hit.fasta.clstr'))
-    #print('Nombre de noeux:'+str(len(graph.nodes)))
-
-    #DataTest
-    #graph.load_graph(('/home/saiant01/PycharmProjects/Git/Data/cat_prodigal-cd-hit.fasta.clstr'))
-
-
-    #graph.save_graph('/home/saiant01/PycharmProjects/Git/Data/hi.txt')
-    #graph = Graph()
-    #graph.reload_graph('/home/saiant01/PycharmProjects/Git/Data/hi.txt')
+        # Local
+        # graph.load_graph(('/home/saiant01/Desktop/cat_Sample_P4Jx-Assembly_cd-hit.fa.clstr'))
 
 
 
-    #Trouver les clusters pour lequel le gene appartient
-    #print(graph.find_cluster('Sample_P4J7-FOX-ANA-Assembly.fa_contig-3000007_12'))
+        # Server
+        # graph.load_graph(('/home/saiant01/cat_Sample_PxJy-Assembly_cd-hit.fasta.clstr'))
+        # print('Nombre de noeux:'+str(len(graph.nodes)))
+
+        # DataTest
+        # graph.load_graph(('/home/saiant01/PycharmProjects/Git/Data/cat_prodigal-cd-hit.fasta.clstr'))
+
+
+        if find != '':
+            # Trouver les clusters pour lequel le gene appartient
+            print(graph.find_cluster('Sample_P4J7-FOX-ANA-Assembly.fa_contig-3000007_12'))
+        else:
+            pass
 
 
 
-    #Liste des chemins partant du cluster en faisant au maximum n pas.
-    list_of_paths=graph.find_path('Cluster 19164', 10)
+            # Liste des chemins partant du cluster en faisant au maximum n pas.
+        if lenght_lop != -1 and list_of_paths != '':
+            list_of_paths = graph.find_path('Cluster 19164', 10)
 
-    #Coloring
-    sequence_path = graph.sequences_in_find_path(list_of_paths)
-    #graph.show_path_by_samples(sequence_path)
+            # Coloring
+            sequence_path = graph.sequences_in_find_path(list_of_paths)
+            # graph.show_path_by_samples(sequence_path)
+        else:
+            pass
+
+            # Sous-graph
+        if sous_graph != '':
+            sous_graph = graph.sous_graph(list_of_paths)
+        else:
+            pass
+
+            # Visualisation
+        if cytoscape == True and sous_graph == True:
+            sous_graph.cytoscape()
+        elif cytoscape == True:
+            graph.cytoscape()
+        if javacript == True and sous_graph == True:
+            sous_graph.graph_javascript()
+        elif cytoscape == True:
+            graph.graph_javascript()
 
 
-    #Sous-graph
-    sous_graph = graph.sous_graph(list_of_paths)
+            # Compare
+        if convert_greps_fred != '':
+            file = graph.beta_lactam_file(convert_greps_fred)
+        else:
+            pass
 
-    #Visualisation
-    #graph.graph_javascript()
-    #graph.cytoscape()
-    #sous_graph.graph_javascript()
-    #sous_graph.cytoscape()
-
-
-    #Compare
-    graph.beta_lactam_file('/home/saiant01/Desktop/Beta_Lactam_Fred_P4J0-7-90')
-    (graph.compare_sequences_excel('/home/saiant01/PycharmProjects/Git/XML/compare_samples.txt',9))
+        if xml != False and lenght_xml != -1:
+            (graph.compare_sequences_excel(file, lenght_xml))
+        else:
+            pass
 
 
-    #Stats
-    graph.stats_graphs()
+            # Stats
+        if stats == True:
+            graph.stats_graphs()
+        else:
+            pass
 
 
-    print('Time:',graph.function_time(time), '/  H:M:S')
+            # Time
+        print('Time:', graph.function_time(time), '/  H:M:S')
+
+
+    else:
+        raise FileNotFoundError("Aucun fichier n'a été donné en entré!")
 
 
 

@@ -1,0 +1,112 @@
+html, body {
+    height: 99%;
+    width: 100%;
+    overflow: hidden;
+}
+
+#network {
+    height: 99%;
+    width: 99%;
+    margin: 0;
+}
+
+#menu {
+    width: 340px;
+    max-height: 95%;
+    position: fixed;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #29d;
+    margin: 0;
+    padding: 10px;
+    overflow: auto;
+}
+
+.select_section {
+    margin-bottom: 1em;
+    /* background: rgba(210, 229, 255, 0.8); */
+    /* background: #d2e5ff; */
+}
+.select_section .title {
+    padding: 5px;
+    margin-bottom: 3px;
+    font-weight: bold;
+    font-size: medium;
+    background: rgba(34, 153, 221, 0.5);
+    /* background: #d2e5ff; */
+}
+.node_label {
+    padding: 5px;
+    font-size: larger;
+    background: rgba(184, 209, 243,0.5);
+    color: blue;
+}
+
+table.scroll {
+    width: 100%;
+    /* max-width: 400px; */
+    /* border: 0; */
+    /* cellspacing: 0; */
+    /* cellpadding: 0; */
+    /* border-collapse: collapse; */
+    /* border-spacing: 0; */
+    border: 1px solid black;
+    display: inline-block;
+    max-height: 250px;
+    overflow-y: auto;
+}
+thead tr th { 
+    max-height: 20px;
+    line-height: 20px;
+}
+tbody { border-top: 1px solid black; }
+tbody td, thead th {
+    /* width: 20%; */
+    border-right: 1px solid black;
+    /* white-space: nowrap; */
+}
+thead th {
+    border-bottom: 1px solid black;
+    text-align: left;
+}
+tbody td:last-child,
+thead th:last-child {
+    border-right: none;
+}
+/*  Define the background color for all the ODD rows  */
+table tr:nth-child(odd){ 
+    background: rgba(184, 209, 243,0.5);
+}
+table tr:nth-child(even){
+    background: rgba(218,229,244,0.5);
+}
+
+.rangeslider,
+input[type='range'] {
+    width: 200px !important;
+    height: 10px !important;
+    /* margin: 0 auto; */
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.rangeslider__fill {
+    background: #29d !important;
+}
+
+.rangeslider__handle {
+  max-width: 20px;
+  max-height: 20px;
+  text-align: center;
+  margin-top: 4px;
+  
+  &:after {
+    background: 0;
+  }
+}
+
+.highlight {
+    background-color: white;
+    border-radius: 10px;
+    padding: 3px;
+}
