@@ -676,7 +676,7 @@ if __name__ == '__main__':
 
             # Coloring
             sequence_path = graph.sequences_in_find_path(list_of_paths)
-            # graph.show_path_by_samples(sequence_path)
+            graph.show_path_by_samples(sequence_path)
         else:
             pass
 
