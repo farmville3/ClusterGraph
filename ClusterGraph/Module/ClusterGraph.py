@@ -492,14 +492,13 @@ class Graph:
     def compare_sequences_excel(self,grep_file, path_lenght):
         #Créer un fichier .xml qui s'ouvre facilement avec excel qui affiche les chemins de certains gène en paticulier
         f1=open(grep_file, 'r')
-        f2 = open('/home/saiant01/PycharmProjects/Git/XML/gene_compare.xml', 'w')
+        f2 = open('/home/saiant01/PycharmProjects/Git/Data/XML/gene_compare.xml', 'w')
         line=f1.readline()
         f2.writelines('<?xml version="1.0" encoding="UTF-8"?>'+'\n')
         f2.writelines('<ComparingSequences ComparingSequences="{}">'.format('')+'\n')
         dict_of_tuples={}
         while line!='':
             #if int(line.split()[0])>=hit_number:
-                #gene_id = (line.split()[1])
                 gene_id = (line.split()[0])
                 cluster_number =  self.find_cluster(gene_id)
                 list_of_paths = self.find_path(cluster_number, path_lenght)
@@ -535,8 +534,8 @@ class Graph:
         #Convertis les données reçu grace aux 'greps' de fred
         f1=open(file,'r')
         dir = os.path.dirname(__file__)
-        file = os.path.join(dir, '/home/saiant01/PycharmProjects/Git/XML/compare_samples.txt')
-        f2=open(file,'w')
+        write_file = os.path.join(dir, '/home/saiant01/PycharmProjects/Git/Data/XML/compare_samples.txt')
+        f2=open(write_file,'w')
 
         line = f1.readline()
         while line!='':
