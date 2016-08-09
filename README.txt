@@ -86,7 +86,7 @@ Le fichier pour html est dans le répertoire javascript/hcls-dataset-description
 		d) Le nombre de fois qu'on retrouve 2 fois ou plus deux gène provenenant du même échantillon dans le même cluster.
 
 
-* Si vous voulez étudier plusieurs gènes et que vous possédez un fichier pour lequel la première colonne correspond à la liste des gènes à étudier,vous pouvez passer l'étape 9.5.
+* Si vous voulez étudier plusieurs gènes et que vous possédez un fichier pour lequel la première colonne correspond à la liste des gènes à étudier,vous pouvez passer l'étape 10.
 
 9- Étudier plusieurs gènes en particulier. Le programme possède un option -g. Cet option permet de convertir les données possédant cette forme :
 
@@ -104,7 +104,7 @@ Ces données ont été obtenus à l'aide de la commande suivante: grep beta /rap
 Pour utiliser l'option -g, il suffit donc de stocker les données obtenues à l'aide du grep dans un fichier.
 Exemple:	grep beta /rap/nne-790-ab/projects/Project_CQDM2/Reads-Metagenomics/Sample_P4J7-Assembly/Prodigal/blast/MERGEM-RG.blast.sum.tsv > ClusterGraph/Data/XML/Beta_Lactam_Fred_P4J0-7-90
 
-9.5- Nous allons donc donner le fichier test.txt au programme de cette façon en ajoutant l'option -xml. Cet option créer un fichier qui peut s'ouvrir dans excel qui compare les chemins des différents gènes qui étaient présents dans le fichier test.txt:
+10- Nous allons donc donner le fichier test.txt au programme de cette façon en ajoutant l'option -xml. Cet option créer un fichier qui peut s'ouvrir dans excel qui compare les chemins des différents gènes qui étaient présents dans le fichier test.txt:
 	python3 ClusterGraph.py -g ClusterGraph/Data/XML/Beta_Lactam_Fred_P4J0-7-90 -xml True
 
 	Si vous possédez un fichier pour lequel la première colonne correspond à la liste des gènes à étudier, remplacez test.txt par votre fichier avec son chemin.
@@ -112,7 +112,7 @@ Exemple:	grep beta /rap/nne-790-ab/projects/Project_CQDM2/Reads-Metagenomics/Sam
 	python3 ClusterGraph.py -g votre_fichier -xml True
 
 
-10- Il est aussi possible de sauvegarder le graph après l'avoir load, puis de le reloader par la suite à partir du fichier de sauvegarde.
+11- Il est aussi possible de sauvegarder le graph après l'avoir load, puis de le reloader par la suite à partir du fichier de sauvegarde.
 
 Sauvegarder:
 	python3 ClusterGraph.py -save sauvegarde_graph.txt
