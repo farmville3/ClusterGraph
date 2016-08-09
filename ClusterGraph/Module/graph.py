@@ -15,47 +15,38 @@ start_time = time.time()
 #----------------------OptionParser----------------------------------------------------------------------------------------------------------------------------------------
 class OptionParser():
     def __init__(self, args):
-        self.parser = argparse.ArgumentParser(description="Auto phage extractor<eta.")
+        self.parser = argparse.ArgumentParser(description="ClusterGraph.")
 
 
         ##########         parser       #########################
-        self.parser.add_argument('-i', type=str, help='Input file.Le fichier en input doit correspondre au fichier .clstr de cd-hit.',default='',required=True)
+        self.parser.add_argument('-i', type=str, help='Input file.Le fichier en input doit correspondre au fichier .clstr de cd-hit.',default=None,required=True)
 
-        self.parser.add_argument('-find', type=str, help="L'input doit être le nom d'un gène qui est présent dans le graph. La fonction va alors retourner le cluster respectif du gène.", default='',
-                                         required=False)
+        self.parser.add_argument('-find', type=str, help="L'input doit être le nom d'un gène qui est présent dans le graph. La fonction va alors retourner le cluster respectif du gène.", default=None)
 
         self.parser.add_argument('-lop', type=str, help='La fonction retourne tous les chemins de longueur "x" partant du nom du cluster que vous devez donner en parametètre.'
-                                                        ' Utilisez -x pour donner la longueur des chemins désirés.', default='',required=False)
+                                                        ' Utilisez -x pour donner la longueur des chemins désirés.', default=None)
 
-        self.parser.add_argument('-x', type=int, help="Longueur des chemin désiré lors de l'utilisation de -lop.", default=-1,
-                                 required=False)
+        self.parser.add_argument('-x', type=int, help="Longueur des chemin désiré lors de l'utilisation de -lop.", default=-1)
 
-        self.parser.add_argument('-sg', type=bool, help="Construit un sous-graph à partir des données reçues par -lop et -x", default=False,
-                                 required=False)
+        self.parser.add_argument('-sg', type=bool, help="Construit un sous-graph à partir des données reçues par -lop et -x", default=False)
 
-        self.parser.add_argument('-cyto', type=bool, help="Permet de visualiser le graph dans cytoscape à l'aide du fichier cytoscape.txt\n"
-                                 'Celui-ci doit se trouvé dans le répertoire Cytoscape du projet. ', default=False,required=False)
+        self.parser.add_argument('-cyto', type=bool, help="Permet de visualiser le graph dans cytoscape à l'aide du fichier cytoscape.txt"
+                                 'Celui-ci doit se trouvé dans le répertoire Cytoscape du projet. ', default=False)
 
         self.parser.add_argument('-j', type=bool, help="Permet de visualiser le graph dans une page html de façon interactive."
-                                 "Il ne faut qu'ouvrir le fichier index.html dans javascript/hcls-dataset-description-master/type-graphs-html", default=False,required=False)
+                                 "Il ne faut qu'ouvrir le fichier index.html dans javascript/hcls-dataset-description-master/type-graphs-html", default=False)
 
         self.parser.add_argument('-g', type=str, help="Convertit les fichiers obtenus à l'aide de greps en ligne de commande de façon"
-                                                      "à ce que les données soient convertible dans un fichier .xml", default='',
-                                 required=False)
+                                                      "à ce que les données soient convertible dans un fichier .xml", default=None)
 
-        self.parser.add_argument('-xml', type=bool, help="Créer un fichier xml qui peut être ouvert dans Microsoft Excel.", default='',
-                                 required=False)
+        self.parser.add_argument('-xml', type=bool, help="Créer un fichier xml qui peut être ouvert dans Microsoft Excel.", default=False)
 
-        self.parser.add_argument('-y', type=int, help="Longueur des chemin désiré lors de l'utilisation de -xml.", default=-1,
-                                 required=False)
+        self.parser.add_argument('-y', type=int, help="Longueur des chemin désiré lors de l'utilisation de -xml.", default=-1)
 
-        self.parser.add_argument('-s', type=bool, help="Affiche différentes statistiques sur le graph.", default=True,
-                                 required=False)
+        self.parser.add_argument('-s', type=bool, help="Affiche différentes statistiques sur le graph.", default=True)
 
-        self.parser.add_argument('-save', type=str, help="Sauvegarde le graph dans le fichier donné en paramètre.", default='',
-                                 required=False)
-        self.parser.add_argument('-r', type=str, help="Load le graph à partir du fichier de sauvegarde deonné en paramètre", default='',
-                                 required=False)
+        self.parser.add_argument('-save', type=str, help="Sauvegarde le graph dans le fichier donné en paramètre.", default=None)
+        self.parser.add_argument('-r', type=str, help="Load le graph à partir du fichier de sauvegarde deonné en paramètre", default=None)
 
 #
 
@@ -109,9 +100,9 @@ class Graph:
     #Calcule le temps passé entre le début du programme et sa fin
     @staticmethod
     def function_time(_start_time):
-        print('---------------------------------------------------------------')
-        print("\t"+"\t"+"\t"+"\t"+'Time running')
-        print('---------------------------------------------------------------')
+        print('--------------------------------------------------------------------------------------------------------')
+        print("\t" + "\t" + "\t" + "\t" + '\t'+'\t' + 'Time')
+        print('--------------------------------------------------------------------------------------------------------')
         end_time = time.time() - start_time
         return(datetime.timedelta(seconds=end_time))
 
@@ -573,10 +564,10 @@ class Graph:
 #-------------------------Compare graphs------------------------------------------------------------------------------------------------------------------------------------
     def stats_graphs(self):
         #Imprime certains statistiques de graph
-        print('---------------------------------------------------------------')
-        print("\t"+"\t"+"\t"+"\t"+'Some stats on the graph')
-        print('---------------------------------------------------------------')
-        print(str(len(self.nodes))+ ' noeux')
+        print('--------------------------------------------------------------------------------------------------------')
+        print("\t"+"\t"+"\t"+"\t"+'\t'+'Some stats on the graph')
+        print('--------------------------------------------------------------------------------------------------------')
+        print(" "+str(len(self.nodes))+ ' noeux')
         #Nombre de contigs et nombre de gène par séquence
         #print(len(self.echantillons))
         #for sequence in self.echantillons:
@@ -603,10 +594,9 @@ class Graph:
                     if counter==2:
                         if nodes.cluster_id not in same_sample:
                             same_sample.append(nodes.cluster_id)
-        print('Max: '+ str(max))
-        print('Min: '+ str(min))
-        print('')
-        print(len(same_sample))
+        print(" "+'Max: '+ str(max))
+        print(" "+'Min: '+ str(min))
+        print(" "+str(len(same_sample)))
         #print(same_sample)
 
 
@@ -618,41 +608,43 @@ class Graph:
 if __name__ == '__main__':
     print('========================================================================================================')
     print(
-        "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + '\033[4m' + 'start' + '\033[0m')
+        "\t" + "\t"+ "\t"+ "\t"  + "\t" + "\t" + '\033[4m' + 'start' + '\033[0m')
     print('========================================================================================================')
 
     parser = OptionParser(sys.argv[1:])
     arg = parser.getArguments()
-    load_file = arg['i']
-    find = arg['find']
-    list_of_paths = arg['lop']
-    lenght_lop = arg['x']
-    sous_graph = arg['sg']
-    cytoscape = arg['cyto']
-    javacript = arg['j']
-    convert_greps_fred = arg['g']
-    xml = arg['xml']
-    lenght_xml = arg['y']
-    stats = arg['s']
-    time = arg['t']
-    save = arg['save']
-    reload = arg['r']
+    if (arg['i'])!=None:
+        load_file=(arg['i'])
+    else:
+        load_file = None
+    find = (arg['find'])
+    list_of_paths = (arg['lop'])
+    lenght_lop = int(arg['x'])
+    sous_graph = bool(arg['sg'])
+    cytoscape = bool(arg['cyto'])
+    javacript = bool(arg['j'])
+    convert_greps_fred = (arg['g'])
+    xml = bool(arg['xml'])
+    lenght_xml = int(arg['y'])
+    stats = bool(arg['s'])
+    save = (arg['save'])
+    reload = (arg['r'])
 
     # Load graph
     graph = Graph()
 
-    if load_file != '':
+    if load_file !=None:
         # graph.load_graph(('/home/saiant01/cat_Sample_P4Jx-Assembly_100.fa.clstr'))
 
         # P4
-        graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_culture_cd-hit.fasta.clstr'))
+        graph.load_graph((load_file))
 
-    if save != '':
-        graph.save_graph(save)
+        if save != None:
+            graph.save_graph(save)
 
-    if reload != '':
-        graph = Graph()
-        graph.reload_graph(save)
+        if reload != None:
+            graph = Graph()
+            graph.reload_graph(save)
 
         # P4J0 vs P4J7
         # graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd-hit_p0p7.fasta.clstr'))
@@ -670,17 +662,17 @@ if __name__ == '__main__':
         # graph.load_graph(('/home/saiant01/PycharmProjects/Git/Data/cat_prodigal-cd-hit.fasta.clstr'))
 
 
-        if find != '':
+        if find != None:
             # Trouver les clusters pour lequel le gene appartient
-            print(graph.find_cluster('Sample_P4J7-FOX-ANA-Assembly.fa_contig-3000007_12'))
+            print(graph.find_cluster(find))
         else:
             pass
 
 
 
             # Liste des chemins partant du cluster en faisant au maximum n pas.
-        if lenght_lop != -1 and list_of_paths != '':
-            list_of_paths = graph.find_path('Cluster 19164', 10)
+        if lenght_lop != -1 and list_of_paths != None:
+            list_of_paths = graph.find_path(list_of_paths, lenght_lop)
 
             # Coloring
             sequence_path = graph.sequences_in_find_path(list_of_paths)
@@ -689,7 +681,7 @@ if __name__ == '__main__':
             pass
 
             # Sous-graph
-        if sous_graph != '':
+        if sous_graph != False:
             sous_graph = graph.sous_graph(list_of_paths)
         else:
             pass
@@ -706,7 +698,7 @@ if __name__ == '__main__':
 
 
             # Compare
-        if convert_greps_fred != '':
+        if convert_greps_fred != None:
             file = graph.beta_lactam_file(convert_greps_fred)
         else:
             pass
@@ -715,6 +707,10 @@ if __name__ == '__main__':
             (graph.compare_sequences_excel(file, lenght_xml))
         else:
             pass
+
+        print('')
+        print(" "+'Done!')
+        print('')
 
 
             # Stats
@@ -725,7 +721,7 @@ if __name__ == '__main__':
 
 
             # Time
-        print('Time:', graph.function_time(time), '/  H:M:S')
+        print(" "+'Time:', graph.function_time(time), '/  H:M:S')
 
 
     else:

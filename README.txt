@@ -1,6 +1,6 @@
-=====================================================================
+=================================================================================================================================================================================================================
 			ClusterGraph
-=====================================================================
+=================================================================================================================================================================================================================
 
 Tutoriel pour utiliser ClusterGraph:
 La liste des options du programme est à la fin de ce fichier. Sinon, vous pouvez utiliser CLusterGraph.py -h
@@ -57,7 +57,9 @@ Le fichier pour html est dans le répertoire javascript/hcls-dataset-description
 	7.2- Il faut ensuite utiliser la méthode list_of_paths avec l'option -lop qui trouve la liste des chemins du cluster de longueur 10 entré en paramètre.
 		On donne le nom du cluster à l'option -lop et la longueur des chemins à l'aide de l'option -x.
 
-		ex: -lop Cluster 92 -x 10
+		ex: -lop "Cluster 92" -x 10
+
+		***Si vos noms de clusters possède des espaces, il est important de mettre des guillemets autour du nom de votre cluster comme ci-haut.***
 
 	7.3- Ensuite, on créer un sous graph à l'aide de la list_of_paths obtenus grâce aux options -lop et -x avec l'option -sg.
 		ex: -sg True
@@ -110,9 +112,9 @@ Reload:
 
 
 
-----------------------------------------------------------------------
-ClusterGraph.py -h
-----------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			ClusterGraph.py -h
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 optional arguments:
   -h, --help  show this help message and exit
 
