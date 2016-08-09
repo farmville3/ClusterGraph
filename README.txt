@@ -122,15 +122,15 @@ optional arguments:
               .clstr de cd-hit.
 
   -find FIND  L'input doit être le nom d'un gène qui est présent dans le
-              graph. La fonction va alors retourner le cluster respectif du
-              gène.
+              graph. La fonction va alors retourner le cluster respectif du gène.
 
   -lop LOP    La fonction retourne tous les chemins de longueur "x" partant du
               nom du cluster que vous devez donner en parametètre. Utilisez -x
               pour donner la longueur des chemins désirés.
+              
   -x X        Longueur des chemin désiré lors de l'utilisation de -lop.
-  -sg SG      Construit un sous-graph à partir des données reçues par -lop et
-              -x
+  
+  -sg SG      Construit un sous-graph à partir des données reçues par -lop et -x.
 
   -cyto CYTO  Permet de visualiser le graph dans cytoscape à l'aide du fichier
               cytoscape.txt Celui-ci doit se trouvé dans le répertoire
@@ -138,18 +138,22 @@ optional arguments:
 
   -j J        Permet de visualiser le graph dans une page html de façon
               interactive.Il ne faut qu'ouvrir le fichier index.html dans
-              javascript/hcls-dataset-description-master/type-graphs-html
+              javascript/hcls-dataset-description-master/type-graphs-html.
+              
   -g G        Convertit les fichiers obtenus à l'aide de greps en ligne de
               commande de façonà ce que les données soient convertible dans un
-              fichier .xml
+              fichier .xml.
 
   -xml XML    Créer un fichier xml qui peut être ouvert dans Microsoft Excel.
+  
   -y Y        Longueur des chemin désiré lors de l'utilisation de -xml.
+  
   -s S        Affiche différentes statistiques sur le graph.
 
   -save SAVE  Sauvegarde le graph dans le fichier donné en paramètre.
+  
   -r R        Load le graph à partir du fichier de sauvegarde deonné en
-              paramètre
+              paramètre.
 
 
 
