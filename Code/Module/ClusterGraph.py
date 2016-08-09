@@ -444,7 +444,6 @@ class Graph:
                                     break
                                 # premier cluster
                                 elif i == 1 and (moins in cluster_working_on.gene_list):
-                                    hello=((moins.rstrip(moins.split('_')[-1]).rstrip('_')))
                                     test_list.append((moins.rstrip(moins.split('_')[-1]).rstrip('_')))
                                     i += 1
                                     moins = moins.rstrip(moins.split('_')[-1]) + str(int(moins.split('_')[-1]) - 1)
