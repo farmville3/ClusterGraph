@@ -28,22 +28,26 @@ class OptionParser():
 
         self.parser.add_argument('-x', type=int, help="Longueur des chemin désiré lors de l'utilisation de -lop.", default=-1)
 
-        self.parser.add_argument('-sg', type=bool, help="Construit un sous-graph à partir des données reçues par -lop et -x", default=False)
+        self.parser.add_argument('-sg', type=bool, help="Construit un sous-graph à partir des données reçues par -lop et -x"
+                                 'True ou False.', default=False)
 
         self.parser.add_argument('-cyto', type=bool, help="Permet de visualiser le graph dans cytoscape à l'aide du fichier cytoscape.txt"
-                                 'Celui-ci doit se trouvé dans le répertoire Cytoscape du projet. ', default=False)
+                                 'Celui-ci doit se trouvé dans le répertoire Cytoscape du projet.'
+                                                          'True ou False. ', default=False)
 
         self.parser.add_argument('-j', type=bool, help="Permet de visualiser le graph dans une page html de façon interactive."
-                                 "Il ne faut qu'ouvrir le fichier index.html dans javascript/hcls-dataset-description-master/type-graphs-html", default=False)
+                                 "Il ne faut qu'ouvrir le fichier index.html dans javascript/hcls-dataset-description-master/type-graphs-html."
+                                                       "True ou False.", default=False)
 
         self.parser.add_argument('-g', type=str, help="Convertit les fichiers obtenus à l'aide de greps en ligne de commande de façon"
                                                       "à ce que les données soient convertible dans un fichier .xml", default=None)
 
-        self.parser.add_argument('-xml', type=bool, help="Créer un fichier xml qui peut être ouvert dans Microsoft Excel.", default=False)
+        self.parser.add_argument('-xml', type=bool, help="Créer un fichier xml qui peut être ouvert dans Microsoft Excel."
+                                                         "True ou False.", default=False)
 
         self.parser.add_argument('-y', type=int, help="Longueur des chemin désiré lors de l'utilisation de -xml.", default=-1)
 
-        self.parser.add_argument('-s', type=bool, help="Affiche différentes statistiques sur le graph.", default=True)
+        self.parser.add_argument('-s', type=str, help="Affiche différentes statistiques sur le graph.", default=False )
 
         self.parser.add_argument('-save', type=str, help="Sauvegarde le graph dans le fichier donné en paramètre.", default=None)
         self.parser.add_argument('-r', type=str, help="Load le graph à partir du fichier de sauvegarde deonné en paramètre", default=None)
@@ -626,7 +630,8 @@ if __name__ == '__main__':
     convert_greps_fred = (arg['g'])
     xml = bool(arg['xml'])
     lenght_xml = int(arg['y'])
-    stats = bool(arg['s'])
+
+    stats=(arg['s'])
     save = (arg['save'])
     reload = (arg['r'])
 
@@ -714,7 +719,7 @@ if __name__ == '__main__':
 
 
             # Stats
-        if stats == True:
+        if stats == 'True':
             graph.stats_graphs()
         else:
             pass
