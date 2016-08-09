@@ -211,7 +211,7 @@ class Graph:
         f1.close()
 #---------------------------GRAPH CYTOSCAPE---------------------------------------------------------------------------------------------------------------------------
     #Écrit un fichier qui permet la visualisation du graph avec cytoscape
-    def cytoscape(self,file):
+    def cytoscape(self):
         print('Cytoscape ...')
         dir = os.path.dirname(__file__)
         file = os.path.join(dir, '../../Cytoscape/cytoscape.txt')
