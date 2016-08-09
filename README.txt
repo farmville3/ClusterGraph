@@ -3,6 +3,7 @@
 =====================================================================
 
 Tutoriel pour utiliser ClusterGraph:
+La liste des options du programme est à la fin de ce fichier. Sinon, vous pouvez utiliser CLusterGraph.py -h
 
 1- Tout d'abord, pour tous les fichiers fasta sur lesquels vous voulez utiliser ClusterGraph, vous devez d'abord utiliser prodigal sur ceux-ci pour identifier les gènes dans vos séquences.
 
@@ -97,6 +98,57 @@ Exemple:	grep beta /rap/nne-790-ab/projects/Project_CQDM2/Reads-Metagenomics/Sam
 
 Nous allons donc donner le fichier test.txt au programme de cette façon en ajoutant l'option -xml. Cet option créer un fichier qui peut s'ouvrir dans excel qui compare les chemins des différents gènes qui étaient présents dans le fichier test.txt:
 	python3 ClusterGraphy.py -g test.txt -xml True
+
+
+10- Il est aussi possible de sauvegarder le graph après l'avoir load, puis de le reloader par la suite à partir du fichier de sauvegarde.
+
+Sauvegarder:
+	python3 ClusterGraph.py -save sauvegarde_graph.txt
+
+Reload:
+	python3 ClusterGraph.py -r sauvegarde_graph.txt
+
+
+
+----------------------------------------------------------------------
+ClusterGraph.py -h
+----------------------------------------------------------------------
+optional arguments:
+  -h, --help  show this help message and exit
+
+  -i I        Input file.Le fichier en input doit correspondre au fichier
+              .clstr de cd-hit.
+
+  -find FIND  L'input doit être le nom d'un gène qui est présent dans le
+              graph. La fonction va alors retourner le cluster respectif du
+              gène.
+
+  -lop LOP    La fonction retourne tous les chemins de longueur "x" partant du
+              nom du cluster que vous devez donner en parametètre. Utilisez -x
+              pour donner la longueur des chemins désirés.
+  -x X        Longueur des chemin désiré lors de l'utilisation de -lop.
+  -sg SG      Construit un sous-graph à partir des données reçues par -lop et
+              -x
+
+  -cyto CYTO  Permet de visualiser le graph dans cytoscape à l'aide du fichier
+              cytoscape.txt Celui-ci doit se trouvé dans le répertoire
+              Cytoscape du projet.
+
+  -j J        Permet de visualiser le graph dans une page html de façon
+              interactive.Il ne faut qu'ouvrir le fichier index.html dans
+              javascript/hcls-dataset-description-master/type-graphs-html
+  -g G        Convertit les fichiers obtenus à l'aide de greps en ligne de
+              commande de façonà ce que les données soient convertible dans un
+              fichier .xml
+
+  -xml XML    Créer un fichier xml qui peut être ouvert dans Microsoft Excel.
+  -y Y        Longueur des chemin désiré lors de l'utilisation de -xml.
+  -s S        Affiche différentes statistiques sur le graph.
+
+  -save SAVE  Sauvegarde le graph dans le fichier donné en paramètre.
+  -r R        Load le graph à partir du fichier de sauvegarde deonné en
+              paramètre
+
 
 
 
