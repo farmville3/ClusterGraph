@@ -29,21 +29,21 @@ class OptionParser():
         self.parser.add_argument('-x', type=int, help="Longueur des chemin désiré lors de l'utilisation de -lop.", default=-1)
 
         self.parser.add_argument('-sg', type=bool, help="Construit un sous-graph à partir des données reçues par -lop et -x"
-                                 'True ou False.', default=False)
+                                 '|  True ou False.', default=False)
 
         self.parser.add_argument('-cyto', type=bool, help="Permet de visualiser le graph dans cytoscape à l'aide du fichier cytoscape.txt"
                                  'Celui-ci doit se trouvé dans le répertoire Cytoscape du projet.'
-                                                          'True ou False. ', default=False)
+                                                          '|  True ou False. ', default=False)
 
         self.parser.add_argument('-j', type=bool, help="Permet de visualiser le graph dans une page html de façon interactive."
                                  "Il ne faut qu'ouvrir le fichier index.html dans javascript/hcls-dataset-description-master/type-graphs-html."
-                                                       "True ou False.", default=False)
+                                                       "|  True ou False.", default=False)
 
         self.parser.add_argument('-g', type=str, help="Convertit les fichiers obtenus à l'aide de greps en ligne de commande de façon"
                                                       "à ce que les données soient convertible dans un fichier .xml", default=None)
 
         self.parser.add_argument('-xml', type=bool, help="Créer un fichier xml qui peut être ouvert dans Microsoft Excel."
-                                                         "True ou False.", default=False)
+                                                         "|  True ou False.", default=False)
 
         self.parser.add_argument('-y', type=int, help="Longueur des chemin désiré lors de l'utilisation de -xml.", default=-1)
 
@@ -211,8 +211,11 @@ class Graph:
         f1.close()
 #---------------------------GRAPH CYTOSCAPE---------------------------------------------------------------------------------------------------------------------------
     #Écrit un fichier qui permet la visualisation du graph avec cytoscape
-    def cytoscape(self,file='/home/saiant01/PycharmProjects/Git/Cytoscape/cytoscape.txt'):
+    def cytoscape(self,file):
         print('Cytoscape ...')
+        dir = os.path.dirname(__file__)
+        file = os.path.join(dir, '../../Cytoscape/cytoscape.txt')
+
         f2 = open(file, 'w')
         dict={}
         # Cytoscape
