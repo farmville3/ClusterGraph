@@ -14,11 +14,11 @@ Exemple:		./prodigal -i fichier_fasta_input.fasta -a fichier_fasta_output.prodig
 
 2- Ensuite, si vous voulez former un graph avec tous les fichiers sur lesquels vous avez utilisé prodigal, vous devez modifier le headers de ces fichiers pour savoir qu'elle gène appartient à quel échantillon.
 
-Exemple: J'ai utilisé prodigal sur 12a_pne66, 12b_pne66 et 12c_pne66 et les trois fichiers prodigals se situent dans le répertoire du projet /Data/prodigal.
+Exemple: J'ai utilisé prodigal sur 12a_pne66, 12b_pne66 et 12c_pne66 et les trois fichiers prodigals se situent dans le répertoire du projet ClusterGraph/Data/prodigal.
 
 Voici les commandes à faire
 
-- cd Git/Data/prodigal
+- cd ClusterGraph/Data/prodigal
 
 - for i in $(ls); do sed -i s/\>$i\_/g $i; done.
 
@@ -102,10 +102,10 @@ contig-149000032	2	 380 	 1375 	 1 	blaCfxA6	beta-lactam	InactivatingEnzyme	98.8
 Ces données ont été obtenus à l'aide de la commande suivante: grep beta /rap/nne-790-ab/projects/Project_CQDM2/Reads-Metagenomics/Sample_P4J7-Assembly/Prodigal/blast/MERGEM-RG.blast.sum.tsv
 
 Pour utiliser l'option -g, il suffit donc de stocker les données obtenues à l'aide du grep dans un fichier.
-Exemple:	grep beta /rap/nne-790-ab/projects/Project_CQDM2/Reads-Metagenomics/Sample_P4J7-Assembly/Prodigal/blast/MERGEM-RG.blast.sum.tsv > Git/Data/XML/Beta_Lactam_Fred_P4J0-7-90
+Exemple:	grep beta /rap/nne-790-ab/projects/Project_CQDM2/Reads-Metagenomics/Sample_P4J7-Assembly/Prodigal/blast/MERGEM-RG.blast.sum.tsv > ClusterGraph/Data/XML/Beta_Lactam_Fred_P4J0-7-90
 
 9.5- Nous allons donc donner le fichier test.txt au programme de cette façon en ajoutant l'option -xml. Cet option créer un fichier qui peut s'ouvrir dans excel qui compare les chemins des différents gènes qui étaient présents dans le fichier test.txt:
-	python3 ClusterGraph.py -g Git/Data/XML/Beta_Lactam_Fred_P4J0-7-90 -xml True
+	python3 ClusterGraph.py -g ClusterGraph/Data/XML/Beta_Lactam_Fred_P4J0-7-90 -xml True
 
 	Si vous possédez un fichier pour lequel la première colonne correspond à la liste des gènes à étudier, remplacez test.txt par votre fichier avec son chemin.
 

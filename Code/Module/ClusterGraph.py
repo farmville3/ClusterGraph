@@ -15,7 +15,7 @@ start_time = time.time()
 #----------------------OptionParser----------------------------------------------------------------------------------------------------------------------------------------
 class OptionParser():
     def __init__(self, args):
-        self.parser = argparse.ArgumentParser(description="ClusterGraph.")
+        self.parser = argparse.ArgumentParser(description="Code.")
 
 
         ##########         parser       #########################
@@ -536,12 +536,21 @@ class Graph:
         dir = os.path.dirname(__file__)
         write_file = os.path.join(dir, '/home/saiant01/PycharmProjects/Git/Data/XML/compare_samples.txt')
         f2=open(write_file,'w')
-
         line = f1.readline()
-        while line!='':
-            f2.writelines(line.split('\t')[0]+'_'+line.split('\t')[1]+'\t'+line.split('\t')[6]+'\n')
-            line=f1.readline()
-
+        try:
+            while line!='':
+                f2.writelines(line.split('\t')[0]+'_'+line.split('\t')[1]+'\t'+line.split('\t')[6]+'\n')
+                line=f1.readline()
+        except:
+            f1.close()
+            f1 = open(file, 'r')
+            dir = os.path.dirname(__file__)
+            write_file = os.path.join(dir, '/home/saiant01/PycharmProjects/Git/Data/XML/compare_samples.txt')
+            f2 = open(write_file, 'w')
+            line = f1.readline()
+            while line!='':
+                f2.writelines(line.split('\t')[0]+'\n')
+                line=f1.readline()
         f1.close()
         f2.close()
 
