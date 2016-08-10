@@ -99,31 +99,62 @@ Le fichier pour html est dans le repertoire javascript/hcls-dataset-description-
 * Si vous voulez etudier plusieurs genes et que vous possedez un fichier pour lequel la premiere colonne correspond a la
   liste des genes a etudier,vous pouvez passer l'etape 10.
 
-9- etudier plusieurs genes en particulier. Le programme possede un option -g. Cet option permet de convertir les donnees
-   possedant cette forme :
+9- etudier plusieurs genes en particulier. Le programme possede un option -xml. Cet option permet de creer des fichiers xml
+   lisible dans excel à l'aide de donnée ayant la forme suivante :
 
-contig-1000054	11	 12655 	 13581 	 -1 	blaHOA-1	beta-lactam	InactivatingEnzyme	40.65	94.56	89.97
-contig-103	6	 4645 	 5778 	 -1 	omp36	beta-lactam	MutantPorin	70.05	96.81	96.30
-contig-12000126	2	 2004 	 2828 	 1 	blaCfxA	beta-lactam	InactivatingEnzyme	99.64	85.40	100.00
-contig-120	15	 13123 	 16272 	 -1 	acrB	acriflavin,aminoglycoside,beta-lactam,glycylcycline,macrolide   Efflux	Efflux	99.90	100.00	100.00
-contig-120	16	 16295 	 17488 	 -1 	acrA	acriflavin,aminoglycoside,beta-lactam,glycylcycline,macrolide	Efflux	99.50	100.00	100.00
-contig-129000083	1	 1 	 702 	 1 	blaHGH-1	beta-lactam	InactivatingEnzyme	62.88	75.58	97.86
-contig-149000032	2	 380 	 1375 	 1 	blaCfxA6	beta-lactam	InactivatingEnzyme	98.80	100.00	100.00
-
+Sample_P4J0-Assembly.fa_contig-10000091	27	 16615 	 17580 	 -1 	blaCfxA	beta-lactam	InactivatingEnzyme	82.61	100.00	100.00
+Sample_P4J0-Assembly.fa_contig-1251000050	314	 359361 	 360254 	 -1 	blaHGH-1	beta-lactam	InactivatingEnzyme	76.85	98.35	100.00
+Sample_P4J0-Assembly.fa_contig-1260000075	99	 109927 	 110886 	 1 	blaHGD-1	beta-lactam	InactivatingEnzyme	99.69	100.00	100.00
+Sample_P4J0-Assembly.fa_contig-13000109	6	 3678 	 4523 	 -1 	blaHGH-1	beta-lactam	InactivatingEnzyme	77.30	93.07	100.00
+Sample_P4J0-Assembly.fa_contig-2000072	5	 4300 	 5592 	 1 	blaHGH-1	beta-lactam	InactivatingEnzyme	85.81	100.00	70.30
+Sample_P4J0-Assembly.fa_contig-26000066	2	 196 	 1191 	 1 	blaCfxA6	beta-lactam	InactivatingEnzyme	98.80	100.00	100.00
+Sample_P4J0-Assembly.fa_contig-380000102	3	 2159 	 3133 	 -1 	blaR1	beta-lactam	TranscriptionalRegulator	40.06	54.10	97.54
+Sample_P4J0-Assembly.fa_contig-460000086	1	 3 	 1343 	 1 	blaHGH-1	beta-lactam	InactivatingEnzyme	55.29	96.70	65.55
+Sample_P4J0-Assembly.fa_contig-562000075	17	 17392 	 18357 	 1 	blaCfxA	beta-lactam	InactivatingEnzyme	82.61	100.00	100.00
+Sample_P4J0-Assembly.fa_contig-826000017	1	 1 	 750 	 1 	blaHGH-1	beta-lactam	InactivatingEnzyme	72.18	81.85	99.20
+Sample_P4J0-Assembly.fa_contig-89000009	1	 1 	 600 	 1 	blaHGH-1	beta-lactam	InactivatingEnzyme	65.66	65.35	99.00
+Sample_P4J7-Assembly.fa_contig-1000054	11	 12655 	 13581 	 -1 	blaHOA-1	beta-lactam	InactivatingEnzyme	40.65	94.56	89.97
+Sample_P4J7-Assembly.fa_contig-103	6	 4645 	 5778 	 -1 	omp36	beta-lactam	MutantPorin	70.05	96.81	96.30
+Sample_P4J7-Assembly.fa_contig-12000126	2	 2004 	 2828 	 1 	blaCfxA	beta-lactam	InactivatingEnzyme	99.64	85.40	100.00
+Sample_P4J7-Assembly.fa_contig-120	15	 13123 	 16272 	 -1 	acrB	acriflavin,aminoglycoside,beta-lactam,glycylcycline,macrolide   Efflux	Efflux	99.90	100.00	100.00
+Sample_P4J7-Assembly.fa_contig-120	16	 16295 	 17488 	 -1 	acrA	acriflavin,aminoglycoside,beta-lactam,glycylcycline,macrolide	Efflux	99.50	100.00	100.00
 
 Ces donnees ont ete obtenus a l'aide de la commande suivante:
 grep beta /rap/nne-790-ab/projects/Project_CQDM2/Reads-Metagenomics/Sample_P4J7-Assembly/Prodigal/blast/MERGEM-RG.blast.sum.tsv
 
-Pour utiliser l'option -g, il suffit donc de stocker les donnees obtenues a l'aide du grep dans un fichier.
+--->Un fichier possédant la forme suivante est aussi un fichier compatible(la première colonne correspond au gene):
+
+Sample_P4J0-Assembly.fa_contig-10000091_27
+Sample_P4J0-Assembly.fa_contig-1251000050_9
+Sample_P4J0-Assembly.fa_contig-1260000075_2
+Sample_P4J0-Assembly.fa_contig-13000109_6
+Sample_P4J0-Assembly.fa_contig-200007_5
+Sample_P4J0-Assembly.fa_contig-26000066_2
+Sample_P4J0-Assembly.fa_contig-380000102_13
+Sample_P4J0-Assembly.fa_contig-460000086_34
+Sample_P4J0-Assembly.fa_contig-562000075_5
+Sample_P4J0-Assembly.fa_contig-826000017_7
+Sample_P4J0-Assembly.fa_contig-89000009_1
+Sample_P4J7-Assembly.fa_contig-1000054_11
+Sample_P4J7-Assembly.fa_contig-103_6
+Sample_P4J7-Assembly.fa_contig-12000126?2
+Sample_P4J7-Assembly.fa_contig-120_15
+Sample_P4J7-Assembly.fa_contig-120_16
+
+
+Pour utiliser l'option -xml, il suffit donc de stocker les donnees obtenues a l'aide du grep dans un fichier.
 Exemple:
 grep beta /rap/nne-790-ab/projects/Project_CQDM2/Reads-Metagenomics/Sample_P4J7-Assembly/Prodigal/blast/MERGEM-RG.blast.sum.tsv > ClusterGraph/Data/XML/Beta_Lactam_Fred_P4J0-7-90
 
-10- Nous allons donc donner le fichier test.txt au programme de cette façon en ajoutant l'option -xml. Cet option
-    creer un fichier qui peut s'ouvrir dans excel qui compare les chemins des differents genes qui etaient presents dans le fichier test.txt:
+Voici un exemple d'utilisation de l'option -xml. Nous allons donc donner le fichier Beta_Lactam_Fred_P4J0-7-90 au programme
+de cette façon en ajoutant l'option -xml. Cet option permet de creer un fichier qui peut s'ouvrir dans excel qui compare
+les chemins des differents genes qui etaient presents dans le fichier Beta_Lactam_Fred_P4J0-7-90:
 
-	python3 ClusterGraph.py -i cat_prodigal-cd-hit.fasta.clstr  -g ClusterGraph/Data/XML/Beta_Lactam_Fred_P4J0-7-90 -xml True
+	python3 ClusterGraph.py -i cat_prodigal-cd-hit.fasta.clstr  -xml ClusterGraph/Data/XML/Beta_Lactam_Fred_P4J0-7-90 -y 10
 
-	Si vous possedez un fichier pour lequel la premiere colonne correspond a la liste des genes a etudier, remplacez test.txt par votre fichier avec son chemin.
+L'option -y indique la longueur des chemins à considérer pour la comparaison des chemins en xml.
+
+	Si vous possedez un fichier pour lequel la premiere colonne correspond a la liste des genes a etudier, remplacez Beta_Lactam_Fred_P4J0-7-90 par votre fichier avec son chemin.
 	De plus, dans ce cas, vous pouvez utiliser l'option -mn qui vous permet de creer plusieurs fichier cytoscape pour tous les genes qui se trouvent dans votre fichier.
 	Ces fichiers cytoscape se retrouvent dans le repertoire many_genes_cytoscape dans le repertoire Cytoscape.
 
@@ -134,7 +165,7 @@ grep beta /rap/nne-790-ab/projects/Project_CQDM2/Reads-Metagenomics/Sample_P4J7-
 
 
 
-11- Il est aussi possible de sauvegarder le graph apres l'avoir load, puis de le reloader par la suite a partir du fichier de sauvegarde.
+10- Il est aussi possible de sauvegarder le graph apres l'avoir load, puis de le reloader par la suite a partir du fichier de sauvegarde.
 
 Sauvegarder:
 	python3 ClusterGraph.py -save sauvegarde_graph.txt
@@ -174,10 +205,6 @@ Reload:
               interactive.Il ne faut qu'ouvrir le fichier index.html dans
               javascript/hcls-dataset-description-master/type-graphs-html.|
               True ou False.
-
-  -g G        Convertit les fichiers obtenus a l'aide de greps en ligne de
-              commande de façona ce que les donnees soient convertible dans un
-              fichier .xml
 
   -xml XML    Creer un fichier xml qui peut être ouvert dans Microsoft Excel.|
               True ou False.

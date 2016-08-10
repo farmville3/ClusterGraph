@@ -39,11 +39,9 @@ class OptionParser():
                                  "Il ne faut qu'ouvrir le fichier index.html dans javascript/hcls-dataset-description-master/type-graphs-html."
                                                        "|  True ou False.", default=False)
 
-        self.parser.add_argument('-g', type=str, help="Convertit les fichiers obtenus à l'aide de greps en ligne de commande de façon"
-                                                      "à ce que les données soient convertible dans un fichier .xml", default=None)
 
-        self.parser.add_argument('-xml', type=bool, help="Créer un fichier xml qui peut être ouvert dans Microsoft Excel."
-                                                         "|  True ou False.", default=False)
+        self.parser.add_argument('-xml', type=str, help="Créer un fichier xml qui peut être ouvert dans Microsoft Excel."
+                                                         "L'input correspond au fichier avec son path.", default=None)
 
         self.parser.add_argument('-y', type=int, help="Longueur des chemin désiré lors de l'utilisation de -xml.", default=-1)
 
@@ -53,6 +51,7 @@ class OptionParser():
         self.parser.add_argument('-r', type=str, help="Load le graph à partir du fichier de sauvegarde deonné en paramètre", default=None)
         self.parser.add_argument('-mn', type=str, help="Créer des fichiers cytoscape pour plusieurs gènes à la fois."
                                  'Utilisez -x quand vous utilisez -mn pour spécifier la longueur des chemins.', default=None)
+        self.parser.add_argument('-prefix', type=str, help="Prefix des fichiers crees.", default=None)
 
         #
         #parse the args...
@@ -84,6 +83,7 @@ class Node:
 #Un graph possède comme attribut plusieurs noeux.
 class Graph:
     def __init__(self):
+        self.prefix=None
         self.nodes = {}
         self.echantillons = defaultdict(list)
         self.gene_dict = {}
@@ -210,7 +210,7 @@ class Graph:
         f1.close()
 #---------------------------GRAPH CYTOSCAPE---------------------------------------------------------------------------------------------------------------------------
     #Écrit un fichier qui permet la visualisation du graph avec cytoscape
-    def cytoscape(self, file=(os.path.join(os.path.dirname(__file__), '../../Cytoscape/cytoscape.txt'))):
+    def cytoscape(self,file=os.path.join(os.path.dirname(__file__),'/home/saiant01/PycharmProjects/ClusterGraph/Cytoscape/cytoscape.txt')):
         print('Cytoscape ...')
         f2 = open(file, 'w')
         dict={}
@@ -481,7 +481,10 @@ class Graph:
     def compare_sequences_excel(self,grep_file, path_lenght):
         #Créer un fichier .xml qui s'ouvre facilement avec excel qui affiche les chemins de certains gène en paticulier
         f1=open(grep_file, 'r')
-        f2 = open('/home/saiant01/PycharmProjects/Git/Data/XML/gene_compare.xml', 'w')
+        if self.prefix!=None:
+            f2 = open('/home/saiant01/PycharmProjects/ClusterGraph/Data/XML/{}_gene_compare.xml'.format(self.prefix), 'w')
+        else:
+            f2 = open('/home/saiant01/PycharmProjects/ClusterGraph/Data/XML/gene_compare.xml', 'w')
         line=f1.readline()
         f2.writelines('<?xml version="1.0" encoding="UTF-8"?>'+'\n')
         f2.writelines('<ComparingSequences ComparingSequences="{}">'.format('')+'\n')
@@ -519,8 +522,12 @@ class Graph:
     def beta_lactam_file(self,file):
         #Convertis les données reçu grace aux 'greps' de fred
         f1=open(file,'r')
+        path =''
         dir = os.path.dirname(__file__)
-        write_file = os.path.join(dir, '/home/saiant01/PycharmProjects/Git/Data/XML/compare_samples.txt')
+        if self.prefix!=None:
+            write_file = os.path.join(dir, '/home/saiant01/PycharmProjects/ClusterGraph/Data/XML/{}_compare_samples.txt'.format(self.prefix))
+        else:
+            write_file = os.path.join(dir, '/home/saiant01/PycharmProjects/ClusterGraph/Data/XML/compare_samples.txt')
         f2=open(write_file,'w')
         line = f1.readline()
         try:
@@ -531,19 +538,23 @@ class Graph:
             f1.close()
             f1 = open(file, 'r')
             dir = os.path.dirname(__file__)
-            write_file = os.path.join(dir, '/home/saiant01/PycharmProjects/Git/Data/XML/compare_samples.txt')
+            if self.prefix != None:
+                write_file = os.path.join(dir,'/home/saiant01/PycharmProjects/ClusterGraph/Data/XML/{}_compare_samples.txt'.format(self.prefix))
+            else:
+                write_file = os.path.join(dir, '/home/saiant01/PycharmProjects/ClusterGraph/Data/XML/compare_samples.txt')
             f2 = open(write_file, 'w')
             line = f1.readline()
             while line!='':
                 f2.writelines(line.split('\t')[0]+'\n')
                 line=f1.readline()
         f1.close()
-        f2.close()
+        return write_file
 
 #--------------------------Save graph--------------------------------------------------------------------------------------------------------------------------------------
     def save_graph(self,file):
         #Enregistre un graph
         f1=open(file,'wb')
+        pickle.dump(self.prefix, f1)
         pickle.dump(self.nodes,f1)
         pickle.dump(self.echantillons,f1)
         pickle.dump(self.gene_dict, f1)
@@ -553,9 +564,11 @@ class Graph:
     def reload_graph(self,file):
         #Load un graph enregistré
         f1 = open(file,'rb')
+        prefix=pickle.load(f1)
         nodes = pickle.load(f1)
         échantillons = pickle.load(f1)
         gene_dict = pickle.load(f1)
+        self.prefix=prefix
         self.nodes = nodes
         self.echantillons = échantillons
         self.gene_dict = gene_dict
@@ -606,8 +619,11 @@ class Graph:
             cluster = self.find_cluster(gene)
             list_of_paths = self.find_path(cluster,lenght)
             sous_graph = self.sous_graph(list_of_paths)
-            dir = os.path.dirname(__file__)
-            write_file = os.path.join(dir, '/home/saiant01/PycharmProjects/ClusterGraph/Cytoscape/many_genes_cytoscape/{}.txt'.format(gene))
+            if self.prefix!=None:
+                path = '/home/saiant01/PycharmProjects/ClusterGraph/Cytoscape/many_genes_cytoscape/{}_{}.txt'.format(self.prefix,gene)
+            else:
+                path = '/home/saiant01/PycharmProjects/ClusterGraph/Cytoscape/many_genes_cytoscape/{}.txt'.format(gene)
+            write_file = os.path.join(os.path.dirname(__file__), path)
             sous_graph.cytoscape(write_file)
             line=f1.readline()
 
@@ -632,16 +648,19 @@ if __name__ == '__main__':
     sous_graph = bool(arg['sg'])
     cytoscape = bool(arg['cyto'])
     javacript = bool(arg['j'])
-    convert_greps_fred = (arg['g'])
-    xml = bool(arg['xml'])
+    convert_greps_fred = str(arg['xml'])
     lenght_xml = int(arg['y'])
     many = arg['mn']
     stats=(arg['s'])
     save = (arg['save'])
     reload = (arg['r'])
+    prefix=arg['prefix']
+
 
     # Load graph
     graph = Graph()
+    if prefix !=None:
+        graph.prefix=prefix
 
     if load_file !=None:
         # graph.load_graph(('/home/saiant01/cat_Sample_P4Jx-Assembly_100.fa.clstr'))
@@ -669,7 +688,7 @@ if __name__ == '__main__':
         # print('Nombre de noeux:'+str(len(graph.nodes)))
 
         # DataTest
-        # graph.load_graph(('/home/saiant01/PycharmProjects/Git/Data/cat_prodigal-cd-hit.fasta.clstr'))
+        # graph.load_graph(('/home/saiant01/PycharmProjects/ClusterGraph/Data/cat_prodigal-cd-hit.fasta.clstr'))
 
 
         if find != None:
@@ -698,9 +717,17 @@ if __name__ == '__main__':
 
             # Visualisation
         if cytoscape == True and sous_graph == True:
-            sous_graph.cytoscape()
+            if prefix!=None:
+                file=os.path.join(os.path.dirname(__file__),'/home/saiant01/PycharmProjects/ClusterGraph/Cytoscape/{}_cytoscape.txt'.format(prefix))
+                sous_graph.cytoscape(file)
+            else:
+                sous_graph.cytoscape()
         elif cytoscape == True:
-            graph.cytoscape()
+            if prefix!=None:
+                file=os.path.join(os.path.dirname(__file__),'/home/saiant01/PycharmProjects/ClusterGraph/Cytoscape/{}_cytoscape.txt'.format(prefix))
+                graph.cytoscape(file)
+            else:
+                graph.cytoscape()
         if javacript == True and sous_graph == True:
             sous_graph.graph_javascript()
         elif cytoscape == True:
@@ -708,13 +735,12 @@ if __name__ == '__main__':
 
 
             # Compare
-        if convert_greps_fred != None:
-            file = graph.beta_lactam_file(convert_greps_fred)
-        else:
-            pass
-
-        if xml != False and lenght_xml != -1:
-            (graph.compare_sequences_excel(file, lenght_xml))
+        if convert_greps_fred != None and lenght_xml != -1:
+            try:
+                file=graph.beta_lactam_file(convert_greps_fred)
+                (graph.compare_sequences_excel(file, lenght_xml))
+            except:
+                (graph.compare_sequences_excel(convert_greps_fred, lenght_xml))
         else:
             pass
 
