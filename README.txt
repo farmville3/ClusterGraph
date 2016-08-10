@@ -120,7 +120,8 @@ grep beta /rap/nne-790-ab/projects/Project_CQDM2/Reads-Metagenomics/Sample_P4J7-
 
 10- Nous allons donc donner le fichier test.txt au programme de cette façon en ajoutant l'option -xml. Cet option
     creer un fichier qui peut s'ouvrir dans excel qui compare les chemins des differents genes qui etaient presents dans le fichier test.txt:
-	python3 ClusterGraph.py -g ClusterGraph/Data/XML/Beta_Lactam_Fred_P4J0-7-90 -xml True
+
+	python3 ClusterGraph.py -i cat_prodigal-cd-hit.fasta.clstr  -g ClusterGraph/Data/XML/Beta_Lactam_Fred_P4J0-7-90 -xml True
 
 	Si vous possedez un fichier pour lequel la premiere colonne correspond à la liste des genes a etudier, remplacez test.txt par votre fichier avec son chemin.
 	De plus, dans ce cas, vous pouvez utiliser l'option -mn qui vous permet de créer plusieurs fichier cytoscape pour tous les gènes qui se trouvent dans votre fichier.
@@ -146,7 +147,7 @@ Reload:
 			ClusterGraph.py -h
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   -h, --help  show this help message and exit
-  
+
   -i I        Input file.Le fichier en input doit correspondre au fichier
               .clstr de cd-hit.
 
