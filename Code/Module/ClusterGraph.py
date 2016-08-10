@@ -26,7 +26,7 @@ class OptionParser():
         self.parser.add_argument('-lop', type=str, help='La fonction retourne tous les chemins de longueur "x" partant du nom du cluster que vous devez donner en parametètre.'
                                                         ' Utilisez -x pour donner la longueur des chemins désirés.', default=None)
 
-        self.parser.add_argument('-x', type=int, help="Longueur des chemin désiré lors de l'utilisation de -lop.", default=-1)
+        self.parser.add_argument('-x', type=int, help="Longueur des chemin désiré lors de l'utilisation de -lop ou -mn ou les deux.", default=-1)
 
         self.parser.add_argument('-sg', type=bool, help="Construit un sous-graph à partir des données reçues par -lop et -x"
                                  '|  True ou False.', default=False)
@@ -51,9 +51,10 @@ class OptionParser():
 
         self.parser.add_argument('-save', type=str, help="Sauvegarde le graph dans le fichier donné en paramètre.", default=None)
         self.parser.add_argument('-r', type=str, help="Load le graph à partir du fichier de sauvegarde deonné en paramètre", default=None)
+        self.parser.add_argument('-mn', type=str, help="Créer des fichiers cytoscape pour plusieurs gènes à la fois."
+                                 'Utilisez -x quand vous utilisez -mn pour spécifier la longueur des chemins.', default=None)
 
-#
-
+        #
         #parse the args...
         self.Arguments = vars(self.parser.parse_args(args))
 
@@ -153,12 +154,10 @@ class Graph:
                         break
         f1.close()
 
-
         # Ajouter les gènes à la liste pour laquel le bon identifiant de échantillon est attaché
         for gene_ids in self.gene_dict.keys():
             sample_id = (gene_ids.rstrip(gene_ids.split('_')[-1])).rstrip('_')
             self.echantillons[sample_id].append(gene_ids)
-
 
         # Classer en ordre les gènes dans les différents échantillons
 
@@ -211,11 +210,8 @@ class Graph:
         f1.close()
 #---------------------------GRAPH CYTOSCAPE---------------------------------------------------------------------------------------------------------------------------
     #Écrit un fichier qui permet la visualisation du graph avec cytoscape
-    def cytoscape(self):
+    def cytoscape(self, file=(os.path.join(os.path.dirname(__file__), '../../Cytoscape/cytoscape.txt'))):
         print('Cytoscape ...')
-        dir = os.path.dirname(__file__)
-        file = os.path.join(dir, '../../Cytoscape/cytoscape.txt')
-
         f2 = open(file, 'w')
         dict={}
         # Cytoscape
@@ -230,8 +226,6 @@ class Graph:
                         debut=str(nodes.cluster_id)
                         fin=str(links_object.cluster_id)
                         lien=(genes.rstrip(genes.split('_')[-1])).rstrip('_')
-                        #f2.writelines(debut+'\t'+lien+'\t'+fin+'\n')
-
                         if (fin,lien,debut) not in dict.keys():
                             dict[(debut,lien,fin)]=''
 
@@ -390,9 +384,6 @@ class Graph:
                         list_copy = copy.copy(lists)
                         if list_copy not in list_of_future_paths:
                             list_of_future_paths.append(list_copy)
-
-
-
                 list_of_current_paths=list_of_future_paths
                 list_of_future_paths=[]
                 i+=1
@@ -415,7 +406,6 @@ class Graph:
                         plus = genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1]) + 1)
                         moins = genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1]) - 1)
                         if plus in (self.nodes[paths[1]]).gene_list:
-
                             i = 1
                             while i<len(paths):
                                 cluster_working_on = self.nodes[paths[i]]
@@ -497,24 +487,21 @@ class Graph:
         f2.writelines('<ComparingSequences ComparingSequences="{}">'.format('')+'\n')
         dict_of_tuples={}
         while line!='':
-            #if int(line.split()[0])>=hit_number:
-                gene_id = (line.split()[0])
-                cluster_number =  self.find_cluster(gene_id)
-                list_of_paths = self.find_path(cluster_number, path_lenght)
-                sequence_path = self.sequences_in_find_path(list_of_paths)
-                for sequences,  list_of_paths in sequence_path.items():
-                    if sequences not in dict_of_tuples.keys():
-                        dict_of_tuples[(gene_id,sequences)]=list_of_paths
-                line = f1.readline()
-            #elif int(line.split()[0])<hit_number:
-                #line=f1.readline()
+            gene_id = (line.split()[0])
+            cluster_number =  self.find_cluster(gene_id)
+            list_of_paths = self.find_path(cluster_number, path_lenght)
+            sequence_path = self.sequences_in_find_path(list_of_paths)
+            for sequences,  list_of_paths in sequence_path.items():
+                if sequences not in dict_of_tuples.keys():
+                    dict_of_tuples[(gene_id,sequences)]=list_of_paths
+            line = f1.readline()
+
         for tuples, list_of_paths in dict_of_tuples.items():
             if len(list_of_paths) != 0:
                 f2.writelines('\t' + '<Sequence name="{}">'.format(str(tuples[1])) + '\n')
                 f2.writelines('\t' + '\t'  '<Gene_id GeneNumber="{}">'.format(str(tuples[0].split('_')[-1])) + '\n')
                 for paths in list_of_paths:
                     f2.writelines('\t' + '\t' + '\t' '<Paths>' + '\n')
-
                     i = 0
                     while i < len(paths):
                         f2.writelines(
@@ -582,16 +569,11 @@ class Graph:
         print("\t"+"\t"+"\t"+"\t"+'\t'+'Some stats on the graph')
         print('--------------------------------------------------------------------------------------------------------')
         print(" "+str(len(self.nodes))+ ' noeux')
-        #Nombre de contigs et nombre de gène par séquence
-        #print(len(self.echantillons))
-        #for sequence in self.echantillons:
-            #print(len(self.echantillons[sequence]))
         max=0
         min=100
 
         same_sample=[]
         for nodes in self.nodes.values():
-            nod=nodes.cluster_id
             if len(nodes.gene_list)>max:
                 max=len(nodes.gene_list)
 
@@ -611,10 +593,23 @@ class Graph:
         print(" "+'Max: '+ str(max))
         print(" "+'Min: '+ str(min))
         print(" "+str(len(same_sample)))
-        #print(same_sample)
 
 
+#----------------Cytoscape for more than one gene/cluster---------------------------------------------------------------------------------------------------------
 
+    def many_genes_cytoscape(self, file, lenght):
+        f1 = open(file,'r')
+        line = f1.readline()
+
+        while line!='':
+            gene = line.rstrip('\n')
+            cluster = self.find_cluster(gene)
+            list_of_paths = self.find_path(cluster,lenght)
+            sous_graph = self.sous_graph(list_of_paths)
+            dir = os.path.dirname(__file__)
+            write_file = os.path.join(dir, '/home/saiant01/PycharmProjects/ClusterGraph/Cytoscape/many_genes_cytoscape/{}.txt'.format(gene))
+            sous_graph.cytoscape(write_file)
+            line=f1.readline()
 
 
 
@@ -632,7 +627,7 @@ if __name__ == '__main__':
     else:
         load_file = None
     find = (arg['find'])
-    list_of_paths = (arg['lop'])
+    node_for_list_of_paths = (arg['lop'])
     lenght_lop = int(arg['x'])
     sous_graph = bool(arg['sg'])
     cytoscape = bool(arg['cyto'])
@@ -640,7 +635,7 @@ if __name__ == '__main__':
     convert_greps_fred = (arg['g'])
     xml = bool(arg['xml'])
     lenght_xml = int(arg['y'])
-
+    many = arg['mn']
     stats=(arg['s'])
     save = (arg['save'])
     reload = (arg['r'])
@@ -686,8 +681,8 @@ if __name__ == '__main__':
 
 
             # Liste des chemins partant du cluster en faisant au maximum n pas.
-        if lenght_lop != -1 and list_of_paths != None:
-            list_of_paths = graph.find_path(list_of_paths, lenght_lop)
+        if lenght_lop != -1 and node_for_list_of_paths != None:
+            list_of_paths = graph.find_path(node_for_list_of_paths, lenght_lop)
 
             # Coloring
             sequence_path = graph.sequences_in_find_path(list_of_paths)
@@ -727,12 +722,15 @@ if __name__ == '__main__':
         print(" "+'Done!')
         print('')
 
+        if many!=None:
+            graph.many_genes_cytoscape(many,lenght_lop)
 
             # Stats
         if stats == 'True':
             graph.stats_graphs()
         else:
             pass
+
 
 
             # Time

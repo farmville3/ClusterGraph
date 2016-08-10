@@ -122,9 +122,14 @@ grep beta /rap/nne-790-ab/projects/Project_CQDM2/Reads-Metagenomics/Sample_P4J7-
     creer un fichier qui peut s'ouvrir dans excel qui compare les chemins des differents genes qui etaient presents dans le fichier test.txt:
 	python3 ClusterGraph.py -g ClusterGraph/Data/XML/Beta_Lactam_Fred_P4J0-7-90 -xml True
 
-	Si vous possedez un fichier pour lequel la premiere colonne correspond à la liste des genes à etudier, remplacez test.txt par votre fichier avec son chemin.
+	Si vous possedez un fichier pour lequel la premiere colonne correspond à la liste des genes a etudier, remplacez test.txt par votre fichier avec son chemin.
+	De plus, dans ce cas, vous pouvez utiliser l'option -mn qui vous permet de créer plusieurs fichier cytoscape pour tous les gènes qui se trouvent dans votre fichier.
 
-	python3 ClusterGraph.py -g votre_fichier -xml True
+	python3 ClusterGraph.py -i cat_prodigal-cd-hit.fasta.clstr  -g votre_fichier -xml True -y 10
+
+	cytoscape:
+	python3 ClusterGraph.py -i cat_prodigal-cd-hit.fasta.clstr -mn fichier_contenant_vos_genes -x 10
+
 
 
 11- Il est aussi possible de sauvegarder le graph apres l'avoir load, puis de le reloader par la suite à partir du fichier de sauvegarde.
@@ -140,41 +145,54 @@ Reload:
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 			ClusterGraph.py -h
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-optional arguments:
   -h, --help  show this help message and exit
-
+  
   -i I        Input file.Le fichier en input doit correspondre au fichier
               .clstr de cd-hit.
 
-  -find FIND  L'input doit être le nom d'un gene qui est present dans le
+  -find FIND  L'input doit être le nom d'un gène qui est présent dans le
               graph. La fonction va alors retourner le cluster respectif du
-              gene.
+              gène.
 
   -lop LOP    La fonction retourne tous les chemins de longueur "x" partant du
-              nom du cluster que vous devez donner en parametetre. Utilisez -x
-              pour donner la longueur des chemins desires.
-  -x X        Longueur des chemin desire lors de l'utilisation de -lop.
-  -sg SG      Construit un sous-graph à partir des donnees reçues par -lop et
-              -x
+              nom du cluster que vous devez donner en parametètre. Utilisez -x
+              pour donner la longueur des chemins désirés.
+
+  -x X        Longueur des chemin désiré lors de l'utilisation de -lop ou -mn
+              ou les deux.
+
+  -sg SG      Construit un sous-graph à partir des données reçues par -lop et
+              -x| True ou False.
 
   -cyto CYTO  Permet de visualiser le graph dans cytoscape à l'aide du fichier
-              cytoscape.txt Celui-ci doit se trouve dans le repertoire
-              Cytoscape du projet.
+              cytoscape.txtCelui-ci doit se trouvé dans le répertoire
+              Cytoscape du projet.| True ou False.
 
   -j J        Permet de visualiser le graph dans une page html de façon
               interactive.Il ne faut qu'ouvrir le fichier index.html dans
-              javascript/hcls-dataset-description-master/type-graphs-html
+              javascript/hcls-dataset-description-master/type-graphs-html.|
+              True ou False.
+
   -g G        Convertit les fichiers obtenus à l'aide de greps en ligne de
-              commande de façonà ce que les donnees soient convertible dans un
+              commande de façonà ce que les données soient convertible dans un
               fichier .xml
 
-  -xml XML    Creer un fichier xml qui peut être ouvert dans Microsoft Excel.
-  -y Y        Longueur des chemin desire lors de l'utilisation de -xml.
-  -s S        Affiche differentes statistiques sur le graph.
+  -xml XML    Créer un fichier xml qui peut être ouvert dans Microsoft Excel.|
+              True ou False.
 
-  -save SAVE  Sauvegarde le graph dans le fichier donne en parametre.
-  -r R        Load le graph à partir du fichier de sauvegarde deonne en
-              parametre
+  -y Y        Longueur des chemin désiré lors de l'utilisation de -xml.
+
+  -s S        Affiche différentes statistiques sur le graph.
+
+  -save SAVE  Sauvegarde le graph dans le fichier donné en paramètre.
+
+  -r R        Load le graph à partir du fichier de sauvegarde deonné en
+              paramètre
+
+  -mn MN      Créer des fichiers cytoscape pour plusieurs gènes à la
+              fois.Utilisez -x quand vous utilisez -mn pour spécifier la
+              longueur des chemins.
+
 
 
 
