@@ -1,0 +1,1992 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ComparingSequences ComparingSequences="">
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-3000045">
+		<Gene_id GeneNumber="9">
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 6476</Node1>
+				<Node2>Cluster 20028</Node2>
+				<Node3>Cluster 19390</Node3>
+				<Node4>Cluster 36013</Node4>
+				<Node5>Cluster 65858</Node5>
+				<Node6>Cluster 59597</Node6>
+				<Node7>Cluster 21349</Node7>
+				<Node8>Cluster 78815</Node8>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 59198</Node1>
+				<Node2>Cluster 35389</Node2>
+				<Node3>Cluster 27421</Node3>
+				<Node4>Cluster 61886</Node4>
+				<Node5>Cluster 51083</Node5>
+				<Node6>Cluster 32871</Node6>
+				<Node7>Cluster 20047</Node7>
+				<Node8>Cluster 10535</Node8>
+				<Node9>Cluster 42626</Node9>
+				<Node10>Cluster 16453</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-318000065">
+		<Gene_id GeneNumber="97">
+			<Paths>
+				<Node0>Cluster 12627</Node0>
+				<Node1>Cluster 18847</Node1>
+				<Node2>Cluster 34445</Node2>
+				<Node3>Cluster 25218</Node3>
+				<Node4>Cluster 30022</Node4>
+				<Node5>Cluster 26364</Node5>
+				<Node6>Cluster 7996</Node6>
+				<Node7>Cluster 74149</Node7>
+				<Node8>Cluster 12336</Node8>
+				<Node9>Cluster 11591</Node9>
+				<Node10>Cluster 36851</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 12627</Node0>
+				<Node1>Cluster 1169</Node1>
+				<Node2>Cluster 20268</Node2>
+				<Node3>Cluster 50150</Node3>
+				<Node4>Cluster 35436</Node4>
+				<Node5>Cluster 20078</Node5>
+				<Node6>Cluster 5279</Node6>
+				<Node7>Cluster 4933</Node7>
+				<Node8>Cluster 79546</Node8>
+				<Node9>Cluster 37794</Node9>
+				<Node10>Cluster 76221</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-313000055">
+		<Gene_id GeneNumber="2">
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 11873</Node1>
+				<Node2>Cluster 26718</Node2>
+				<Node3>Cluster 21652</Node3>
+				<Node4>Cluster 69593</Node4>
+				<Node5>Cluster 23242</Node5>
+				<Node6>Cluster 14592</Node6>
+				<Node7>Cluster 15033</Node7>
+				<Node8>Cluster 15737</Node8>
+				<Node9>Cluster 80989</Node9>
+				<Node10>Cluster 71677</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 82220</Node1>
+				<Node2>Cluster 2401</Node2>
+				<Node3>Cluster 60516</Node3>
+				<Node4>Cluster 18610</Node4>
+				<Node5>Cluster 659</Node5>
+				<Node6>Cluster 9755</Node6>
+				<Node7>Cluster 18819</Node7>
+				<Node8>Cluster 17295</Node8>
+				<Node9>Cluster 60354</Node9>
+				<Node10>Cluster 49852</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-120">
+		<Gene_id GeneNumber="16">
+			<Paths>
+				<Node0>Cluster 17798</Node0>
+				<Node1>Cluster 1069</Node1>
+				<Node2>Cluster 65143</Node2>
+				<Node3>Cluster 76243</Node3>
+				<Node4>Cluster 51445</Node4>
+				<Node5>Cluster 58184</Node5>
+				<Node6>Cluster 9233</Node6>
+				<Node7>Cluster 66568</Node7>
+				<Node8>Cluster 69423</Node8>
+				<Node9>Cluster 49699</Node9>
+				<Node10>Cluster 31610</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 17798</Node0>
+				<Node1>Cluster 44105</Node1>
+				<Node2>Cluster 691</Node2>
+				<Node3>Cluster 80125</Node3>
+				<Node4>Cluster 53564</Node4>
+				<Node5>Cluster 64923</Node5>
+				<Node6>Cluster 51446</Node6>
+				<Node7>Cluster 5295</Node7>
+				<Node8>Cluster 68171</Node8>
+				<Node9>Cluster 47104</Node9>
+				<Node10>Cluster 5728</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-562000075">
+		<Gene_id GeneNumber="17">
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 68929</Node1>
+				<Node2>Cluster 6817</Node2>
+				<Node3>Cluster 4621</Node3>
+				<Node4>Cluster 14686</Node4>
+				<Node5>Cluster 71669</Node5>
+				<Node6>Cluster 339</Node6>
+				<Node7>Cluster 44041</Node7>
+				<Node8>Cluster 11947</Node8>
+				<Node9>Cluster 45490</Node9>
+				<Node10>Cluster 47930</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 11873</Node1>
+				<Node2>Cluster 26718</Node2>
+				<Node3>Cluster 21652</Node3>
+				<Node4>Cluster 69593</Node4>
+				<Node5>Cluster 23242</Node5>
+				<Node6>Cluster 14592</Node6>
+				<Node7>Cluster 15033</Node7>
+				<Node8>Cluster 6253</Node8>
+				<Node9>Cluster 70362</Node9>
+				<Node10>Cluster 67078</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-1251000050">
+		<Gene_id GeneNumber="3">
+			<Paths>
+				<Node0>Cluster 12026</Node0>
+				<Node1>Cluster 8239</Node1>
+				<Node2>Cluster 65254</Node2>
+				<Node3>Cluster 60492</Node3>
+				<Node4>Cluster 41292</Node4>
+				<Node5>Cluster 29044</Node5>
+				<Node6>Cluster 66866</Node6>
+				<Node7>Cluster 60491</Node7>
+				<Node8>Cluster 77562</Node8>
+				<Node9>Cluster 55816</Node9>
+				<Node10>Cluster 69750</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-318000065">
+		<Gene_id GeneNumber="1">
+			<Paths>
+				<Node0>Cluster 20268</Node0>
+				<Node1>Cluster 1169</Node1>
+				<Node2>Cluster 12627</Node2>
+				<Node3>Cluster 18847</Node3>
+				<Node4>Cluster 34445</Node4>
+				<Node5>Cluster 25218</Node5>
+				<Node6>Cluster 30022</Node6>
+				<Node7>Cluster 26364</Node7>
+				<Node8>Cluster 7996</Node8>
+				<Node9>Cluster 74149</Node9>
+				<Node10>Cluster 12336</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 20268</Node0>
+				<Node1>Cluster 50150</Node1>
+				<Node2>Cluster 35436</Node2>
+				<Node3>Cluster 20078</Node3>
+				<Node4>Cluster 5279</Node4>
+				<Node5>Cluster 4933</Node5>
+				<Node6>Cluster 79546</Node6>
+				<Node7>Cluster 37794</Node7>
+				<Node8>Cluster 76221</Node8>
+				<Node9>Cluster 68348</Node9>
+				<Node10>Cluster 34933</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-129000083">
+		<Gene_id GeneNumber="2">
+			<Paths>
+				<Node0>Cluster 13098</Node0>
+				<Node1>Cluster 77856</Node1>
+				<Node2>Cluster 65523</Node2>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-55">
+		<Gene_id GeneNumber="27">
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 82220</Node1>
+				<Node2>Cluster 2401</Node2>
+				<Node3>Cluster 60516</Node3>
+				<Node4>Cluster 18610</Node4>
+				<Node5>Cluster 659</Node5>
+				<Node6>Cluster 9755</Node6>
+				<Node7>Cluster 18819</Node7>
+				<Node8>Cluster 17295</Node8>
+				<Node9>Cluster 60354</Node9>
+				<Node10>Cluster 49852</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-233000114">
+		<Gene_id GeneNumber="9">
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 59198</Node1>
+				<Node2>Cluster 56499</Node2>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-87">
+		<Gene_id GeneNumber="5">
+			<Paths>
+				<Node0>Cluster 29453</Node0>
+				<Node1>Cluster 82490</Node1>
+				<Node2>Cluster 26404</Node2>
+				<Node3>Cluster 666</Node3>
+				<Node4>Cluster 36171</Node4>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 29453</Node0>
+				<Node1>Cluster 24863</Node1>
+				<Node2>Cluster 52016</Node2>
+				<Node3>Cluster 2316</Node3>
+				<Node4>Cluster 10613</Node4>
+				<Node5>Cluster 41634</Node5>
+				<Node6>Cluster 6064</Node6>
+				<Node7>Cluster 11974</Node7>
+				<Node8>Cluster 32973</Node8>
+				<Node9>Cluster 8919</Node9>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-2000072">
+		<Gene_id GeneNumber="69">
+			<Paths>
+				<Node0>Cluster 30028</Node0>
+				<Node1>Cluster 59679</Node1>
+				<Node2>Cluster 36006</Node2>
+				<Node3>Cluster 24041</Node3>
+				<Node4>Cluster 81405</Node4>
+				<Node5>Cluster 58887</Node5>
+				<Node6>Cluster 36098</Node6>
+				<Node7>Cluster 28872</Node7>
+				<Node8>Cluster 42024</Node8>
+				<Node9>Cluster 4828</Node9>
+				<Node10>Cluster 29241</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 30028</Node0>
+				<Node1>Cluster 1157</Node1>
+				<Node2>Cluster 20873</Node2>
+				<Node3>Cluster 11284</Node3>
+				<Node4>Cluster 35743</Node4>
+				<Node5>Cluster 18753</Node5>
+				<Node6>Cluster 32798</Node6>
+				<Node7>Cluster 21246</Node7>
+				<Node8>Cluster 36162</Node8>
+				<Node9>Cluster 62579</Node9>
+				<Node10>Cluster 34223</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-55">
+		<Gene_id GeneNumber="17">
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 82220</Node1>
+				<Node2>Cluster 2401</Node2>
+				<Node3>Cluster 60516</Node3>
+				<Node4>Cluster 18610</Node4>
+				<Node5>Cluster 659</Node5>
+				<Node6>Cluster 9755</Node6>
+				<Node7>Cluster 18819</Node7>
+				<Node8>Cluster 17295</Node8>
+				<Node9>Cluster 60354</Node9>
+				<Node10>Cluster 49852</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-13000109">
+		<Gene_id GeneNumber="6">
+			<Paths>
+				<Node0>Cluster 12026</Node0>
+				<Node1>Cluster 38311</Node1>
+				<Node2>Cluster 13687</Node2>
+				<Node3>Cluster 66405</Node3>
+				<Node4>Cluster 77376</Node4>
+				<Node5>Cluster 75671</Node5>
+				<Node6>Cluster 21046</Node6>
+				<Node7>Cluster 2461</Node7>
+				<Node8>Cluster 42835</Node8>
+				<Node9>Cluster 23492</Node9>
+				<Node10>Cluster 38953</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-890000045">
+		<Gene_id GeneNumber="1">
+			<Paths>
+				<Node0>Cluster 13553</Node0>
+				<Node1>Cluster 44312</Node1>
+				<Node2>Cluster 8769</Node2>
+				<Node3>Cluster 63708</Node3>
+				<Node4>Cluster 74873</Node4>
+				<Node5>Cluster 14063</Node5>
+				<Node6>Cluster 59111</Node6>
+				<Node7>Cluster 37839</Node7>
+				<Node8>Cluster 7133</Node8>
+				<Node9>Cluster 66590</Node9>
+				<Node10>Cluster 69218</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-938000114">
+		<Gene_id GeneNumber="140">
+			<Paths>
+				<Node0>Cluster 19844</Node0>
+				<Node1>Cluster 52979</Node1>
+				<Node2>Cluster 68960</Node2>
+				<Node3>Cluster 81175</Node3>
+				<Node4>Cluster 82508</Node4>
+				<Node5>Cluster 50120</Node5>
+				<Node6>Cluster 23624</Node6>
+				<Node7>Cluster 31083</Node7>
+				<Node8>Cluster 66532</Node8>
+				<Node9>Cluster 7958</Node9>
+				<Node10>Cluster 70636</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-268000017">
+		<Gene_id GeneNumber="18">
+			<Paths>
+				<Node0>Cluster 1153</Node0>
+				<Node1>Cluster 7304</Node1>
+				<Node2>Cluster 4969</Node2>
+				<Node3>Cluster 49391</Node3>
+				<Node4>Cluster 23029</Node4>
+				<Node5>Cluster 4797</Node5>
+				<Node6>Cluster 27037</Node6>
+				<Node7>Cluster 3312</Node7>
+				<Node8>Cluster 67680</Node8>
+				<Node9>Cluster 57531</Node9>
+				<Node10>Cluster 40613</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 1153</Node0>
+				<Node1>Cluster 66348</Node1>
+				<Node2>Cluster 20069</Node2>
+				<Node3>Cluster 77627</Node3>
+				<Node4>Cluster 40801</Node4>
+				<Node5>Cluster 4719</Node5>
+				<Node6>Cluster 31429</Node6>
+				<Node7>Cluster 39875</Node7>
+				<Node8>Cluster 23391</Node8>
+				<Node9>Cluster 30610</Node9>
+				<Node10>Cluster 49653</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-1260000075">
+		<Gene_id GeneNumber="99">
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 6476</Node1>
+				<Node2>Cluster 3106</Node2>
+				<Node3>Cluster 13290</Node3>
+				<Node4>Cluster 44838</Node4>
+				<Node5>Cluster 41307</Node5>
+				<Node6>Cluster 40574</Node6>
+				<Node7>Cluster 83058</Node7>
+				<Node8>Cluster 49830</Node8>
+				<Node9>Cluster 4622</Node9>
+				<Node10>Cluster 7234</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 59198</Node1>
+				<Node2>Cluster 35389</Node2>
+				<Node3>Cluster 27421</Node3>
+				<Node4>Cluster 61886</Node4>
+				<Node5>Cluster 51083</Node5>
+				<Node6>Cluster 32871</Node6>
+				<Node7>Cluster 20047</Node7>
+				<Node8>Cluster 10535</Node8>
+				<Node9>Cluster 42626</Node9>
+				<Node10>Cluster 16453</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-13000109">
+		<Gene_id GeneNumber="3">
+			<Paths>
+				<Node0>Cluster 12026</Node0>
+				<Node1>Cluster 38311</Node1>
+				<Node2>Cluster 13687</Node2>
+				<Node3>Cluster 66405</Node3>
+				<Node4>Cluster 77376</Node4>
+				<Node5>Cluster 75671</Node5>
+				<Node6>Cluster 21046</Node6>
+				<Node7>Cluster 2461</Node7>
+				<Node8>Cluster 42835</Node8>
+				<Node9>Cluster 23492</Node9>
+				<Node10>Cluster 38953</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-103">
+		<Gene_id GeneNumber="6">
+			<Paths>
+				<Node0>Cluster 19867</Node0>
+				<Node1>Cluster 60815</Node1>
+				<Node2>Cluster 28813</Node2>
+				<Node3>Cluster 33371</Node3>
+				<Node4>Cluster 31766</Node4>
+				<Node5>Cluster 32066</Node5>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-283000073">
+		<Gene_id GeneNumber="3">
+			<Paths>
+				<Node0>Cluster 21225</Node0>
+				<Node1>Cluster 22630</Node1>
+				<Node2>Cluster 22268</Node2>
+				<Node3>Cluster 43903</Node3>
+				<Node4>Cluster 7997</Node4>
+				<Node5>Cluster 7967</Node5>
+				<Node6>Cluster 56842</Node6>
+				<Node7>Cluster 80112</Node7>
+				<Node8>Cluster 56422</Node8>
+				<Node9>Cluster 72848</Node9>
+				<Node10>Cluster 2483</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 21225</Node0>
+				<Node1>Cluster 1936</Node1>
+				<Node2>Cluster 43904</Node2>
+				<Node3>Cluster 1620</Node3>
+				<Node4>Cluster 6121</Node4>
+				<Node5>Cluster 12338</Node5>
+				<Node6>Cluster 43104</Node6>
+				<Node7>Cluster 43905</Node7>
+				<Node8>Cluster 13950</Node8>
+				<Node9>Cluster 18108</Node9>
+				<Node10>Cluster 37797</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-318000065">
+		<Gene_id GeneNumber="98">
+			<Paths>
+				<Node0>Cluster 1169</Node0>
+				<Node1>Cluster 12627</Node1>
+				<Node2>Cluster 18847</Node2>
+				<Node3>Cluster 34445</Node3>
+				<Node4>Cluster 25218</Node4>
+				<Node5>Cluster 30022</Node5>
+				<Node6>Cluster 26364</Node6>
+				<Node7>Cluster 7996</Node7>
+				<Node8>Cluster 74149</Node8>
+				<Node9>Cluster 12336</Node9>
+				<Node10>Cluster 11591</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 1169</Node0>
+				<Node1>Cluster 20268</Node1>
+				<Node2>Cluster 50150</Node2>
+				<Node3>Cluster 35436</Node3>
+				<Node4>Cluster 20078</Node4>
+				<Node5>Cluster 5279</Node5>
+				<Node6>Cluster 4933</Node6>
+				<Node7>Cluster 79546</Node7>
+				<Node8>Cluster 37794</Node8>
+				<Node9>Cluster 76221</Node9>
+				<Node10>Cluster 68348</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-2000072">
+		<Gene_id GeneNumber="6">
+			<Paths>
+				<Node0>Cluster 30028</Node0>
+				<Node1>Cluster 59679</Node1>
+				<Node2>Cluster 36006</Node2>
+				<Node3>Cluster 24041</Node3>
+				<Node4>Cluster 81405</Node4>
+				<Node5>Cluster 58887</Node5>
+				<Node6>Cluster 36098</Node6>
+				<Node7>Cluster 28872</Node7>
+				<Node8>Cluster 42024</Node8>
+				<Node9>Cluster 4828</Node9>
+				<Node10>Cluster 29241</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 30028</Node0>
+				<Node1>Cluster 1157</Node1>
+				<Node2>Cluster 20873</Node2>
+				<Node3>Cluster 11284</Node3>
+				<Node4>Cluster 35743</Node4>
+				<Node5>Cluster 18753</Node5>
+				<Node6>Cluster 32798</Node6>
+				<Node7>Cluster 21246</Node7>
+				<Node8>Cluster 36162</Node8>
+				<Node9>Cluster 62579</Node9>
+				<Node10>Cluster 34223</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-3000045">
+		<Gene_id GeneNumber="9">
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 6476</Node1>
+				<Node2>Cluster 20028</Node2>
+				<Node3>Cluster 19390</Node3>
+				<Node4>Cluster 36013</Node4>
+				<Node5>Cluster 65858</Node5>
+				<Node6>Cluster 59597</Node6>
+				<Node7>Cluster 21349</Node7>
+				<Node8>Cluster 78815</Node8>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 59198</Node1>
+				<Node2>Cluster 35389</Node2>
+				<Node3>Cluster 27421</Node3>
+				<Node4>Cluster 61886</Node4>
+				<Node5>Cluster 51083</Node5>
+				<Node6>Cluster 32871</Node6>
+				<Node7>Cluster 20047</Node7>
+				<Node8>Cluster 10535</Node8>
+				<Node9>Cluster 42626</Node9>
+				<Node10>Cluster 16453</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-120">
+		<Gene_id GeneNumber="15">
+			<Paths>
+				<Node0>Cluster 1069</Node0>
+				<Node1>Cluster 65143</Node1>
+				<Node2>Cluster 76243</Node2>
+				<Node3>Cluster 51445</Node3>
+				<Node4>Cluster 58184</Node4>
+				<Node5>Cluster 9233</Node5>
+				<Node6>Cluster 66568</Node6>
+				<Node7>Cluster 69423</Node7>
+				<Node8>Cluster 49699</Node8>
+				<Node9>Cluster 31610</Node9>
+				<Node10>Cluster 14981</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 1069</Node0>
+				<Node1>Cluster 17798</Node1>
+				<Node2>Cluster 44105</Node2>
+				<Node3>Cluster 691</Node3>
+				<Node4>Cluster 80125</Node4>
+				<Node5>Cluster 53564</Node5>
+				<Node6>Cluster 64923</Node6>
+				<Node7>Cluster 51446</Node7>
+				<Node8>Cluster 5295</Node8>
+				<Node9>Cluster 68171</Node9>
+				<Node10>Cluster 47104</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-149000032">
+		<Gene_id GeneNumber="2">
+			<Paths>
+				<Node0>Cluster 25032</Node0>
+				<Node1>Cluster 23138</Node1>
+				<Node2>Cluster 60111</Node2>
+				<Node3>Cluster 12601</Node3>
+				<Node4>Cluster 75915</Node4>
+				<Node5>Cluster 60989</Node5>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-96">
+		<Gene_id GeneNumber="119">
+			<Paths>
+				<Node0>Cluster 30407</Node0>
+				<Node1>Cluster 17665</Node1>
+				<Node2>Cluster 51318</Node2>
+				<Node3>Cluster 458</Node3>
+				<Node4>Cluster 31534</Node4>
+				<Node5>Cluster 6779</Node5>
+				<Node6>Cluster 30138</Node6>
+				<Node7>Cluster 82724</Node7>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 30407</Node0>
+				<Node1>Cluster 11699</Node1>
+				<Node2>Cluster 53445</Node2>
+				<Node3>Cluster 42226</Node3>
+				<Node4>Cluster 25673</Node4>
+				<Node5>Cluster 58542</Node5>
+				<Node6>Cluster 53446</Node6>
+				<Node7>Cluster 7371</Node7>
+				<Node8>Cluster 12592</Node8>
+				<Node9>Cluster 9907</Node9>
+				<Node10>Cluster 70145</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-55">
+		<Gene_id GeneNumber="2">
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 82220</Node1>
+				<Node2>Cluster 2401</Node2>
+				<Node3>Cluster 60516</Node3>
+				<Node4>Cluster 18610</Node4>
+				<Node5>Cluster 659</Node5>
+				<Node6>Cluster 9755</Node6>
+				<Node7>Cluster 18819</Node7>
+				<Node8>Cluster 17295</Node8>
+				<Node9>Cluster 60354</Node9>
+				<Node10>Cluster 49852</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-55000080">
+		<Gene_id GeneNumber="13">
+			<Paths>
+				<Node0>Cluster 13553</Node0>
+				<Node1>Cluster 44273</Node1>
+				<Node2>Cluster 8866</Node2>
+				<Node3>Cluster 62146</Node3>
+				<Node4>Cluster 77777</Node4>
+				<Node5>Cluster 70426</Node5>
+				<Node6>Cluster 67344</Node6>
+				<Node7>Cluster 34450</Node7>
+				<Node8>Cluster 26449</Node8>
+				<Node9>Cluster 64827</Node9>
+				<Node10>Cluster 72043</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-13000109">
+		<Gene_id GeneNumber="2">
+			<Paths>
+				<Node0>Cluster 12026</Node0>
+				<Node1>Cluster 38311</Node1>
+				<Node2>Cluster 13687</Node2>
+				<Node3>Cluster 66405</Node3>
+				<Node4>Cluster 77376</Node4>
+				<Node5>Cluster 75671</Node5>
+				<Node6>Cluster 21046</Node6>
+				<Node7>Cluster 2461</Node7>
+				<Node8>Cluster 42835</Node8>
+				<Node9>Cluster 23492</Node9>
+				<Node10>Cluster 38953</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-233000114">
+		<Gene_id GeneNumber="99">
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 59198</Node1>
+				<Node2>Cluster 56499</Node2>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-6000006">
+		<Gene_id GeneNumber="7">
+			<Paths>
+				<Node0>Cluster 19844</Node0>
+				<Node1>Cluster 52979</Node1>
+				<Node2>Cluster 68960</Node2>
+				<Node3>Cluster 81175</Node3>
+				<Node4>Cluster 82508</Node4>
+				<Node5>Cluster 50120</Node5>
+				<Node6>Cluster 23624</Node6>
+				<Node7>Cluster 31083</Node7>
+				<Node8>Cluster 66532</Node8>
+				<Node9>Cluster 7958</Node9>
+				<Node10>Cluster 70636</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 19844</Node0>
+				<Node1>Cluster 66147</Node1>
+				<Node2>Cluster 63617</Node2>
+				<Node3>Cluster 38686</Node3>
+				<Node4>Cluster 6292</Node4>
+				<Node5>Cluster 25835</Node5>
+				<Node6>Cluster 10751</Node6>
+				<Node7>Cluster 70004</Node7>
+				<Node8>Cluster 737</Node8>
+				<Node9>Cluster 26225</Node9>
+				<Node10>Cluster 22708</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-316000068">
+		<Gene_id GeneNumber="18">
+			<Paths>
+				<Node0>Cluster 19049</Node0>
+				<Node1>Cluster 1156</Node1>
+				<Node2>Cluster 71519</Node2>
+				<Node3>Cluster 39047</Node3>
+				<Node4>Cluster 33529</Node4>
+				<Node5>Cluster 11967</Node5>
+				<Node6>Cluster 1743</Node6>
+				<Node7>Cluster 2898</Node7>
+				<Node8>Cluster 7494</Node8>
+				<Node9>Cluster 19048</Node9>
+				<Node10>Cluster 7533</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 19049</Node0>
+				<Node1>Cluster 71724</Node1>
+				<Node2>Cluster 53541</Node2>
+				<Node3>Cluster 49677</Node3>
+				<Node4>Cluster 67913</Node4>
+				<Node5>Cluster 67523</Node5>
+				<Node6>Cluster 44148</Node6>
+				<Node7>Cluster 36470</Node7>
+				<Node8>Cluster 26753</Node8>
+				<Node9>Cluster 45797</Node9>
+				<Node10>Cluster 56420</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-120">
+		<Gene_id GeneNumber="4">
+			<Paths>
+				<Node0>Cluster 1069</Node0>
+				<Node1>Cluster 65143</Node1>
+				<Node2>Cluster 76243</Node2>
+				<Node3>Cluster 51445</Node3>
+				<Node4>Cluster 58184</Node4>
+				<Node5>Cluster 9233</Node5>
+				<Node6>Cluster 66568</Node6>
+				<Node7>Cluster 69423</Node7>
+				<Node8>Cluster 49699</Node8>
+				<Node9>Cluster 31610</Node9>
+				<Node10>Cluster 14981</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 1069</Node0>
+				<Node1>Cluster 17798</Node1>
+				<Node2>Cluster 44105</Node2>
+				<Node3>Cluster 691</Node3>
+				<Node4>Cluster 80125</Node4>
+				<Node5>Cluster 53564</Node5>
+				<Node6>Cluster 64923</Node6>
+				<Node7>Cluster 51446</Node7>
+				<Node8>Cluster 5295</Node8>
+				<Node9>Cluster 68171</Node9>
+				<Node10>Cluster 47104</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-6000006">
+		<Gene_id GeneNumber="140">
+			<Paths>
+				<Node0>Cluster 19844</Node0>
+				<Node1>Cluster 52979</Node1>
+				<Node2>Cluster 68960</Node2>
+				<Node3>Cluster 81175</Node3>
+				<Node4>Cluster 82508</Node4>
+				<Node5>Cluster 50120</Node5>
+				<Node6>Cluster 23624</Node6>
+				<Node7>Cluster 31083</Node7>
+				<Node8>Cluster 66532</Node8>
+				<Node9>Cluster 7958</Node9>
+				<Node10>Cluster 70636</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 19844</Node0>
+				<Node1>Cluster 66147</Node1>
+				<Node2>Cluster 63617</Node2>
+				<Node3>Cluster 38686</Node3>
+				<Node4>Cluster 6292</Node4>
+				<Node5>Cluster 25835</Node5>
+				<Node6>Cluster 10751</Node6>
+				<Node7>Cluster 70004</Node7>
+				<Node8>Cluster 737</Node8>
+				<Node9>Cluster 26225</Node9>
+				<Node10>Cluster 22708</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-55000080">
+		<Gene_id GeneNumber="1">
+			<Paths>
+				<Node0>Cluster 13553</Node0>
+				<Node1>Cluster 44273</Node1>
+				<Node2>Cluster 8866</Node2>
+				<Node3>Cluster 62146</Node3>
+				<Node4>Cluster 77777</Node4>
+				<Node5>Cluster 70426</Node5>
+				<Node6>Cluster 67344</Node6>
+				<Node7>Cluster 34450</Node7>
+				<Node8>Cluster 26449</Node8>
+				<Node9>Cluster 64827</Node9>
+				<Node10>Cluster 72043</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-13000109">
+		<Gene_id GeneNumber="314">
+			<Paths>
+				<Node0>Cluster 12026</Node0>
+				<Node1>Cluster 38311</Node1>
+				<Node2>Cluster 13687</Node2>
+				<Node3>Cluster 66405</Node3>
+				<Node4>Cluster 77376</Node4>
+				<Node5>Cluster 75671</Node5>
+				<Node6>Cluster 21046</Node6>
+				<Node7>Cluster 2461</Node7>
+				<Node8>Cluster 42835</Node8>
+				<Node9>Cluster 23492</Node9>
+				<Node10>Cluster 38953</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-2000101">
+		<Gene_id GeneNumber="10">
+			<Paths>
+				<Node0>Cluster 10346</Node0>
+				<Node1>Cluster 45339</Node1>
+				<Node2>Cluster 61727</Node2>
+				<Node3>Cluster 33370</Node3>
+				<Node4>Cluster 48955</Node4>
+				<Node5>Cluster 5582</Node5>
+				<Node6>Cluster 3982</Node6>
+				<Node7>Cluster 34280</Node7>
+				<Node8>Cluster 25583</Node8>
+				<Node9>Cluster 22821</Node9>
+				<Node10>Cluster 27179</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 10346</Node0>
+				<Node1>Cluster 42501</Node1>
+				<Node2>Cluster 18966</Node2>
+				<Node3>Cluster 6402</Node3>
+				<Node4>Cluster 42701</Node4>
+				<Node5>Cluster 42502</Node5>
+				<Node6>Cluster 33993</Node6>
+				<Node7>Cluster 36311</Node7>
+				<Node8>Cluster 79751</Node8>
+				<Node9>Cluster 43713</Node9>
+				<Node10>Cluster 70247</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-10000091">
+		<Gene_id GeneNumber="64">
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 11873</Node1>
+				<Node2>Cluster 26718</Node2>
+				<Node3>Cluster 21652</Node3>
+				<Node4>Cluster 69593</Node4>
+				<Node5>Cluster 23242</Node5>
+				<Node6>Cluster 14592</Node6>
+				<Node7>Cluster 15033</Node7>
+				<Node8>Cluster 15737</Node8>
+				<Node9>Cluster 80989</Node9>
+				<Node10>Cluster 71677</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 6817</Node1>
+				<Node2>Cluster 4621</Node2>
+				<Node3>Cluster 14686</Node3>
+				<Node4>Cluster 71669</Node4>
+				<Node5>Cluster 339</Node5>
+				<Node6>Cluster 44041</Node6>
+				<Node7>Cluster 11947</Node7>
+				<Node8>Cluster 45490</Node8>
+				<Node9>Cluster 47930</Node9>
+				<Node10>Cluster 51861</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-316000068">
+		<Gene_id GeneNumber="17">
+			<Paths>
+				<Node0>Cluster 1156</Node0>
+				<Node1>Cluster 71519</Node1>
+				<Node2>Cluster 39047</Node2>
+				<Node3>Cluster 33529</Node3>
+				<Node4>Cluster 11967</Node4>
+				<Node5>Cluster 1743</Node5>
+				<Node6>Cluster 2898</Node6>
+				<Node7>Cluster 7494</Node7>
+				<Node8>Cluster 19048</Node8>
+				<Node9>Cluster 7533</Node9>
+				<Node10>Cluster 37030</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 1156</Node0>
+				<Node1>Cluster 19049</Node1>
+				<Node2>Cluster 71724</Node2>
+				<Node3>Cluster 53541</Node3>
+				<Node4>Cluster 49677</Node4>
+				<Node5>Cluster 67913</Node5>
+				<Node6>Cluster 67523</Node6>
+				<Node7>Cluster 44148</Node7>
+				<Node8>Cluster 36470</Node8>
+				<Node9>Cluster 26753</Node9>
+				<Node10>Cluster 45797</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-890000045">
+		<Gene_id GeneNumber="13">
+			<Paths>
+				<Node0>Cluster 13553</Node0>
+				<Node1>Cluster 44312</Node1>
+				<Node2>Cluster 8769</Node2>
+				<Node3>Cluster 63708</Node3>
+				<Node4>Cluster 74873</Node4>
+				<Node5>Cluster 14063</Node5>
+				<Node6>Cluster 59111</Node6>
+				<Node7>Cluster 37839</Node7>
+				<Node8>Cluster 7133</Node8>
+				<Node9>Cluster 66590</Node9>
+				<Node10>Cluster 69218</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-318000065">
+		<Gene_id GeneNumber="99">
+			<Paths>
+				<Node0>Cluster 20268</Node0>
+				<Node1>Cluster 1169</Node1>
+				<Node2>Cluster 12627</Node2>
+				<Node3>Cluster 18847</Node3>
+				<Node4>Cluster 34445</Node4>
+				<Node5>Cluster 25218</Node5>
+				<Node6>Cluster 30022</Node6>
+				<Node7>Cluster 26364</Node7>
+				<Node8>Cluster 7996</Node8>
+				<Node9>Cluster 74149</Node9>
+				<Node10>Cluster 12336</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 20268</Node0>
+				<Node1>Cluster 50150</Node1>
+				<Node2>Cluster 35436</Node2>
+				<Node3>Cluster 20078</Node3>
+				<Node4>Cluster 5279</Node4>
+				<Node5>Cluster 4933</Node5>
+				<Node6>Cluster 79546</Node6>
+				<Node7>Cluster 37794</Node7>
+				<Node8>Cluster 76221</Node8>
+				<Node9>Cluster 68348</Node9>
+				<Node10>Cluster 34933</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-562000075">
+		<Gene_id GeneNumber="64">
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 68929</Node1>
+				<Node2>Cluster 6817</Node2>
+				<Node3>Cluster 4621</Node3>
+				<Node4>Cluster 14686</Node4>
+				<Node5>Cluster 71669</Node5>
+				<Node6>Cluster 339</Node6>
+				<Node7>Cluster 44041</Node7>
+				<Node8>Cluster 11947</Node8>
+				<Node9>Cluster 45490</Node9>
+				<Node10>Cluster 47930</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 11873</Node1>
+				<Node2>Cluster 26718</Node2>
+				<Node3>Cluster 21652</Node3>
+				<Node4>Cluster 69593</Node4>
+				<Node5>Cluster 23242</Node5>
+				<Node6>Cluster 14592</Node6>
+				<Node7>Cluster 15033</Node7>
+				<Node8>Cluster 6253</Node8>
+				<Node9>Cluster 70362</Node9>
+				<Node10>Cluster 67078</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-7000112">
+		<Gene_id GeneNumber="99">
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 6476</Node1>
+				<Node2>Cluster 20028</Node2>
+				<Node3>Cluster 19390</Node3>
+				<Node4>Cluster 36013</Node4>
+				<Node5>Cluster 65858</Node5>
+				<Node6>Cluster 59597</Node6>
+				<Node7>Cluster 21349</Node7>
+				<Node8>Cluster 78815</Node8>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 59198</Node1>
+				<Node2>Cluster 35389</Node2>
+				<Node3>Cluster 27421</Node3>
+				<Node4>Cluster 61886</Node4>
+				<Node5>Cluster 51083</Node5>
+				<Node6>Cluster 32871</Node6>
+				<Node7>Cluster 20047</Node7>
+				<Node8>Cluster 10535</Node8>
+				<Node9>Cluster 42626</Node9>
+				<Node10>Cluster 16453</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-2000101">
+		<Gene_id GeneNumber="16">
+			<Paths>
+				<Node0>Cluster 10346</Node0>
+				<Node1>Cluster 45339</Node1>
+				<Node2>Cluster 61727</Node2>
+				<Node3>Cluster 33370</Node3>
+				<Node4>Cluster 48955</Node4>
+				<Node5>Cluster 5582</Node5>
+				<Node6>Cluster 3982</Node6>
+				<Node7>Cluster 34280</Node7>
+				<Node8>Cluster 25583</Node8>
+				<Node9>Cluster 22821</Node9>
+				<Node10>Cluster 27179</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 10346</Node0>
+				<Node1>Cluster 42501</Node1>
+				<Node2>Cluster 18966</Node2>
+				<Node3>Cluster 6402</Node3>
+				<Node4>Cluster 42701</Node4>
+				<Node5>Cluster 42502</Node5>
+				<Node6>Cluster 33993</Node6>
+				<Node7>Cluster 36311</Node7>
+				<Node8>Cluster 79751</Node8>
+				<Node9>Cluster 43713</Node9>
+				<Node10>Cluster 70247</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-938000114">
+		<Gene_id GeneNumber="7">
+			<Paths>
+				<Node0>Cluster 19844</Node0>
+				<Node1>Cluster 52979</Node1>
+				<Node2>Cluster 68960</Node2>
+				<Node3>Cluster 81175</Node3>
+				<Node4>Cluster 82508</Node4>
+				<Node5>Cluster 50120</Node5>
+				<Node6>Cluster 23624</Node6>
+				<Node7>Cluster 31083</Node7>
+				<Node8>Cluster 66532</Node8>
+				<Node9>Cluster 7958</Node9>
+				<Node10>Cluster 70636</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-283000073">
+		<Gene_id GeneNumber="73">
+			<Paths>
+				<Node0>Cluster 21225</Node0>
+				<Node1>Cluster 22630</Node1>
+				<Node2>Cluster 22268</Node2>
+				<Node3>Cluster 43903</Node3>
+				<Node4>Cluster 7997</Node4>
+				<Node5>Cluster 7967</Node5>
+				<Node6>Cluster 56842</Node6>
+				<Node7>Cluster 80112</Node7>
+				<Node8>Cluster 56422</Node8>
+				<Node9>Cluster 72848</Node9>
+				<Node10>Cluster 2483</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 21225</Node0>
+				<Node1>Cluster 1936</Node1>
+				<Node2>Cluster 43904</Node2>
+				<Node3>Cluster 1620</Node3>
+				<Node4>Cluster 6121</Node4>
+				<Node5>Cluster 12338</Node5>
+				<Node6>Cluster 43104</Node6>
+				<Node7>Cluster 43905</Node7>
+				<Node8>Cluster 13950</Node8>
+				<Node9>Cluster 18108</Node9>
+				<Node10>Cluster 37797</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-55000080">
+		<Gene_id GeneNumber="1">
+			<Paths>
+				<Node0>Cluster 13553</Node0>
+				<Node1>Cluster 44273</Node1>
+				<Node2>Cluster 8866</Node2>
+				<Node3>Cluster 62146</Node3>
+				<Node4>Cluster 77777</Node4>
+				<Node5>Cluster 70426</Node5>
+				<Node6>Cluster 67344</Node6>
+				<Node7>Cluster 34450</Node7>
+				<Node8>Cluster 26449</Node8>
+				<Node9>Cluster 64827</Node9>
+				<Node10>Cluster 72043</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-1000054">
+		<Gene_id GeneNumber="11">
+			<Paths>
+				<Node0>Cluster 28206</Node0>
+				<Node1>Cluster 8219</Node1>
+				<Node2>Cluster 31095</Node2>
+				<Node3>Cluster 35898</Node3>
+				<Node4>Cluster 40057</Node4>
+				<Node5>Cluster 16035</Node5>
+				<Node6>Cluster 1954</Node6>
+				<Node7>Cluster 24682</Node7>
+				<Node8>Cluster 18534</Node8>
+				<Node9>Cluster 34137</Node9>
+				<Node10>Cluster 368</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-1260000075">
+		<Gene_id GeneNumber="9">
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 6476</Node1>
+				<Node2>Cluster 3106</Node2>
+				<Node3>Cluster 13290</Node3>
+				<Node4>Cluster 44838</Node4>
+				<Node5>Cluster 41307</Node5>
+				<Node6>Cluster 40574</Node6>
+				<Node7>Cluster 83058</Node7>
+				<Node8>Cluster 49830</Node8>
+				<Node9>Cluster 4622</Node9>
+				<Node10>Cluster 7234</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 59198</Node1>
+				<Node2>Cluster 35389</Node2>
+				<Node3>Cluster 27421</Node3>
+				<Node4>Cluster 61886</Node4>
+				<Node5>Cluster 51083</Node5>
+				<Node6>Cluster 32871</Node6>
+				<Node7>Cluster 20047</Node7>
+				<Node8>Cluster 10535</Node8>
+				<Node9>Cluster 42626</Node9>
+				<Node10>Cluster 16453</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-890000045">
+		<Gene_id GeneNumber="1">
+			<Paths>
+				<Node0>Cluster 13553</Node0>
+				<Node1>Cluster 44312</Node1>
+				<Node2>Cluster 8769</Node2>
+				<Node3>Cluster 63708</Node3>
+				<Node4>Cluster 74873</Node4>
+				<Node5>Cluster 14063</Node5>
+				<Node6>Cluster 59111</Node6>
+				<Node7>Cluster 37839</Node7>
+				<Node8>Cluster 7133</Node8>
+				<Node9>Cluster 66590</Node9>
+				<Node10>Cluster 69218</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-22000053">
+		<Gene_id GeneNumber="119">
+			<Paths>
+				<Node0>Cluster 30407</Node0>
+				<Node1>Cluster 17665</Node1>
+				<Node2>Cluster 51318</Node2>
+				<Node3>Cluster 458</Node3>
+				<Node4>Cluster 31534</Node4>
+				<Node5>Cluster 6779</Node5>
+				<Node6>Cluster 30138</Node6>
+				<Node7>Cluster 82724</Node7>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 30407</Node0>
+				<Node1>Cluster 11699</Node1>
+				<Node2>Cluster 53445</Node2>
+				<Node3>Cluster 42226</Node3>
+				<Node4>Cluster 25673</Node4>
+				<Node5>Cluster 58542</Node5>
+				<Node6>Cluster 53446</Node6>
+				<Node7>Cluster 7371</Node7>
+				<Node8>Cluster 12592</Node8>
+				<Node9>Cluster 9907</Node9>
+				<Node10>Cluster 70145</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-268000017">
+		<Gene_id GeneNumber="2">
+			<Paths>
+				<Node0>Cluster 1153</Node0>
+				<Node1>Cluster 7304</Node1>
+				<Node2>Cluster 4969</Node2>
+				<Node3>Cluster 49391</Node3>
+				<Node4>Cluster 23029</Node4>
+				<Node5>Cluster 4797</Node5>
+				<Node6>Cluster 27037</Node6>
+				<Node7>Cluster 3312</Node7>
+				<Node8>Cluster 67680</Node8>
+				<Node9>Cluster 57531</Node9>
+				<Node10>Cluster 40613</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 1153</Node0>
+				<Node1>Cluster 66348</Node1>
+				<Node2>Cluster 20069</Node2>
+				<Node3>Cluster 77627</Node3>
+				<Node4>Cluster 40801</Node4>
+				<Node5>Cluster 4719</Node5>
+				<Node6>Cluster 31429</Node6>
+				<Node7>Cluster 39875</Node7>
+				<Node8>Cluster 23391</Node8>
+				<Node9>Cluster 30610</Node9>
+				<Node10>Cluster 49653</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-1251000050">
+		<Gene_id GeneNumber="6">
+			<Paths>
+				<Node0>Cluster 12026</Node0>
+				<Node1>Cluster 8239</Node1>
+				<Node2>Cluster 65254</Node2>
+				<Node3>Cluster 60492</Node3>
+				<Node4>Cluster 41292</Node4>
+				<Node5>Cluster 29044</Node5>
+				<Node6>Cluster 66866</Node6>
+				<Node7>Cluster 60491</Node7>
+				<Node8>Cluster 77562</Node8>
+				<Node9>Cluster 55816</Node9>
+				<Node10>Cluster 69750</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-2000020">
+		<Gene_id GeneNumber="2">
+			<Paths>
+				<Node0>Cluster 19867</Node0>
+				<Node1>Cluster 543</Node1>
+				<Node2>Cluster 72603</Node2>
+				<Node3>Cluster 61699</Node3>
+				<Node4>Cluster 25351</Node4>
+				<Node5>Cluster 2004</Node5>
+				<Node6>Cluster 78682</Node6>
+				<Node7>Cluster 68330</Node7>
+				<Node8>Cluster 81693</Node8>
+				<Node9>Cluster 29230</Node9>
+				<Node10>Cluster 10016</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-7000112">
+		<Gene_id GeneNumber="9">
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 6476</Node1>
+				<Node2>Cluster 20028</Node2>
+				<Node3>Cluster 19390</Node3>
+				<Node4>Cluster 36013</Node4>
+				<Node5>Cluster 65858</Node5>
+				<Node6>Cluster 59597</Node6>
+				<Node7>Cluster 21349</Node7>
+				<Node8>Cluster 78815</Node8>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 59198</Node1>
+				<Node2>Cluster 35389</Node2>
+				<Node3>Cluster 27421</Node3>
+				<Node4>Cluster 61886</Node4>
+				<Node5>Cluster 51083</Node5>
+				<Node6>Cluster 32871</Node6>
+				<Node7>Cluster 20047</Node7>
+				<Node8>Cluster 10535</Node8>
+				<Node9>Cluster 42626</Node9>
+				<Node10>Cluster 16453</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-313000055">
+		<Gene_id GeneNumber="17">
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 11873</Node1>
+				<Node2>Cluster 26718</Node2>
+				<Node3>Cluster 21652</Node3>
+				<Node4>Cluster 69593</Node4>
+				<Node5>Cluster 23242</Node5>
+				<Node6>Cluster 14592</Node6>
+				<Node7>Cluster 15033</Node7>
+				<Node8>Cluster 15737</Node8>
+				<Node9>Cluster 80989</Node9>
+				<Node10>Cluster 71677</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 82220</Node1>
+				<Node2>Cluster 2401</Node2>
+				<Node3>Cluster 60516</Node3>
+				<Node4>Cluster 18610</Node4>
+				<Node5>Cluster 659</Node5>
+				<Node6>Cluster 9755</Node6>
+				<Node7>Cluster 18819</Node7>
+				<Node8>Cluster 17295</Node8>
+				<Node9>Cluster 60354</Node9>
+				<Node10>Cluster 49852</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-3000045">
+		<Gene_id GeneNumber="99">
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 6476</Node1>
+				<Node2>Cluster 20028</Node2>
+				<Node3>Cluster 19390</Node3>
+				<Node4>Cluster 36013</Node4>
+				<Node5>Cluster 65858</Node5>
+				<Node6>Cluster 59597</Node6>
+				<Node7>Cluster 21349</Node7>
+				<Node8>Cluster 78815</Node8>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 59198</Node1>
+				<Node2>Cluster 35389</Node2>
+				<Node3>Cluster 27421</Node3>
+				<Node4>Cluster 61886</Node4>
+				<Node5>Cluster 51083</Node5>
+				<Node6>Cluster 32871</Node6>
+				<Node7>Cluster 20047</Node7>
+				<Node8>Cluster 10535</Node8>
+				<Node9>Cluster 42626</Node9>
+				<Node10>Cluster 16453</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-318000065">
+		<Gene_id GeneNumber="1">
+			<Paths>
+				<Node0>Cluster 1169</Node0>
+				<Node1>Cluster 12627</Node1>
+				<Node2>Cluster 18847</Node2>
+				<Node3>Cluster 34445</Node3>
+				<Node4>Cluster 25218</Node4>
+				<Node5>Cluster 30022</Node5>
+				<Node6>Cluster 26364</Node6>
+				<Node7>Cluster 7996</Node7>
+				<Node8>Cluster 74149</Node8>
+				<Node9>Cluster 12336</Node9>
+				<Node10>Cluster 11591</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 1169</Node0>
+				<Node1>Cluster 20268</Node1>
+				<Node2>Cluster 50150</Node2>
+				<Node3>Cluster 35436</Node3>
+				<Node4>Cluster 20078</Node4>
+				<Node5>Cluster 5279</Node5>
+				<Node6>Cluster 4933</Node6>
+				<Node7>Cluster 79546</Node7>
+				<Node8>Cluster 37794</Node8>
+				<Node9>Cluster 76221</Node9>
+				<Node10>Cluster 68348</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-55000080">
+		<Gene_id GeneNumber="1">
+			<Paths>
+				<Node0>Cluster 13553</Node0>
+				<Node1>Cluster 44273</Node1>
+				<Node2>Cluster 8866</Node2>
+				<Node3>Cluster 62146</Node3>
+				<Node4>Cluster 77777</Node4>
+				<Node5>Cluster 70426</Node5>
+				<Node6>Cluster 67344</Node6>
+				<Node7>Cluster 34450</Node7>
+				<Node8>Cluster 26449</Node8>
+				<Node9>Cluster 64827</Node9>
+				<Node10>Cluster 72043</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-7000112">
+		<Gene_id GeneNumber="9">
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 6476</Node1>
+				<Node2>Cluster 20028</Node2>
+				<Node3>Cluster 19390</Node3>
+				<Node4>Cluster 36013</Node4>
+				<Node5>Cluster 65858</Node5>
+				<Node6>Cluster 59597</Node6>
+				<Node7>Cluster 21349</Node7>
+				<Node8>Cluster 78815</Node8>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 59198</Node1>
+				<Node2>Cluster 35389</Node2>
+				<Node3>Cluster 27421</Node3>
+				<Node4>Cluster 61886</Node4>
+				<Node5>Cluster 51083</Node5>
+				<Node6>Cluster 32871</Node6>
+				<Node7>Cluster 20047</Node7>
+				<Node8>Cluster 10535</Node8>
+				<Node9>Cluster 42626</Node9>
+				<Node10>Cluster 16453</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-380000102">
+		<Gene_id GeneNumber="3">
+			<Paths>
+				<Node0>Cluster 25945</Node0>
+				<Node1>Cluster 16557</Node1>
+				<Node2>Cluster 32030</Node2>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-2000020">
+		<Gene_id GeneNumber="6">
+			<Paths>
+				<Node0>Cluster 19867</Node0>
+				<Node1>Cluster 543</Node1>
+				<Node2>Cluster 72603</Node2>
+				<Node3>Cluster 61699</Node3>
+				<Node4>Cluster 25351</Node4>
+				<Node5>Cluster 2004</Node5>
+				<Node6>Cluster 78682</Node6>
+				<Node7>Cluster 68330</Node7>
+				<Node8>Cluster 81693</Node8>
+				<Node9>Cluster 29230</Node9>
+				<Node10>Cluster 10016</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-1251000050">
+		<Gene_id GeneNumber="2">
+			<Paths>
+				<Node0>Cluster 12026</Node0>
+				<Node1>Cluster 8239</Node1>
+				<Node2>Cluster 65254</Node2>
+				<Node3>Cluster 60492</Node3>
+				<Node4>Cluster 41292</Node4>
+				<Node5>Cluster 29044</Node5>
+				<Node6>Cluster 66866</Node6>
+				<Node7>Cluster 60491</Node7>
+				<Node8>Cluster 77562</Node8>
+				<Node9>Cluster 55816</Node9>
+				<Node10>Cluster 69750</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-313000055">
+		<Gene_id GeneNumber="27">
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 11873</Node1>
+				<Node2>Cluster 26718</Node2>
+				<Node3>Cluster 21652</Node3>
+				<Node4>Cluster 69593</Node4>
+				<Node5>Cluster 23242</Node5>
+				<Node6>Cluster 14592</Node6>
+				<Node7>Cluster 15033</Node7>
+				<Node8>Cluster 15737</Node8>
+				<Node9>Cluster 80989</Node9>
+				<Node10>Cluster 71677</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 82220</Node1>
+				<Node2>Cluster 2401</Node2>
+				<Node3>Cluster 60516</Node3>
+				<Node4>Cluster 18610</Node4>
+				<Node5>Cluster 659</Node5>
+				<Node6>Cluster 9755</Node6>
+				<Node7>Cluster 18819</Node7>
+				<Node8>Cluster 17295</Node8>
+				<Node9>Cluster 60354</Node9>
+				<Node10>Cluster 49852</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-120">
+		<Gene_id GeneNumber="3">
+			<Paths>
+				<Node0>Cluster 17798</Node0>
+				<Node1>Cluster 1069</Node1>
+				<Node2>Cluster 65143</Node2>
+				<Node3>Cluster 76243</Node3>
+				<Node4>Cluster 51445</Node4>
+				<Node5>Cluster 58184</Node5>
+				<Node6>Cluster 9233</Node6>
+				<Node7>Cluster 66568</Node7>
+				<Node8>Cluster 69423</Node8>
+				<Node9>Cluster 49699</Node9>
+				<Node10>Cluster 31610</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 17798</Node0>
+				<Node1>Cluster 44105</Node1>
+				<Node2>Cluster 691</Node2>
+				<Node3>Cluster 80125</Node3>
+				<Node4>Cluster 53564</Node4>
+				<Node5>Cluster 64923</Node5>
+				<Node6>Cluster 51446</Node6>
+				<Node7>Cluster 5295</Node7>
+				<Node8>Cluster 68171</Node8>
+				<Node9>Cluster 47104</Node9>
+				<Node10>Cluster 5728</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-233000114">
+		<Gene_id GeneNumber="9">
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 59198</Node1>
+				<Node2>Cluster 56499</Node2>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-313000055">
+		<Gene_id GeneNumber="64">
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 11873</Node1>
+				<Node2>Cluster 26718</Node2>
+				<Node3>Cluster 21652</Node3>
+				<Node4>Cluster 69593</Node4>
+				<Node5>Cluster 23242</Node5>
+				<Node6>Cluster 14592</Node6>
+				<Node7>Cluster 15033</Node7>
+				<Node8>Cluster 15737</Node8>
+				<Node9>Cluster 80989</Node9>
+				<Node10>Cluster 71677</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 82220</Node1>
+				<Node2>Cluster 2401</Node2>
+				<Node3>Cluster 60516</Node3>
+				<Node4>Cluster 18610</Node4>
+				<Node5>Cluster 659</Node5>
+				<Node6>Cluster 9755</Node6>
+				<Node7>Cluster 18819</Node7>
+				<Node8>Cluster 17295</Node8>
+				<Node9>Cluster 60354</Node9>
+				<Node10>Cluster 49852</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-103">
+		<Gene_id GeneNumber="2">
+			<Paths>
+				<Node0>Cluster 19867</Node0>
+				<Node1>Cluster 60815</Node1>
+				<Node2>Cluster 28813</Node2>
+				<Node3>Cluster 33371</Node3>
+				<Node4>Cluster 31766</Node4>
+				<Node5>Cluster 32066</Node5>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-1251000050">
+		<Gene_id GeneNumber="314">
+			<Paths>
+				<Node0>Cluster 12026</Node0>
+				<Node1>Cluster 8239</Node1>
+				<Node2>Cluster 65254</Node2>
+				<Node3>Cluster 60492</Node3>
+				<Node4>Cluster 41292</Node4>
+				<Node5>Cluster 29044</Node5>
+				<Node6>Cluster 66866</Node6>
+				<Node7>Cluster 60491</Node7>
+				<Node8>Cluster 77562</Node8>
+				<Node9>Cluster 55816</Node9>
+				<Node10>Cluster 69750</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-2000072">
+		<Gene_id GeneNumber="5">
+			<Paths>
+				<Node0>Cluster 14767</Node0>
+				<Node1>Cluster 71037</Node1>
+				<Node2>Cluster 15469</Node2>
+				<Node3>Cluster 22900</Node3>
+				<Node4>Cluster 59636</Node4>
+				<Node5>Cluster 62083</Node5>
+				<Node6>Cluster 57696</Node6>
+				<Node7>Cluster 17672</Node7>
+				<Node8>Cluster 44406</Node8>
+				<Node9>Cluster 20149</Node9>
+				<Node10>Cluster 59868</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-890000045">
+		<Gene_id GeneNumber="1">
+			<Paths>
+				<Node0>Cluster 13553</Node0>
+				<Node1>Cluster 44312</Node1>
+				<Node2>Cluster 8769</Node2>
+				<Node3>Cluster 63708</Node3>
+				<Node4>Cluster 74873</Node4>
+				<Node5>Cluster 14063</Node5>
+				<Node6>Cluster 59111</Node6>
+				<Node7>Cluster 37839</Node7>
+				<Node8>Cluster 7133</Node8>
+				<Node9>Cluster 66590</Node9>
+				<Node10>Cluster 69218</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J90-Assembly.fa_contig-55">
+		<Gene_id GeneNumber="64">
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 82220</Node1>
+				<Node2>Cluster 2401</Node2>
+				<Node3>Cluster 60516</Node3>
+				<Node4>Cluster 18610</Node4>
+				<Node5>Cluster 659</Node5>
+				<Node6>Cluster 9755</Node6>
+				<Node7>Cluster 18819</Node7>
+				<Node8>Cluster 17295</Node8>
+				<Node9>Cluster 60354</Node9>
+				<Node10>Cluster 49852</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-303000006">
+		<Gene_id GeneNumber="119">
+			<Paths>
+				<Node0>Cluster 30407</Node0>
+				<Node1>Cluster 17665</Node1>
+				<Node2>Cluster 51318</Node2>
+				<Node3>Cluster 458</Node3>
+				<Node4>Cluster 31534</Node4>
+				<Node5>Cluster 6779</Node5>
+				<Node6>Cluster 30138</Node6>
+				<Node7>Cluster 27178</Node7>
+				<Node8>Cluster 83756</Node8>
+				<Node9>Cluster 81689</Node9>
+				<Node10>Cluster 73271</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 30407</Node0>
+				<Node1>Cluster 11699</Node1>
+				<Node2>Cluster 53445</Node2>
+				<Node3>Cluster 42226</Node3>
+				<Node4>Cluster 83757</Node4>
+				<Node5>Cluster 25673</Node5>
+				<Node6>Cluster 58542</Node6>
+				<Node7>Cluster 53446</Node7>
+				<Node8>Cluster 6025</Node8>
+				<Node9>Cluster 25550</Node9>
+				<Node10>Cluster 12592</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-10000091">
+		<Gene_id GeneNumber="2">
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 11873</Node1>
+				<Node2>Cluster 26718</Node2>
+				<Node3>Cluster 21652</Node3>
+				<Node4>Cluster 69593</Node4>
+				<Node5>Cluster 23242</Node5>
+				<Node6>Cluster 14592</Node6>
+				<Node7>Cluster 15033</Node7>
+				<Node8>Cluster 15737</Node8>
+				<Node9>Cluster 80989</Node9>
+				<Node10>Cluster 71677</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 6817</Node1>
+				<Node2>Cluster 4621</Node2>
+				<Node3>Cluster 14686</Node3>
+				<Node4>Cluster 71669</Node4>
+				<Node5>Cluster 339</Node5>
+				<Node6>Cluster 44041</Node6>
+				<Node7>Cluster 11947</Node7>
+				<Node8>Cluster 45490</Node8>
+				<Node9>Cluster 47930</Node9>
+				<Node10>Cluster 51861</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-129000083">
+		<Gene_id GeneNumber="1">
+			<Paths>
+				<Node0>Cluster 13098</Node0>
+				<Node1>Cluster 77856</Node1>
+				<Node2>Cluster 65523</Node2>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-562000075">
+		<Gene_id GeneNumber="27">
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 68929</Node1>
+				<Node2>Cluster 6817</Node2>
+				<Node3>Cluster 4621</Node3>
+				<Node4>Cluster 14686</Node4>
+				<Node5>Cluster 71669</Node5>
+				<Node6>Cluster 339</Node6>
+				<Node7>Cluster 44041</Node7>
+				<Node8>Cluster 11947</Node8>
+				<Node9>Cluster 45490</Node9>
+				<Node10>Cluster 47930</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 11873</Node1>
+				<Node2>Cluster 26718</Node2>
+				<Node3>Cluster 21652</Node3>
+				<Node4>Cluster 69593</Node4>
+				<Node5>Cluster 23242</Node5>
+				<Node6>Cluster 14592</Node6>
+				<Node7>Cluster 15033</Node7>
+				<Node8>Cluster 6253</Node8>
+				<Node9>Cluster 70362</Node9>
+				<Node10>Cluster 67078</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-316000068">
+		<Gene_id GeneNumber="1">
+			<Paths>
+				<Node0>Cluster 1156</Node0>
+				<Node1>Cluster 71519</Node1>
+				<Node2>Cluster 39047</Node2>
+				<Node3>Cluster 33529</Node3>
+				<Node4>Cluster 11967</Node4>
+				<Node5>Cluster 1743</Node5>
+				<Node6>Cluster 2898</Node6>
+				<Node7>Cluster 7494</Node7>
+				<Node8>Cluster 19048</Node8>
+				<Node9>Cluster 7533</Node9>
+				<Node10>Cluster 37030</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 1156</Node0>
+				<Node1>Cluster 19049</Node1>
+				<Node2>Cluster 71724</Node2>
+				<Node3>Cluster 53541</Node3>
+				<Node4>Cluster 49677</Node4>
+				<Node5>Cluster 67913</Node5>
+				<Node6>Cluster 67523</Node6>
+				<Node7>Cluster 44148</Node7>
+				<Node8>Cluster 36470</Node8>
+				<Node9>Cluster 26753</Node9>
+				<Node10>Cluster 45797</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-318000065">
+		<Gene_id GeneNumber="2">
+			<Paths>
+				<Node0>Cluster 12627</Node0>
+				<Node1>Cluster 18847</Node1>
+				<Node2>Cluster 34445</Node2>
+				<Node3>Cluster 25218</Node3>
+				<Node4>Cluster 30022</Node4>
+				<Node5>Cluster 26364</Node5>
+				<Node6>Cluster 7996</Node6>
+				<Node7>Cluster 74149</Node7>
+				<Node8>Cluster 12336</Node8>
+				<Node9>Cluster 11591</Node9>
+				<Node10>Cluster 36851</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 12627</Node0>
+				<Node1>Cluster 1169</Node1>
+				<Node2>Cluster 20268</Node2>
+				<Node3>Cluster 50150</Node3>
+				<Node4>Cluster 35436</Node4>
+				<Node5>Cluster 20078</Node5>
+				<Node6>Cluster 5279</Node6>
+				<Node7>Cluster 4933</Node7>
+				<Node8>Cluster 79546</Node8>
+				<Node9>Cluster 37794</Node9>
+				<Node10>Cluster 76221</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-316000068">
+		<Gene_id GeneNumber="3">
+			<Paths>
+				<Node0>Cluster 19049</Node0>
+				<Node1>Cluster 1156</Node1>
+				<Node2>Cluster 71519</Node2>
+				<Node3>Cluster 39047</Node3>
+				<Node4>Cluster 33529</Node4>
+				<Node5>Cluster 11967</Node5>
+				<Node6>Cluster 1743</Node6>
+				<Node7>Cluster 2898</Node7>
+				<Node8>Cluster 7494</Node8>
+				<Node9>Cluster 19048</Node9>
+				<Node10>Cluster 7533</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 19049</Node0>
+				<Node1>Cluster 71724</Node1>
+				<Node2>Cluster 53541</Node2>
+				<Node3>Cluster 49677</Node3>
+				<Node4>Cluster 67913</Node4>
+				<Node5>Cluster 67523</Node5>
+				<Node6>Cluster 44148</Node6>
+				<Node7>Cluster 36470</Node7>
+				<Node8>Cluster 26753</Node8>
+				<Node9>Cluster 45797</Node9>
+				<Node10>Cluster 56420</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-562000075">
+		<Gene_id GeneNumber="2">
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 68929</Node1>
+				<Node2>Cluster 6817</Node2>
+				<Node3>Cluster 4621</Node3>
+				<Node4>Cluster 14686</Node4>
+				<Node5>Cluster 71669</Node5>
+				<Node6>Cluster 339</Node6>
+				<Node7>Cluster 44041</Node7>
+				<Node8>Cluster 11947</Node8>
+				<Node9>Cluster 45490</Node9>
+				<Node10>Cluster 47930</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 11873</Node1>
+				<Node2>Cluster 26718</Node2>
+				<Node3>Cluster 21652</Node3>
+				<Node4>Cluster 69593</Node4>
+				<Node5>Cluster 23242</Node5>
+				<Node6>Cluster 14592</Node6>
+				<Node7>Cluster 15033</Node7>
+				<Node8>Cluster 6253</Node8>
+				<Node9>Cluster 70362</Node9>
+				<Node10>Cluster 67078</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-10000091">
+		<Gene_id GeneNumber="27">
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 11873</Node1>
+				<Node2>Cluster 26718</Node2>
+				<Node3>Cluster 21652</Node3>
+				<Node4>Cluster 69593</Node4>
+				<Node5>Cluster 23242</Node5>
+				<Node6>Cluster 14592</Node6>
+				<Node7>Cluster 15033</Node7>
+				<Node8>Cluster 15737</Node8>
+				<Node9>Cluster 80989</Node9>
+				<Node10>Cluster 71677</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 6817</Node1>
+				<Node2>Cluster 4621</Node2>
+				<Node3>Cluster 14686</Node3>
+				<Node4>Cluster 71669</Node4>
+				<Node5>Cluster 339</Node5>
+				<Node6>Cluster 44041</Node6>
+				<Node7>Cluster 11947</Node7>
+				<Node8>Cluster 45490</Node8>
+				<Node9>Cluster 47930</Node9>
+				<Node10>Cluster 51861</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-1260000075">
+		<Gene_id GeneNumber="9">
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 6476</Node1>
+				<Node2>Cluster 3106</Node2>
+				<Node3>Cluster 13290</Node3>
+				<Node4>Cluster 44838</Node4>
+				<Node5>Cluster 41307</Node5>
+				<Node6>Cluster 40574</Node6>
+				<Node7>Cluster 83058</Node7>
+				<Node8>Cluster 49830</Node8>
+				<Node9>Cluster 4622</Node9>
+				<Node10>Cluster 7234</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26590</Node0>
+				<Node1>Cluster 59198</Node1>
+				<Node2>Cluster 35389</Node2>
+				<Node3>Cluster 27421</Node3>
+				<Node4>Cluster 61886</Node4>
+				<Node5>Cluster 51083</Node5>
+				<Node6>Cluster 32871</Node6>
+				<Node7>Cluster 20047</Node7>
+				<Node8>Cluster 10535</Node8>
+				<Node9>Cluster 42626</Node9>
+				<Node10>Cluster 16453</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J7-Assembly.fa_contig-149000032">
+		<Gene_id GeneNumber="2">
+			<Paths>
+				<Node0>Cluster 25032</Node0>
+				<Node1>Cluster 23138</Node1>
+				<Node2>Cluster 60111</Node2>
+				<Node3>Cluster 12601</Node3>
+				<Node4>Cluster 75915</Node4>
+				<Node5>Cluster 60989</Node5>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+	<Sequence name="Sample_P4J0-Assembly.fa_contig-10000091">
+		<Gene_id GeneNumber="17">
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 11873</Node1>
+				<Node2>Cluster 26718</Node2>
+				<Node3>Cluster 21652</Node3>
+				<Node4>Cluster 69593</Node4>
+				<Node5>Cluster 23242</Node5>
+				<Node6>Cluster 14592</Node6>
+				<Node7>Cluster 15033</Node7>
+				<Node8>Cluster 15737</Node8>
+				<Node9>Cluster 80989</Node9>
+				<Node10>Cluster 71677</Node10>
+			</Paths>
+			<Paths>
+				<Node0>Cluster 26322</Node0>
+				<Node1>Cluster 6817</Node1>
+				<Node2>Cluster 4621</Node2>
+				<Node3>Cluster 14686</Node3>
+				<Node4>Cluster 71669</Node4>
+				<Node5>Cluster 339</Node5>
+				<Node6>Cluster 44041</Node6>
+				<Node7>Cluster 11947</Node7>
+				<Node8>Cluster 45490</Node8>
+				<Node9>Cluster 47930</Node9>
+				<Node10>Cluster 51861</Node10>
+			</Paths>
+		</Gene_id>
+	</Sequence>
+</ComparingSequences>
