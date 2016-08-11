@@ -19,12 +19,12 @@ class OptionParser():
 
 
         ##########         parser       #########################
-        self.parser.add_argument('-i', type=str, help='Input file.Le fichier en input doit correspondre au fichier .clstr de cd-hit.',default=None,required=True)
+        self.parser.add_argument('-i', type=str, help='Input file.Le fichier en input doit correspondre au fichier .clstr de cd-hit.',default="")
 
-        self.parser.add_argument('-find', type=str, help="L'input doit être le nom d'un gène qui est présent dans le graph. La fonction va alors retourner le cluster respectif du gène.", default=None)
+        self.parser.add_argument('-find', type=str, help="L'input doit être le nom d'un gène qui est présent dans le graph. La fonction va alors retourner le cluster respectif du gène.", default="")
 
         self.parser.add_argument('-lop', type=str, help='La fonction retourne tous les chemins de longueur "x" partant du nom du cluster que vous devez donner en parametètre.'
-                                                        ' Utilisez -x pour donner la longueur des chemins désirés.', default=None)
+                                                        ' Utilisez -x pour donner la longueur des chemins désirés.', default="")
 
         self.parser.add_argument('-x', type=int, help="Longueur des chemin désiré lors de l'utilisation de -lop ou -mn ou les deux.", default=-1)
 
@@ -41,16 +41,16 @@ class OptionParser():
 
 
         self.parser.add_argument('-xml', type=str, help="Créer un fichier xml qui peut être ouvert dans Microsoft Excel."
-                                                         "L'input correspond au fichier avec son path.", default=None)
+                                                         "L'input correspond au fichier avec son path.", default="")
 
 
-        self.parser.add_argument('-s', type=str, help="Affiche différentes statistiques sur le graph.", default=False )
+        self.parser.add_argument('-s', type=str, help="Affiche différentes statistiques sur le graph.", default="" )
 
-        self.parser.add_argument('-save', type=str, help="Sauvegarde le graph dans le fichier donné en paramètre.", default=None)
-        self.parser.add_argument('-r', type=str, help="Load le graph à partir du fichier de sauvegarde deonné en paramètre", default=None)
+        self.parser.add_argument('-save', type=str, help="Sauvegarde le graph dans le fichier donné en paramètre.", default="")
+        self.parser.add_argument('-r', type=str, help="Load le graph à partir du fichier de sauvegarde deonné en paramètre", default="")
         self.parser.add_argument('-mn', type=str, help="Créer des fichiers cytoscape pour plusieurs gènes à la fois."
-                                 'Utilisez -x quand vous utilisez -mn pour spécifier la longueur des chemins.', default=None)
-        self.parser.add_argument('-prefix', type=str, help="Prefix des fichiers crees.", default=None)
+                                 'Utilisez -x quand vous utilisez -mn pour spécifier la longueur des chemins.', default="")
+        self.parser.add_argument('-prefix', type=str, help="Prefix des fichiers crees.", default="")
 
         #
         #parse the args...
@@ -656,25 +656,25 @@ if __name__ == '__main__':
 
     # Load graph
     graph = Graph()
-    if prefix !=None:
+    if prefix !="":
         graph.prefix=prefix
 
-    if load_file !=None or (load_file==None and reload!=None):
+    if load_file !="" or (load_file=="" and reload!=""):
         # graph.load_graph(('/home/saiant01/cat_Sample_P4Jx-Assembly_100.fa.clstr'))
 
-        if load_file != None:
+        if load_file != "":
             graph.load_graph((load_file))
 
-            if save != None:
+            if save !="":
                 graph.save_graph(save)
 
-            if reload != None:
+            if reload != "":
                 graph = Graph()
-                graph.reload_graph(save)
+                graph.reload_graph(reload)
 
-        elif (load_file==None and reload!=None):
+        elif (load_file=="" and reload!=""):
             graph = Graph()
-            graph.reload_graph(save)
+            graph.reload_graph(reload)
 
         # P4J0 vs P4J7
         # graph.load_graph(('/home/saiant01/Desktop/cat_prodigal_cd-hit_p0p7.fasta.clstr'))
@@ -692,7 +692,7 @@ if __name__ == '__main__':
         # graph.load_graph(('/home/saiant01/PycharmProjects/ClusterGraph/Data/cat_prodigal-cd-hit.fasta.clstr'))
 
 
-        if option_find != None:
+        if option_find != "":
             # Trouver les clusters pour lequel le gene appartient
             print(graph.find_cluster(option_find))
         else:
@@ -701,24 +701,24 @@ if __name__ == '__main__':
 
 
             # Liste des chemins partant du cluster en faisant au maximum n pas.
-        if lenght != -1 and option_lop != None:
+        if lenght != -1 and option_lop != "":
             list_of_paths = graph.find_path(option_lop, lenght)
 
             # Coloring
             sequence_path = graph.sequences_in_find_path(list_of_paths)
             #graph.show_path_by_samples(sequence_path)
 
-        elif lenght== -1 and option_lop !=None:
+        elif lenght== -1 and option_lop !="":
             print("Vous devez spécifier le cluster de départ de vos chemins avec l'option -lop!")
-        elif lenght != -1 and option_lop == None:
+        elif lenght != -1 and option_lop == "":
             print("Vous devez spécifier la longueur de vos chemins avec l'option -x!")
         else:
             pass
 
             # Sous-graph
-        if sous_graph==True and option_lop != None and lenght!=-1:
+        if sous_graph==True and option_lop != "" and lenght!=-1:
             sous_graph = graph.sous_graph(list_of_paths)
-        elif sous_graph==True and (option_lop == None or lenght==-1):
+        elif sous_graph==True and (option_lop == "" or lenght==-1):
             if lenght ==-1:
                 print("Vous devez spécifier la longueur de vos chemins avec l'option -x!")
             else:
@@ -746,7 +746,7 @@ if __name__ == '__main__':
 
 
             # Compare
-        if option_xml != None and lenght != -1 and option_lop!=None:
+        if option_xml!= "" and lenght != -1 and option_lop!="":
             try:
                 file=graph.beta_lactam_file(option_xml)
                 (graph.compare_sequences_excel(file, lenght))
@@ -755,7 +755,7 @@ if __name__ == '__main__':
         else:
             pass
 
-        if option_mn!=None and lenght!=-1:
+        if option_mn!="" and lenght!=-1:
             graph.many_genes_cytoscape(option_mn,lenght)
 
             # Stats
