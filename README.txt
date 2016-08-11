@@ -150,15 +150,15 @@ Voici un exemple d'utilisation de l'option -xml. Nous allons donc donner le fich
 de cette façon en ajoutant l'option -xml. Cet option permet de creer un fichier qui peut s'ouvrir dans excel qui compare
 les chemins des differents genes qui etaient presents dans le fichier Beta_Lactam_Fred_P4J0-7-90:
 
-	python3 ClusterGraph.py -i cat_prodigal-cd-hit.fasta.clstr  -xml ClusterGraph/Data/XML/Beta_Lactam_Fred_P4J0-7-90 -y 10
+	python3 ClusterGraph.py -i cat_prodigal-cd-hit.fasta.clstr  -xml ClusterGraph/Data/XML/Beta_Lactam_Fred_P4J0-7-90 -x 10
 
-L'option -y indique la longueur des chemins à considérer pour la comparaison des chemins en xml.
+Pour spécifier la longueur des chemins pour le fichier xml, enmcore une fois utiliser l'option -x.
 
 	Si vous possedez un fichier pour lequel la premiere colonne correspond a la liste des genes a etudier, remplacez Beta_Lactam_Fred_P4J0-7-90 par votre fichier avec son chemin.
 	De plus, dans ce cas, vous pouvez utiliser l'option -mn qui vous permet de creer plusieurs fichier cytoscape pour tous les genes qui se trouvent dans votre fichier.
 	Ces fichiers cytoscape se retrouvent dans le repertoire many_genes_cytoscape dans le repertoire Cytoscape.
 
-	python3 ClusterGraph.py -i cat_prodigal-cd-hit.fasta.clstr  -g votre_fichier -xml True -y 10
+	python3 ClusterGraph.py -i cat_prodigal-cd-hit.fasta.clstr  -xml votre_fichier -x 10
 
 	cytoscape:
 	python3 ClusterGraph.py -i cat_prodigal-cd-hit.fasta.clstr -mn fichier_contenant_vos_genes -x 10
@@ -208,8 +208,6 @@ Reload:
 
   -xml XML    Creer un fichier xml qui peut être ouvert dans Microsoft Excel.|
               True ou False.
-
-  -y Y        Longueur des chemin desire lors de l'utilisation de -xml.
 
   -s S        Affiche differentes statistiques sur le graph.
 

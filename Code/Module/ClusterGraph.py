@@ -43,7 +43,6 @@ class OptionParser():
         self.parser.add_argument('-xml', type=str, help="Créer un fichier xml qui peut être ouvert dans Microsoft Excel."
                                                          "L'input correspond au fichier avec son path.", default=None)
 
-        self.parser.add_argument('-y', type=int, help="Longueur des chemin désiré lors de l'utilisation de -xml.", default=-1)
 
         self.parser.add_argument('-s', type=str, help="Affiche différentes statistiques sur le graph.", default=False )
 
@@ -522,7 +521,6 @@ class Graph:
     def beta_lactam_file(self,file):
         #Convertis les données reçu grace aux 'greps' de fred
         f1=open(file,'r')
-        path =''
         dir = os.path.dirname(__file__)
         if self.prefix!=None:
             write_file = os.path.join(dir, '/home/saiant01/PycharmProjects/ClusterGraph/Data/XML/{}_compare_samples.txt'.format(self.prefix))
@@ -642,15 +640,14 @@ if __name__ == '__main__':
         load_file=(arg['i'])
     else:
         load_file = None
-    find = (arg['find'])
-    node_for_list_of_paths = (arg['lop'])
-    lenght_lop = int(arg['x'])
+    option_find = (arg['find'])
+    option_lop = (arg['lop'])
+    lenght = int(arg['x'])
     sous_graph = bool(arg['sg'])
     cytoscape = bool(arg['cyto'])
     javacript = bool(arg['j'])
-    convert_greps_fred = str(arg['xml'])
-    lenght_xml = int(arg['y'])
-    many = arg['mn']
+    option_xml = str(arg['xml'])
+    option_mn = arg['mn']
     stats=(arg['s'])
     save = (arg['save'])
     reload = (arg['r'])
@@ -662,16 +659,20 @@ if __name__ == '__main__':
     if prefix !=None:
         graph.prefix=prefix
 
-    if load_file !=None:
+    if load_file !=None or (load_file==None and reload!=None):
         # graph.load_graph(('/home/saiant01/cat_Sample_P4Jx-Assembly_100.fa.clstr'))
 
-        # P4
-        graph.load_graph((load_file))
+        if load_file != None:
+            graph.load_graph((load_file))
 
-        if save != None:
-            graph.save_graph(save)
+            if save != None:
+                graph.save_graph(save)
 
-        if reload != None:
+            if reload != None:
+                graph = Graph()
+                graph.reload_graph(save)
+
+        elif (load_file==None and reload!=None):
             graph = Graph()
             graph.reload_graph(save)
 
@@ -691,27 +692,37 @@ if __name__ == '__main__':
         # graph.load_graph(('/home/saiant01/PycharmProjects/ClusterGraph/Data/cat_prodigal-cd-hit.fasta.clstr'))
 
 
-        if find != None:
+        if option_find != None:
             # Trouver les clusters pour lequel le gene appartient
-            print(graph.find_cluster(find))
+            print(graph.find_cluster(option_find))
         else:
             pass
 
 
 
             # Liste des chemins partant du cluster en faisant au maximum n pas.
-        if lenght_lop != -1 and node_for_list_of_paths != None:
-            list_of_paths = graph.find_path(node_for_list_of_paths, lenght_lop)
+        if lenght != -1 and option_lop != None:
+            list_of_paths = graph.find_path(option_lop, lenght)
 
             # Coloring
             sequence_path = graph.sequences_in_find_path(list_of_paths)
-            graph.show_path_by_samples(sequence_path)
+            #graph.show_path_by_samples(sequence_path)
+
+        elif lenght== -1 and option_lop !=None:
+            print("Vous devez spécifier le cluster de départ de vos chemins avec l'option -lop!")
+        elif lenght != -1 and option_lop == None:
+            print("Vous devez spécifier la longueur de vos chemins avec l'option -x!")
         else:
             pass
 
             # Sous-graph
-        if sous_graph != False:
+        if sous_graph==True and option_lop != None and lenght!=-1:
             sous_graph = graph.sous_graph(list_of_paths)
+        elif sous_graph==True and (option_lop == None or lenght==-1):
+            if lenght ==-1:
+                print("Vous devez spécifier la longueur de vos chemins avec l'option -x!")
+            else:
+                print("Vous devez spécifier le cluster de départ de vos chemins avec l'option -lop!")
         else:
             pass
 
@@ -735,21 +746,17 @@ if __name__ == '__main__':
 
 
             # Compare
-        if convert_greps_fred != None and lenght_xml != -1:
+        if option_xml != None and lenght != -1 and option_lop!=None:
             try:
-                file=graph.beta_lactam_file(convert_greps_fred)
-                (graph.compare_sequences_excel(file, lenght_xml))
+                file=graph.beta_lactam_file(option_xml)
+                (graph.compare_sequences_excel(file, lenght))
             except:
-                (graph.compare_sequences_excel(convert_greps_fred, lenght_xml))
+                (graph.compare_sequences_excel(option_xml, lenght))
         else:
             pass
 
-        print('')
-        print(" "+'Done!')
-        print('')
-
-        if many!=None:
-            graph.many_genes_cytoscape(many,lenght_lop)
+        if option_mn!=None and lenght!=-1:
+            graph.many_genes_cytoscape(option_mn,lenght)
 
             # Stats
         if stats == 'True':
@@ -757,14 +764,20 @@ if __name__ == '__main__':
         else:
             pass
 
-
-
             # Time
         print(" "+'Time:', graph.function_time(time), '/  H:M:S')
 
 
+        print('========================================================================================================')
+        print(
+            "\t" + "\t"+ "\t"+ "\t"  + "\t" + "\t" + '\033[4m' + 'Done !' + '\033[0m')
+        print('========================================================================================================')
+
+
     else:
         raise FileNotFoundError("Aucun fichier n'a été donné en entré!")
+
+
 
 
 
