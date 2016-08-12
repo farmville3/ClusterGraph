@@ -651,7 +651,7 @@ class Graph:
         print("")
         print(" Nombre de gene maximal dans un meme cluster:\t"+ str(max_gene))
         print(" Nombre de gene minimal dans un meme cluster:\t"+ str(min_gene))
-        print(" "+str(len(same_sample)))
+        print(" Nombre de fois on l'on a retrouvé deux gènes ou plus provenant du même échantillon dans le même cluster:\t"+str(len(same_sample)))
 
 
 #----------------Cytoscape for more than one gene/cluster---------------------------------------------------------------------------------------------------------
