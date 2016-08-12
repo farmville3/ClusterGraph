@@ -4,6 +4,15 @@
    ***Python 3 est necessaire a l'utilisation de ClusterGraph****
    ***Numpy et scipy sont deux librairies nécessaires aau fonctionnement de la méthode stats pour les graphs***
 
+   --> https://www.scipy.org/install.html
+   --> http://askubuntu.com/questions/509623/installation-procedure-for-numpy-and-other-python-3-4-packages-on-ubuntu-14-04
+
+   Pour ceux sur windows, vous pouvez intaller Anaconda qui installe automatiquement les librairies Numpy
+   et Scipy.
+
+   --> https://www.continuum.io/downloads
+   Choisissez Anaconda pour python 3.5
+
 
 
 Tutoriel pour utiliser ClusterGraph:
