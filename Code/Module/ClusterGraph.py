@@ -7,7 +7,6 @@ from collections import defaultdict
 import argparse
 import sys
 import numpy
-from scipy import stats as st
 from collections import Counter
 #----------------------Imports-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
