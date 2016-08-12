@@ -8,6 +8,7 @@ import argparse
 import sys
 import numpy
 from scipy import stats as st
+from collections import Counter
 #----------------------Imports-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Début de la procédure. On initialise le temps.
@@ -616,9 +617,11 @@ class Graph:
                         # La liste weights est la liste de tous les edges du graph incluant les duplicates.
                         weights[(str(nodes.cluster_id), str(links_object.cluster_id))] += 1
 
+        data = Counter(list(weights.values()))
+
         edge_avg = numpy.average(list(weights.values()))
         edge_median = numpy.median(list(weights.values()))
-        edge_mod = st.mode(list(weights.values()))
+        edge_mod = data.most_common(1)[0]
         edge_max = max(list(weights.values()))
         edge_min = min((weights.values()))
 
@@ -626,10 +629,11 @@ class Graph:
         for noeux in self.nodes.values():
             node_weight[noeux.cluster_id]=len(noeux.links)
 
+        data = Counter(list(node_weight.values()))
 
         node_avg = numpy.average(list(node_weight.values()))
         node_median=numpy.median(list(node_weight.values()))
-        node_mod=st.mode(list(node_weight.values()))
+        node_mod=data.most_common(1)[0]
         node_max=max(list(node_weight.values()))
         node_min=min(list(node_weight.values()))
 
@@ -826,7 +830,6 @@ if __name__ == '__main__':
 
     else:
         raise FileNotFoundError("Aucun fichier n'a été donné en entré!")
-
 
 
 
