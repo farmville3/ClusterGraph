@@ -6,6 +6,8 @@ import datetime
 from collections import defaultdict
 import argparse
 import sys
+import numpy
+from scipy import stats
 #----------------------Imports-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Début de la procédure. On initialise le temps.
@@ -580,16 +582,16 @@ class Graph:
         print("\t"+"\t"+"\t"+"\t"+'\t'+'Some stats on the graph')
         print('--------------------------------------------------------------------------------------------------------')
         print(" "+str(len(self.nodes))+ ' noeux')
-        max=0
-        min=100
+        max_gene=0
+        min_gene=100
 
         same_sample=[]
         for nodes in self.nodes.values():
-            if len(nodes.gene_list)>max:
-                max=len(nodes.gene_list)
+            if len(nodes.gene_list)>max_gene:
+                max_gene=len(nodes.gene_list)
 
-            if len(nodes.gene_list)<min:
-                min=len(nodes.gene_list)
+            if len(nodes.gene_list)<min_gene:
+                min_gene=len(nodes.gene_list)
             else:
                 pass
             for genes in nodes.gene_list:
@@ -601,8 +603,54 @@ class Graph:
                     if counter==2:
                         if nodes.cluster_id not in same_sample:
                             same_sample.append(nodes.cluster_id)
-        print(" "+'Max: '+ str(max))
-        print(" "+'Min: '+ str(min))
+
+        weights = defaultdict(int)
+        for nodes in self.nodes.values():
+            # node_object = self.nodes[nodes]
+            for links in nodes.links:
+                links_object = self.nodes[links]
+                for genes in nodes.gene_list:
+                    plus = genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1]) + 1)
+                    moins = genes.rstrip(genes.split('_')[-1]) + str(int(genes.split('_')[-1]) - 1)
+                    if plus in links_object.gene_list or moins in links_object.gene_list:
+                        # La liste weights est la liste de tous les edges du graph incluant les duplicates.
+                        weights[(str(nodes.cluster_id), str(links_object.cluster_id))] += 1
+
+        edge_avg = numpy.average(weights)
+        edge_median = numpy.median(weights)
+        edge_mod = stats.mode(weights)
+        edge_max = max(weights)
+        edge_min = min(weights)
+
+        node_weight=defaultdict(int)
+        for noeux in self.nodes.values():
+            node_object = self.nodes[noeux]
+            node_weight[node_object.cluster_id]=len(node_object.links)
+
+
+        node_avg = numpy.average(node_weight.values())
+        node_median=numpy.median(node_weight.values())
+        node_mod=stats.mode(node_weight.values())
+        node_max=max(node_weight.values())
+        node_min=min(node_weight.values())
+
+
+        print('Edges')
+        print("Nombre moyen correspondant au nombre de sequences passant sur un edge:\t"+str(edge_avg))
+        print("Nombre median correspondant au nombre de sequences passant sur un edge:\t" + str(edge_median))
+        print("Nombre correspondant au mode du nombre de sequences passant sur un edge:\t"+str(edge_mod))
+        print("Nombre correspondant au maximum du nombre de sequences passant sur un edge:\t" + str(edge_max))
+        print("Nombre correspondant au minimum du nombre de sequences passant sur un edge:\t" + str(edge_min))
+        print("")
+        print('Nodes')
+        print("Nombre moyen correspondant au nombre de edges etant connectes a un noeux:\t"+str(node_avg))
+        print("Nombre median correspondant au nombre de edges etant connectes a un noeux:\t" + str(node_median))
+        print("Nombre correspondant au mode nombre de edges etant connectes a un noeux:\t" + str(node_mod))
+        print("Nombre correspondant au maximum du nombre de edges etant connectes a un noeux:\t" + str(node_max))
+        print("Nombre correspondant au minimum du nombre de edges etant connectes a un noeux:\t" + str(node_min))
+        print("")
+        print(" Nombre de gene maximal dans un meme cluster:\t"+ str(max_gene))
+        print(" Nombre de gene minimal dans un meme cluster:\t"+ str(min_gene))
         print(" "+str(len(same_sample)))
 
 
