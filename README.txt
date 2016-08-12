@@ -2,6 +2,7 @@
 			ClusterGraph
 ========================================================================================================================
    ***Python 3 est necessaire a l'utilisation de ClusterGraph****
+   ***Numpy et scipy sont deux librairies nécessaires aau fonctionnement de la méthode stats pour les graphs***
 
 
 
