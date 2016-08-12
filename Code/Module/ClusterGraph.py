@@ -7,7 +7,7 @@ from collections import defaultdict
 import argparse
 import sys
 import numpy
-from scipy import stats
+from scipy import stats as st
 #----------------------Imports-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Début de la procédure. On initialise le temps.
@@ -581,7 +581,7 @@ class Graph:
         print('--------------------------------------------------------------------------------------------------------')
         print("\t"+"\t"+"\t"+"\t"+'\t'+'Some stats on the graph')
         print('--------------------------------------------------------------------------------------------------------')
-        print(" "+str(len(self.nodes))+ ' noeux')
+        print(" Nombre de noeux:\t"+str(len(self.nodes))+ ' noeux')
         max_gene=0
         min_gene=100
 
@@ -616,33 +616,31 @@ class Graph:
                         # La liste weights est la liste de tous les edges du graph incluant les duplicates.
                         weights[(str(nodes.cluster_id), str(links_object.cluster_id))] += 1
 
-        edge_avg = numpy.average(weights)
-        edge_median = numpy.median(weights)
-        edge_mod = stats.mode(weights)
-        edge_max = max(weights)
-        edge_min = min(weights)
+        edge_avg = numpy.average(list(weights.values()))
+        edge_median = numpy.median(list(weights.values()))
+        edge_mod = st.mode(list(weights.values()))
+        edge_max = max(list(weights.values()))
+        edge_min = min((weights.values()))
 
         node_weight=defaultdict(int)
         for noeux in self.nodes.values():
-            node_object = self.nodes[noeux]
-            node_weight[node_object.cluster_id]=len(node_object.links)
+            node_weight[noeux.cluster_id]=len(noeux.links)
 
 
-        node_avg = numpy.average(node_weight.values())
-        node_median=numpy.median(node_weight.values())
-        node_mod=stats.mode(node_weight.values())
-        node_max=max(node_weight.values())
-        node_min=min(node_weight.values())
+        node_avg = numpy.average(list(node_weight.values()))
+        node_median=numpy.median(list(node_weight.values()))
+        node_mod=st.mode(list(node_weight.values()))
+        node_max=max(list(node_weight.values()))
+        node_min=min(list(node_weight.values()))
 
 
-        print('Edges')
+        print('')
         print("Nombre moyen correspondant au nombre de sequences passant sur un edge:\t"+str(edge_avg))
         print("Nombre median correspondant au nombre de sequences passant sur un edge:\t" + str(edge_median))
         print("Nombre correspondant au mode du nombre de sequences passant sur un edge:\t"+str(edge_mod))
         print("Nombre correspondant au maximum du nombre de sequences passant sur un edge:\t" + str(edge_max))
         print("Nombre correspondant au minimum du nombre de sequences passant sur un edge:\t" + str(edge_min))
         print("")
-        print('Nodes')
         print("Nombre moyen correspondant au nombre de edges etant connectes a un noeux:\t"+str(node_avg))
         print("Nombre median correspondant au nombre de edges etant connectes a un noeux:\t" + str(node_median))
         print("Nombre correspondant au mode nombre de edges etant connectes a un noeux:\t" + str(node_mod))
@@ -701,26 +699,25 @@ if __name__ == '__main__':
     reload = (arg['r'])
     prefix=arg['prefix']
 
-
     # Load graph
     graph = Graph()
-    if prefix !="":
-        graph.prefix=prefix
+    if prefix != "":
+        graph.prefix = prefix
 
-    if load_file !="" or (load_file=="" and reload!=""):
+    if load_file != "" or (load_file == "" and reload != ""):
         # graph.load_graph(('/home/saiant01/cat_Sample_P4Jx-Assembly_100.fa.clstr'))
 
         if load_file != "":
             graph.load_graph((load_file))
 
-            if save !="":
+            if save != "":
                 graph.save_graph(save)
 
             if reload != "":
                 graph = Graph()
                 graph.reload_graph(reload)
 
-        elif (load_file=="" and reload!=""):
+        elif (load_file == "" and reload != ""):
             graph = Graph()
             graph.reload_graph(reload)
 
@@ -754,9 +751,9 @@ if __name__ == '__main__':
 
             # Coloring
             sequence_path = graph.sequences_in_find_path(list_of_paths)
-            #graph.show_path_by_samples(sequence_path)
+            # graph.show_path_by_samples(sequence_path)
 
-        elif lenght== -1 and option_lop !="":
+        elif lenght == -1 and option_lop != "":
             print("Vous devez spécifier le cluster de départ de vos chemins avec l'option -lop!")
         elif lenght != -1 and option_lop == "":
             print("Vous devez spécifier la longueur de vos chemins avec l'option -x!")
@@ -764,10 +761,10 @@ if __name__ == '__main__':
             pass
 
             # Sous-graph
-        if sous_graph==True and option_lop != "" and lenght!=-1:
+        if sous_graph == True and option_lop != "" and lenght != -1:
             sous_graph = graph.sous_graph(list_of_paths)
-        elif sous_graph==True and (option_lop == "" or lenght==-1):
-            if lenght ==-1:
+        elif sous_graph == True and (option_lop == "" or lenght == -1):
+            if lenght == -1:
                 print("Vous devez spécifier la longueur de vos chemins avec l'option -x!")
             else:
                 print("Vous devez spécifier le cluster de départ de vos chemins avec l'option -lop!")
@@ -776,14 +773,18 @@ if __name__ == '__main__':
 
             # Visualisation
         if cytoscape == True and sous_graph == True:
-            if prefix!=None:
-                file=os.path.join(os.path.dirname(__file__),'/home/saiant01/PycharmProjects/ClusterGraph/Cytoscape/{}_cytoscape.txt'.format(prefix))
+            if prefix != None:
+                file = os.path.join(os.path.dirname(__file__),
+                                    '/home/saiant01/PycharmProjects/ClusterGraph/Cytoscape/{}_cytoscape.txt'.format(
+                                        prefix))
                 sous_graph.cytoscape(file)
             else:
                 sous_graph.cytoscape()
         elif cytoscape == True:
-            if prefix!=None:
-                file=os.path.join(os.path.dirname(__file__),'/home/saiant01/PycharmProjects/ClusterGraph/Cytoscape/{}_cytoscape.txt'.format(prefix))
+            if prefix != None:
+                file = os.path.join(os.path.dirname(__file__),
+                                    '/home/saiant01/PycharmProjects/ClusterGraph/Cytoscape/{}_cytoscape.txt'.format(
+                                        prefix))
                 graph.cytoscape(file)
             else:
                 graph.cytoscape()
@@ -794,17 +795,17 @@ if __name__ == '__main__':
 
 
             # Compare
-        if option_xml!= "" and lenght != -1 and option_lop!="":
+        if option_xml != "" and lenght != -1 and option_lop != "":
             try:
-                file=graph.beta_lactam_file(option_xml)
+                file = graph.beta_lactam_file(option_xml)
                 (graph.compare_sequences_excel(file, lenght))
             except:
                 (graph.compare_sequences_excel(option_xml, lenght))
         else:
             pass
 
-        if option_mn!="" and lenght!=-1:
-            graph.many_genes_cytoscape(option_mn,lenght)
+        if option_mn != "" and lenght != -1:
+            graph.many_genes_cytoscape(option_mn, lenght)
 
             # Stats
         if stats == 'True':
@@ -813,17 +814,20 @@ if __name__ == '__main__':
             pass
 
             # Time
-        print(" "+'Time:', graph.function_time(time), '/  H:M:S')
+        print(" " + 'Time:', graph.function_time(time), '/  H:M:S')
 
-
-        print('========================================================================================================')
         print(
-            "\t" + "\t"+ "\t"+ "\t"  + "\t" + "\t" + '\033[4m' + 'Done !' + '\033[0m')
-        print('========================================================================================================')
+            '========================================================================================================')
+        print(
+            "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + '\033[4m' + 'Done !' + '\033[0m')
+        print(
+            '========================================================================================================')
 
 
     else:
         raise FileNotFoundError("Aucun fichier n'a été donné en entré!")
+
+
 
 
 
